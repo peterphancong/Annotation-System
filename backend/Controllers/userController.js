@@ -6,24 +6,19 @@ const User = db.users;
 
 const createAccount = async (req, res) => {
 	try {
-		const { userName, email, password, role } = req.body;
-		const data = {
-			userName,
-			email,
-			password: await bcrypt.hash(password, 10),
-			role,
-            active: 1,
-		};
-		const user = await User.create(data);
-		if (user) {
-			let token = jwt.sign({ userName: userName, email: email, role: role }, dbConfig.secretKey, {
-				expiresIn: 1 * 24 * 60 * 60 * 1000,
-		});
-		// res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-		return res.status(200).send(token);
-		} 
+            const { userName, email, password, role } = req.body;
+            const data = {
+                userName,
+                email,
+                password: await bcrypt.hash(password, 10),
+                role,
+                active: 1,
+            };
+            const user = await User.create(data);
+            return res.status(200).send('Account create successfully');
+		}
 		else {
-			return res.status(409).send("Details are not correct");
+			return res.status(409).send("Create account failed");
 		}
 	}
 	catch (error) {

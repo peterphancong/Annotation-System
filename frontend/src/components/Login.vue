@@ -30,8 +30,8 @@ export default
   data () {
     return {
       error: '',
-      email: '',
-      password: ''
+      email: 'curatorL@iir.csie',
+      password: '123'
     }
   },
   methods: {
