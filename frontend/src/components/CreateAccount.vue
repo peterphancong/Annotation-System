@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
     <div class="bg-white p-10 rounded-lg">
-      <span class="font-sans font-bold text-6xl text-black-100 leading-tight">Input your <br/>information</span>
       <!-- <div v-if='error'>{{ error }}</div> -->
       <form>
           <div class="flex flex-col items-center">
@@ -11,12 +10,11 @@
             <div class="flex items-center justify-between mb-2 mt-2 w-5/6">
               <span class="text-sm">Select your role:</span>
               <select class="text-sm mr-1 border w-1/2" v-model="role" name="roles">
-                <option value="1">Curator</option>
-                <option value="2">Leader</option>
+                <option value="1">Leader</option>
+                <option value="2">Curator</option>
               </select>
             </div>
             <button class="border mt-6 h-10 bg-blue-300 rounded-lg shadow-md w-5/6" @click="CreateAccount()" type="button">Create Account</button>
-            <a href="#" class="mt-4 text-sm text-gray-500 hover:text-gray-600">Already have an account? Login now!</a>
           </div>
       </form>
     </div>

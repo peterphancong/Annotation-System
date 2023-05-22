@@ -1,9 +1,10 @@
 <template>
-  <div class="hello">
+  <div class="Main Screen">
     Wellcome {{ email }} with role:
-    <div v-if="role === 0"> admin place</div>
-    <div v-else-if="role === 1"> leader parts are displayed here</div>
-    <div v-else-if="role === 2"> curator component are displayed here</div>
+    <div v-if="role < 1"> admin only place</div>
+    <div v-if="role < 2"> leader and admin only</div>
+    <div v-if="role < 3"> curator, leader and admin components are displayed here</div>
+    <button class="border mt-6 h-10 bg-blue-300 rounded-lg shadow-md w-5/6" @click="logout()" type="button">Logout</button>
   </div>
 </template>
 
@@ -27,6 +28,12 @@ export default {
       console.log(user)
       this.role = user.role
       this.email = user.email
+    }
+  },
+  methods: {
+    logout () {
+      localStorage.removeItem('user')
+      router.push('/')
     }
   }
 }
