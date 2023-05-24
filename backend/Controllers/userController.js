@@ -5,22 +5,18 @@ const dbConfig = require("../config/db.config.js");
 const User = db.users;
 
 const createAccount = async (req, res) => {
-	try {
-            const { userName, email, password, role } = req.body;
-            const data = {
-                userName,
-                email,
-                password: await bcrypt.hash(password, 10),
-                role,
-                active: 1,
-            };
-            const user = await User.create(data);
-            return res.status(200).send('Account create successfully');
-		}
-		else {
-			return res.status(409).send("Create account failed");
-		}
-	}
+  try {
+        const { userName, email, password, role } = req.body;
+        const data = {
+            userName,
+            email,
+            password: await bcrypt.hash(password, 10),
+            role,
+            active: 1,
+        };
+        const user = await User.create(data);
+        return res.status(200).send('Account create successfully');
+    }
 	catch (error) {
 		console.log(error);
 	}
@@ -98,8 +94,33 @@ const valicateUser = async (req, res, next) => {
         console.log(error);
     }
 };
+const verifyToken = async (req, res) =>{
+    try {
+        const {token} = req.body;
+        // console.log(token)
+        if(token){
+            const decode = jwt.verify(token, dbConfig.secretKey);
+            jwt.verify (token, dbConfig.secretKey, function (err, decoded) {
+                if (!err) 
+                    return res.status(201).send({"login": true, "message":"Login is sucessful"}); 
+                else
+                    return res.status(401).send({"login": false, "message":"Login is unsucessful"}); 
+                
+            });
+        }else{
+            return res.status(401).send({
+                "login": false,
+                "message": 'empty token'
+            });
+        }
+    }
+    catch{
+        return res.status(401).send("token verifying failed");
+    }
+}
 module.exports = {
     createAccount,
     login,
     valicateUser,
+    verifyToken,
 };

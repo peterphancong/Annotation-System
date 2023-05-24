@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen flex flex-col items-center justify-center">
       <div class="bg-white p-10 rounded-lg">
-        <h1 class="font-sans font-bold text-6xl text-black-100">Sign in</h1>
+        <h1 class="font-sans font-bold text-6xl text-black-100 text-center">Sign in</h1>
         <h3 class="font-sans font-bold mt-12 text-2xl">Sign in and start your annotation!</h3>
         <!-- <div v-if='error'>{{ error }}</div> -->
         <form>
@@ -35,6 +35,7 @@ export default
       axios.post('/api/login', data)
         .then((response) => {
           localStorage.setItem('user', response.data['token'])
+          this.displayMenu = true
           router.push('/main')
         })
         .catch((e) => {
