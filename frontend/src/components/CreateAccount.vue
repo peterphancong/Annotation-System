@@ -8,21 +8,20 @@
             <input class="border p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='text' name='user_email' placeholder="Email" v-model="email"/><br>
             <input class="border p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='password' name='user_password' placeholder="Password" v-model="password"/><br>
             <div class="flex content-center mb-5 w-5/6">
-              <span class="text-sm">Select your role:</span>
-              <select class="text-sm mr-1 border" v-model="role" name="roles">
+              <select v-model="role" name="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="0" selected>Select a role</option>
                 <option value="1">Leader</option>
                 <option value="2">Curator</option>
               </select>
             </div>
-            <a href="#" class="items-center text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <button class="flex-1 bg-blue-200 whitespace-nowrap rounded-lg w-1/6" @click="CreateAccount()" type="button">Create Account</button>
+            <a href="#" class="items-center text-gray-900 rounded-lg dark:text-white">
+              <button class="flex-1 bg-blue-200 whitespace-nowrap rounded-lg w-1/6 h-8" @click="CreateAccount()" type="button">Create Account</button>
             </a>
           </div>
       </form>
     </div>
   </div>
 </template>
-
 <script>
 import router from '../router'
 import VueJwtDecode from 'vue-jwt-decode'
@@ -32,21 +31,22 @@ export default
   name: 'CreateAccount',
   data () {
     return {
+      currentUser: '',
       userName: 'curator',
       email: 'curator@iir.csie',
       password: '234',
-      role: '1'
+      role: '0'
     }
   },
   methods: {
     CreateAccount () {
-      let user = {
+      let newuser = {
         userName: this.userName,
         email: this.email,
         password: this.password,
         role: this.role
       }
-      axios.post('/api/createAccount', user)
+      axios.post('/api/createAccount', newuser)
         .then((response) => {
           console.log(response.data)
           router.push('/')
@@ -65,11 +65,7 @@ export default
       axios.post('/api/verify', data)
         .then((response) => {
           if (response.status === 201) {
-            let user = VueJwtDecode.decode(token)
-            this.role = user.role
-            this.email = user.email
-            this.displayMenu = true
-            console.log(user)
+            this.currentUser = VueJwtDecode.decode(token)
           } else {
             router.push('/')
           }

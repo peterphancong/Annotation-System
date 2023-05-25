@@ -1,39 +1,41 @@
 <template>
     <div>
         <h2>Dashboard</h2>
-        <p>Name: {{ user.name }}</p>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
 import router from '../router'
+import VueJwtDecode from 'vue-jwt-decode'
+import axios from 'axios'
 
 export default {
-  name: 'Login',
+  name: 'Dashboard',
   data () {
     return {
-      user: {
-        name: 'Jesse'
-      }
+      currentUser: ''
     }
   },
   methods: {
-    getUserData: function () {
-      let self = this
-      axios.get('/api/user')
-        .then((response) => {
-          console.log(response)
-          self.$set(this, 'user', response.data.user)
-        })
-        .catch((errors) => {
-          console.log(errors)
-          router.push('/')
-        })
-    }
   },
   mounted () {
-    this.getUserData()
+    let token = localStorage.getItem('user')
+    if (!token) {
+      router.push('/')
+    } else {
+      var data = {token: token}
+      axios.post('/api/verify', data)
+        .then((response) => {
+          if (response.status === 201) {
+            this.currentUser = VueJwtDecode.decode(token)
+          } else {
+            router.push('/')
+          }
+        })
+        .catch((e) => {
+          this.error = 'Login Error'
+        })
+    }
   }
 }
 </script>
