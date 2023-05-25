@@ -104,12 +104,12 @@ export default {
         })
     }
   },
-  mounted() {
-    const dropdownButton = document.querySelector("#userdropdown");
-    const dropdownList = document.querySelector("#userdropdown + div.hidden");
-    dropdownButton.addEventListener("click", () => {
-      dropdownList.classList.toggle("hidden");
-    });
+  mounted () {
+    const dropdownButton = document.querySelector('#userdropdown')
+    const dropdownList = document.querySelector('#userdropdown + div.hidden')
+    dropdownButton.addEventListener('click', () => {
+      dropdownList.classList.toggle('hidden')
+    })
   },
   methods: {
     logout () {
