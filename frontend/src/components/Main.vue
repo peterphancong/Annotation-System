@@ -22,13 +22,13 @@
                 </a>
              </li>
              <li>
-                <button id="userdropdown" type="button" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="user_subfunctions" data-collapse-toggle="user_subfunctions">
+                <button id="userdropdown" type="button" @click="toggle()" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="user_subfunctions" data-collapse-toggle="user_subfunctions">
                   <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path>
                   </svg>
                   <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>User</span>
                   <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
-                <ul id="user_subfunctions" class="hidden py-2 space-y-2">
+                <ul id="usersubfunctions" ref="usersubfunctions" class="py-2 space-y-2">
                       <li v-if="currentUser.role<2">
                          <a @click.stop.prevent=" clickedItem=41 " class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Create User</a>
                       </li>
@@ -36,7 +36,7 @@
                          <a @click.stop.prevent=" clickedItem=42 " class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">User List</a>
                       </li>
                       <li>
-                         <a @click.stop.prevent=" clickedItem=43 " class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Person Infor</a>
+                         <a @click.stop.prevent=" clickedItem=43 " class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">User Profile</a>
                       </li>
                 </ul>
              </li>
@@ -80,7 +80,8 @@ export default {
     return {
       currentUser: '',
       displayMenu: false,
-      clickedItem: 0
+      clickedItem: 0,
+      error: ''
     }
   },
   beforeCreate () {
@@ -104,14 +105,15 @@ export default {
         })
     }
   },
-  mounted () {
-    const dropdownButton = document.querySelector('#userdropdown')
-    const dropdownList = document.querySelector('#userdropdown + div.hidden')
-    dropdownButton.addEventListener('click', () => {
-      dropdownList.classList.toggle('hidden')
-    })
-  },
   methods: {
+    toggle () {
+      let usersubfunctions = document.querySelector('#usersubfunctions')
+      if (usersubfunctions.classList.contains('hidden')) {
+        usersubfunctions.classList.remove('hidden')
+      } else {
+        usersubfunctions.classList.add('hidden')
+      }
+    },
     logout () {
       localStorage.removeItem('user')
       router.push('/')
