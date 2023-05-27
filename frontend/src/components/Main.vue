@@ -3,7 +3,7 @@
     <div class="bg-[url('@/assets/logo.png')]"></div>
   <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
        <div class="h-full px-3 py-14 overflow-y-auto bg-white">
-          <ul class=" font-medium">
+          <ul class=" font-medium border rounded-lg">
              <li>
                 <a @click.stop.prevent=" clickedItem=1" class="flex items-center w-full text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-10 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -55,12 +55,10 @@
                    <span class="flex-1 ml-3 whitespace-nowrap">System</span>
                 </a>
              </li>
-             <li>
-                <a href="#" class="flex items-center py-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full">
+          </ul>
+          <a href="#" class="flex items-center py-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full">
                    <button class="flex-1 bg-blue-200 whitespace-nowrap rounded-lg h-8 w-2/3" @click="logout()" type="button">Sign out</button>
                 </a>
-             </li>
-          </ul>
        </div>
     </aside>
     <div class="p-4 sm:ml-64">
