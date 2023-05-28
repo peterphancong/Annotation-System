@@ -64,7 +64,9 @@
     <div class="p-4 sm:ml-64">
        <div class="rounded-lg dark:border-gray-700">
           <Dashboard v-if="currentUser && clickedItem == 1" />
+          <Annotation v-if="currentUser && clickedItem == 2" />
           <CreateAccount v-if="currentUser.role<2 && clickedItem == 41" />
+          <UserProfile v-if="currentUser && clickedItem == 43"/>
         </div>
        </div>
   </div>
@@ -75,10 +77,15 @@ import VueJwtDecode from 'vue-jwt-decode'
 import axios from 'axios'
 import CreateAccount from './CreateAccount.vue'
 import Dashboard from './Dashboard.vue'
+import UserProfile from './UserProfile.vue'
+import Annotation from './Annotation.vue'
+
 export default {
   components: {
     CreateAccount,
-    Dashboard
+    Dashboard,
+    UserProfile,
+    Annotation
   },
   data () {
     return {

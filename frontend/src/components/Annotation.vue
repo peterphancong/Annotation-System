@@ -1,46 +1,92 @@
 <template>
-    <div class="min-h-screen flex flex-col items-center justify-center">
-      <div class="bg-white p-10 rounded-lg">
-        <h1 class="font-sans font-bold text-6xl text-black-100 text-center">Sign in</h1>
-        <h3 class="font-sans font-bold mt-12 text-2xl">Sign in and start your annotation!</h3>
-        <!-- <div v-if='error'>{{ error }}</div> -->
-        <form>
-            <div class="flex flex-col items-center">
-              <input class="border p-4 h-10 mt-6 bg-gray-100 rounded-lg w-5/6" type='text' name='email' placeholder="Email" v-model="email" /><br>
-              <input class="border p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='password' name='password' placeholder="Password" v-model="password"/><br>
-              <button class="border h-10 bg-blue-300 rounded-lg shadow-md w-5/6" @click="login()" type="button">Login</button>
-            </div>
-        </form>
-      </div>
+  <div class="min-h-screen flex flex-col items-left justify-top">
+    <h1 class="mb-4 text-4xl md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Annotation</h1>
+    <div class="bg-white p-5 rounded-lg">
+      <form>
+          <div class="flex">
+            <label class="w-10% h-10 p-4 bg-white text-left">Search for PMID or keyword</label>
+            <input class="border p-4 h-10 bg-gray-100 rounded-lg w-1/3" type='text' name='keyword' placeholder="31614642" v-model="keyword" /><br>
+            <a href="#" class="flex items-center w-1/6 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <button class="flex-1 border whitespace-nowrap rounded-lg w-1/6 h-8" @click="Search()" type="button">GO</button>
+            </a>
+          </div>
+      </form>
+      <table class="mt-10 min-w-full text-center text-sm font-light">
+        <thead
+          class="border-b bg-blue-200 font-medium text-black">
+          <tr>
+            <th scope="col" class=" px-6 py-4">#</th>
+            <th scope="col" class=" px-6 py-4">PMID</th>
+            <th scope="col" class=" px-6 py-4">Title</th>
+            <th scope="col" class=" px-6 py-4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b dark:border-neutral-500">
+            <td class="whitespace-nowrap  px-6 py-4 font-medium">1</td>
+            <td class="whitespace-nowrap  px-6 py-4">31614642</td>
+            <td class="whitespace-nowrap  px-6 py-4">Stem Cell-Derived Extracellular Vesicles and Kidney Regeneration</td>
+            <td class="whitespace-nowrap  px-6 py-4">
+              <a href="#" class="px-6 py-4d hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button @click="Annotate(31614642)" type="button">Annotate</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </template>
 <script>
 import router from '../router'
+import VueJwtDecode from 'vue-jwt-decode'
 import axios from 'axios'
 export default
 {
+  name: 'CreateAccount',
   data () {
     return {
-      error: '',
-      email: 'curatorL@iir.csie',
-      password: '123'
+      currentUser: '',
+      userName: 'curator',
+      email: 'curator@iir.csie',
+      password: '234',
+      role: '0'
     }
   },
   methods: {
-    login () {
-      var data = {
+    CreateAccount () {
+      let newuser = {
+        userName: this.userName,
         email: this.email,
-        password: this.password
+        password: this.password,
+        role: this.role
       }
-      axios.post('/api/login', data)
+      axios.post('/api/createAccount', newuser)
         .then((response) => {
-          localStorage.setItem('user', response.data['token'])
-          this.displayMenu = true
-          router.push('/main')
+          console.log(response.data)
+          router.push('/')
+        })
+        .catch((errors) => {
+          console.log('Error in signup..')
+        })
+    }
+  },
+  mounted () {
+    let token = localStorage.getItem('user')
+    if (!token) {
+      router.push('/')
+    } else {
+      var data = {token: token}
+      axios.post('/api/verify', data)
+        .then((response) => {
+          if (response.status === 201) {
+            this.currentUser = VueJwtDecode.decode(token)
+          } else {
+            router.push('/')
+          }
         })
         .catch((e) => {
           this.error = 'Login Error'
-          console.log(e.response.data)
         })
     }
   }
