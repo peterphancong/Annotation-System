@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="mb-4 text-4xl md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Dashboard</h1>
+        <h1 class="p-4 text-4xl md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Dashboard</h1>
     </div>
 </template>
 
