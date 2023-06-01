@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
            unique: true,
            allowNull: false
        },
+    //    src:{
+    //     type: DataType
+
+    //    },
+
        active: {
            type: DataTypes.BOOLEAN,
            allowNull: false
