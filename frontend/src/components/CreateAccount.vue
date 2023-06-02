@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col items-left justify-top font-deca font-bold text-sm">
+  <div class="min-h-screen flex flex-col items-left justify-top">
     <h1 class="p-4 text-4xl md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Create Account</h1>
     <div class="bg-white p-5 rounded-lg">
       <form>
