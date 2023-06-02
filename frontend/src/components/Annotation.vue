@@ -29,7 +29,7 @@
               <td class="whitespace-nowrap  px-6 py-4">31614642</td>
               <td class="whitespace-nowrap  px-6 py-4">not start</td>
               <td class="whitespace-nowrap  px-6 py-4">
-                <button class="bg-blue-300 hover:bg-blue-400 font-bold py-1 px-3 rounded-full">Load</button>
+                <button class="bg-blue-300 hover:bg-blue-400 font-bold py-1 px-3 rounded-full" @click="LoadPage">Load</button>
               </td>
             </tr>
             <tr class="border-b dark:border-neutral-500">
@@ -108,10 +108,14 @@ export default
     return {
       keyword: '',
       online_search: true,
-      upload_files: false
+      upload_files: false,
+      load_page: false
     }
   },
   methods: {
+    LoadPage () {
+      router.push('/annotation_components')
+    },
     CreateAccount () {
       let newuser = {
         userName: this.userName,

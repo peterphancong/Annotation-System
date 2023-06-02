@@ -1,15 +1,14 @@
 //Identifier model
 module.exports = (sequelize, DataTypes) => {
-   const Identifier = sequelize.define( "identifiers", {
-       text: {
-           type: DataTypes.STRING,
-           allowNull: false
-       },
-       type: {
-           type: DataTypes.STRING,
-           unique: true,
-           allowNull: false
-       }
-   }, {timestamps: true}, )
-   return Identifier
-}
+    const Identifier = sequelize.define( "identifiers", {
+        identifier: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        entity_type: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    }, {timestamps: false}, )
+    return Identifier
+ }
