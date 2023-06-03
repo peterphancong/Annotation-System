@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen flex flex-col items-left justify-top">
-    <h1 class="p-4 text-4xl md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Create Account</h1>
+  <div class="min-h-screen flex flex-col items-left justify-top font-deca font-bold text-sm">
+    <h1 class="p-4 md:text-5xl lg:text-4xl dark:text-white text-left w-5/6">Create Account</h1>
     <div class="bg-white p-5 rounded-lg">
       <form>
           <div class="flex flex-col">
-            <input class="border p-4 h-10 bg-gray-100 rounded-lg w-5/6" type='text' name='username' placeholder="Username" v-model="userName" /><br>
-            <input class="border p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='text' name='user_email' placeholder="Email" v-model="email"/><br>
-            <input class="border p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='password' name='user_password' placeholder="Password" v-model="password"/><br>
+            <input class="border text-sm p-4 h-10 bg-gray-100 rounded-lg w-5/6" type='text' name='username' placeholder="Username" v-model="userName" /><br>
+            <input class="border text-sm p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='text' name='user_email' placeholder="Email" v-model="email"/><br>
+            <input class="border text-sm p-4 h-10 mt-1 bg-gray-100 rounded-lg w-5/6" type='password' name='user_password' placeholder="Password" v-model="password"/><br>
             <div class="flex content-center mb-5 w-5/6">
               <select v-model="role" name="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="0" selected>Select a role</option>
