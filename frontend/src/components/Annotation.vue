@@ -1,6 +1,6 @@
 <template>
   <div class="text-sm">
-    <h1 class="pl-2 text-4xl text-left w-5/6">Annotation</h1>
+    <h1 class="pl-2 text-4xl text-left w-5/6">Annotation List</h1>
     <div class="m-2 p-2 bg-dark-gray border rounded-lg">
       <div class="h-10">
         <button @click="online_search = true"  :class="{'border-blue-500' : online_search, 'text-blue-500': online_search}" class="relative border-b-2 border-transparent">Online Search</button>
@@ -18,7 +18,7 @@
         <input class="block w-full text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec()" multiple>
       </div>
     </div> 
-    <div id="dvDocList" class="p-2 m-2 border overflow-y-scroll bg-dark-gray">
+    <div id="dvDocList" class="p-2 m-2 border overflow-y-scroll overflow-auto max-h-96 bg-dark-gray">
         <table class="text-left mb-10 table-auto border-collapse rounded-lg overflow-hidden w-full">
           <thead>
             <tr>
@@ -53,10 +53,81 @@
                 <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
               </td>
             </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="px-4 py-2 border-b-2 border-gray-200">  A novel study: long-lasting event memory.</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">31614642</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">not start</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200">
+                <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="LoadPage">Load</button>
+              </td>
+            </tr>
           </tbody>
         </table>
     </div>
-    
   </div>
 </template>
 <script>
