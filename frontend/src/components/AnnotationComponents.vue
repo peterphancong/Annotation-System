@@ -6,11 +6,11 @@
             <div class="flex flex-col">
               <h2 class="ml-2 font-bold text-left w-5/6" id="title">Stem Cell-Derived Extracellular Vesicles and Kidney Regeneration <span>(PubMedID: 31614642)</span></h2>
             </div>
-            <p class="p-2 border shadow-sm overflow-y-scroll overflow-auto h-40" v-on:mouseup="onSelection">
+            <p class="p-2 border shadow-sm overflow-y-scroll overflow-auto h-40" v-on:mouseup="SelectText">
               Main text display here - Extracellular vesicles (EVs) are membranous vesicles containing active proteins, lipids, and different types of genetic material such as miRNAs, mRNAs, and DNAs related to the characteristics of the originating cell. They possess a distinctive capacity to communicate over long distances. EVs have been involved in the modulation of several pathophysiological conditions and, more importantly, stem cell-derived EVs appear as a new promising therapeutic option. In fact, several reports provide convincing evidence of the regenerative potential of EVs released by stem cells and, in particular, mesenchymal stromal cells (MSCs) in different kidney injury models. Described mechanisms involve the reprogramming of injured cells, cell proliferation and angiogenesis, and inhibition of cell apoptosis and inflammation. Besides, the therapeutic use of MSC-EVs in clinical trials is under investigation. This review will focus on MSC-EV applications in preclinical models of acute and chronic renal damage including recent data on their use in kidney transplant conditioning. Moreover, ongoing clinical trials are described. Finally, new strategies to broaden and enhance EV therapeutic efficacy by engineering are discussed.
             </p>
             <div class="mt-2 flex justify-left h-8">
-              <select v-on:change="SelectRelationType" id="countries_disabled" class="text-sm border-b-1 border-gray-400 text-gray-900 rounded-lg block w-64 p-1">
+              <select v-on:change="SelectEntityType" id="countries_disabled" class="text-sm border-b-1 border-gray-400 text-gray-900 rounded-lg block w-64 p-1">
                 <option selected>Filter entity type</option>
                 <option value="Gene">GeneOrGeneProduct</option>
                 <option value="Disease">DiseaseOrPhenotypicFeature</option>
@@ -29,39 +29,39 @@
           </div>
           <div class="pl-2 pr-2" id="idnetifier_selection">
             <div class="text-sm p-1 border shadow-sm overflow-y-scroll text-base rounded-lg overflow-auto">
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="onButtonSelection" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
+              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
             </div>
           </div>
           <div class="flex justify-between">
@@ -76,66 +76,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">Long QT syndrome</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">SequenceVariant</td>
+                  <tr v-for="(item, index) in items" :key="index">
+                    <td class="px-4 py-2 border-b-2 border-gray-200">{{ item.text }}</td>
+                    <td class="px-4 py-2 border-b-2 border-gray-200">{{ item.identifier }}</td>
+                    <td class="px-4 py-2 border-b-2 border-gray-200">{{ item.type }}</td>
                     <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                      <svg @click="deleteEntityRow(index)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">LQTS</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
+                  <!-- <tr>
                     <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <input v-model="newItem.text" type="text" class="border rounded px-2 py-1">
                     </td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">Na(v)1.5</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">GeneOrGeneProduct</td>
                     <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <input v-model="newItem.identifier" type="text" class="border rounded px-2 py-1">
                     </td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">Long QT syndrome</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">SequenceVariant</td>
                     <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <input v-model="newItem.type" type="text" class="border rounded px-2 py-1">
                     </td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">LQTS</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
                     <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <button @click="addRow" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
                     </td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">Na(v)1.5</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">D008133</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">GeneOrGeneProduct</td>
-                    <td class="px-4 py-2 border-b-2 border-gray-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -205,10 +169,9 @@
           </div>
         </div>
         <!-- <div class="m-2 p-1 bg-orange-200 h-96 w-full">
-          <p class="text-2xl">Current selected text is: <span class="text-blue-500">{{ selectedText}}</span></p>
-          <p class="text-2xl">Current selected button is: <span class="text-blue-500">{{ selectedIdentifier}}</span></p>
-          <p class="text-2xl">Current selected entity type is: <span class="text-blue-500">{{ selectedEntityType}}</span></p>
-          <p class="text-2xl">last index of entity type is: <span class="text-blue-500">{{ lastIndexOfEntityType}}</span></p>
+          <p class="text-2xl">Current selected text is: <span class="text-blue-500">{{ newItem.text}}</span></p>
+          <p class="text-2xl">Current selected button is: <span class="text-blue-500">{{ newItem.identifier}}</span></p>
+          <p class="text-2xl">Current selected entity type is: <span class="text-blue-500">{{ newItem.type}}</span></p>
         </div> -->
     </div>
 </template>
@@ -222,34 +185,48 @@ export default {
   data () {
     return {
       currentUser: '',
-      selectedText: '',
-      selectedIdentifier: '',
-      selectedEntityType: '',
-      lastIndexOfEntityType: 0
+      items: [
+        // { text: 'Long QT syndrome', identifier: 'D008133', type: 'SequenceVariant' },
+        // { text: 'LQTS', identifier: 'D008133', type: 'DiseaseOrPhenotypicFeature' }
+      ],
+      newItem: {
+        text: '',
+        identifier: '',
+        type: ''
+      }
     }
   },
   methods: {
-    onSelection (event) {
-      this.selectedText = window.getSelection().toString()
-      // var text = selection.toString()
-      // alert(text)
-      // this.selectedText = text
+    SelectText (event) {
+      this.newItem.text = window.getSelection().toString()
+      // this.selectedText = window.getSelection().toString()
     },
-    onButtonSelection (event) {
-      var btnText = event.currentTarget
-      // alert(btnText.textContent)
-      // var btnText = btnSelection.toString()
-      // alert(btnText)
-      this.selectedIdentifier = btnText.textContent
-      // var tableToAdd = this.$refs.entityTable
-      this.$refs.entityTable.insertAdjacentHTML(
-        'beforeend',
-        '<tr><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedText + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedIdentifier + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedEntityType + '</td><td class="px-4 py-2 border-b-2 border-gray-200"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></td></tr>'
-      )
-      this.lastIndexOfEntityType += 1
+    SelectIdentifier (event) {
+      this.newItem.identifier = event.currentTarget.textContent
+      this.items.push({
+        text: this.newItem.text,
+        identifier: this.newItem.identifier,
+        type: this.newItem.type
+      })
+      this.newItem = {
+        text: '',
+        identifier: '',
+        type: ''
+      }
+      // var btnText = event.currentTarget
+      // this.selectedIdentifier = btnText.textContent
+      // this.$refs.entityTable.insertAdjacentHTML(
+      //   'beforeend',
+      //   '<tr><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedText + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedIdentifier + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedEntityType + '</td><td class="px-4 py-2 border-b-2 border-gray-200"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></td></tr>'
+      // )
+      // this.lastIndexOfEntityType += 1
     },
-    SelectRelationType (event) {
-      this.selectedEntityType = event.target.value
+    SelectEntityType (event) {
+      this.newItem.type = event.target.value
+      // this.selectedEntityType = event.target.value
+    },
+    deleteEntityRow (index) {
+      this.items.splice(index, 1)
     }
   },
   mounted () {
