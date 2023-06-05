@@ -1,21 +1,21 @@
 <template>
-  <div class="text-sm">
+  <div class="text-sm pb-1">
     <h1 class="pl-2 text-4xl text-left w-5/6">Annotation List</h1>
-    <div class="m-2 p-2 bg-dark-gray border rounded-lg">
+    <div class="m-2 p-2 bg-dark-gray border">
       <div class="h-10">
-        <button @click="online_search = true"  :class="{'border-blue-500' : online_search, 'text-blue-500': online_search}" class="relative border-b-2 border-transparent">Online Search</button>
-        <button @click="online_search = false" :class="{'border-blue-500' : !online_search, 'text-blue-500': !online_search}" class="relative border-b-2 border-transparent ml-5">Upload Files</button>
+        <button @click="online_search = true"  :class="{'border-blue-500' : online_search}" class="relative border-b-2 p-1 border-transparent">Online Search</button>
+        <button @click="online_search = false" :class="{'border-blue-500' : !online_search}" class="relative border-b-2 p-1 border-transparent ml-5">BioC.JSON Files</button>
       </div>
       <div id="dvOnlineSearch" v-if="online_search" class="">
-        <div class="flex bg-white rounded-lg border-b-2">
+        <div class="flex bg-white rounded-lg border-2 text-xs border border-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 flex-shrink-0 mt-3 mr-2 ml-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>
           <input type="text" class="border-0 bg-transparent flex-1 rounded-lg text-sm" placeholder="Pubmed ID" v-model="keyword">
         </div>
       </div>
-      <div id="dvUploadFile" v-else class="">
-        <input class="block w-full text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec" ref="file" multiple>
+      <div id="dvUploadFile" v-else>
+        <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec" ref="file" multiple>
       </div>
     </div>
     <div id="dvDocList" class="p-2 m-2 border overflow-y-scroll overflow-auto max-h-96 bg-dark-gray">

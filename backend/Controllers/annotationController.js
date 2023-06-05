@@ -14,8 +14,9 @@ const upload = multer({ storage: storage });
 const uploadBiorec = (req, res) => {
     upload.fields([{name: 'userName'}, {name: 'files'}])(req, res, () => {
         try {
-            var token = req.body.token
-            var files = req.files
+            var files = Array.from(req.files);
+            console.log(files[0])
+            
             // const myFile = req.files[0];
             // //  mv() method places the file inside public directory
             // myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
