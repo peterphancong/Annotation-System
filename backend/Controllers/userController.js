@@ -43,12 +43,10 @@ const login = async (req, res) => {
 		if (user) {
 			const isSame = await bcrypt.compare(String(password), String(user.password));
 			if (isSame) {
-				let token = jwt.sign({ email: user.email, role: user.role }, dbConfig.secretKey, {
+				let token = jwt.sign({userName: user.userName, email: user.email, role: user.role }, dbConfig.secretKey, {
 					expiresIn: 1 * 24 * 60 * 60 * 1000});
                 let refreshToken = jwt.sign({ userName: user.userName, role: user.role }, dbConfig.secretKey, {
 					expiresIn: 90 * 24 * 60 * 60 * 1000});
-				// res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-				// return res.status(201).send('Login Successfully');
                 const response = {
                     "status": 200,
                     "token": token,
