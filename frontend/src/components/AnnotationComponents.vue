@@ -240,17 +240,17 @@ export default {
         let selectedType = this.items[this.items.length - 1].type
         const regex = new RegExp(`(${this.searchKeyword})`, 'gi')
         if (selectedType === 'Gene') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-red-500">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-yellow-200">$1</span>')
         } else if (selectedType === 'Disease') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-blue-300">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-pink-200">$1</span>')
         } else if (selectedType === 'Chemical') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-green-300">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-green-200">$1</span>')
         } else if (selectedType === 'Organism') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-orange-500">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-blue-200">$1</span>')
         } else if (selectedType === 'Variant') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-gray-400">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-gray-200">$1</span>')
         } else if (selectedType === 'CellLine') {
-          highlightedText = highlightedText.replace(regex, '<span class="text-pink-500">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-orange-200">$1</span>')
         }
         // else {
         //   highlightedText = this.abstractText
