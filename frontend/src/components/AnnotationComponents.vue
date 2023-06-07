@@ -14,7 +14,7 @@
             </div>
             <div class="mt-2 flex justify-left h-8">
               <select v-on:change="SelectEntityType" id="countries_disabled" class="text-sm border-b-1 border-gray-400 text-gray-900 rounded-lg block w-64 p-1">
-                <option selected>Filter entity type</option>
+                <option value="None" selected>Filter entity type</option>
                 <option value="Gene">GeneOrGeneProduct</option>
                 <option value="Disease">DiseaseOrPhenotypicFeature</option>
                 <option value="Chemical">ChemicalEntity</option>
@@ -175,6 +175,7 @@
           <p class="text-2xl">Current selected text is: <span class="text-blue-500">{{ newItem.text}}</span></p>
           <p class="text-2xl">Current selected button is: <span class="text-blue-500">{{ newItem.identifier}}</span></p>
           <p class="text-2xl">Current selected entity type is: <span class="text-blue-500">{{ newItem.type}}</span></p>
+          <p class="text-2xl">Current toggle is (true: delete status): <span class="text-blue-500">{{ toggle}}</span></p>
         </div> -->
     </div>
 </template>
@@ -190,6 +191,10 @@ export default {
       currentUser: '',
       abstractText: 'Main text display here - Extracellular vesicles (EVs) are membranous vesicles containing active proteins, lipids, and different types of genetic material such as miRNAs, mRNAs, and DNAs related to the characteristics of the originating cell. They possess a distinctive capacity to communicate over long distances. EVs have been involved in the modulation of several pathophysiological conditions and, more importantly, stem cell-derived EVs appear as a new promising therapeutic option. In fact, several reports provide convincing evidence of the regenerative potential of EVs released by stem cells and, in particular, mesenchymal stromal cells (MSCs) in different kidney injury models. Described mechanisms involve the reprogramming of injured cells, cell proliferation and angiogenesis, and inhibition of cell apoptosis and inflammation. Besides, the therapeutic use of MSC-EVs in clinical trials is under investigation. This review will focus on MSC-EV applications in preclinical models of acute and chronic renal damage including recent data on their use in kidney transplant conditioning. Moreover, ongoing clinical trials are described. Finally, new strategies to broaden and enhance EV therapeutic efficacy by engineering are discussed.',
       searchKeyword: '',
+      cleanKeyword: '',
+      cleanType: '',
+      toggle: false,
+      // success: 'Success!',
       items: [
         // { text: 'Long QT syndrome', identifier: 'D008133', type: 'SequenceVariant' },
         // { text: 'LQTS', identifier: 'D008133', type: 'DiseaseOrPhenotypicFeature' }
@@ -197,7 +202,7 @@ export default {
       newItem: {
         text: '',
         identifier: '',
-        type: ''
+        type: 'None'
       }
     }
   },
@@ -209,30 +214,88 @@ export default {
     SelectIdentifier (event) {
       this.newItem.identifier = event.currentTarget.textContent
       this.searchKeyword = this.newItem.text
-      this.items.push({
-        text: this.newItem.text,
-        identifier: this.newItem.identifier,
-        type: this.newItem.type
-      })
-      this.newItem = {
-        text: '',
-        identifier: '',
-        type: ''
-      }
+      // console.log(this.newItem.type)
+      if (this.newItem.type !== 'None') {
+        this.items.push({
+          text: this.newItem.text,
+          identifier: this.newItem.identifier,
+          type: this.newItem.type
+        })
+        this.newItem = {
+          text: '',
+          identifier: '',
+          type: this.newItem.type
+        }
+        this.toggle = false
       // var btnText = event.currentTarget
       // this.selectedIdentifier = btnText.textContent
       // this.$refs.entityTable.insertAdjacentHTML(
       //   'beforeend',
       //   '<tr><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedText + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedIdentifier + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedEntityType + '</td><td class="px-4 py-2 border-b-2 border-gray-200"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></td></tr>'
       // )
-      // this.lastIndexOfEntityType += 1
+      }
     },
     SelectEntityType (event) {
       this.newItem.type = event.target.value
       // this.selectedEntityType = event.target.value
     },
     deleteEntityRow (index) {
+      this.cleanKeyword = this.items[index].text
+      this.cleanType = this.items[index].type
+      // console.log(this.cleanType)
       this.items.splice(index, 1)
+      this.toggle = true
+    },
+    cleanText () {
+      let unhighlightedText = this.abstractText
+      if (this.cleanType === 'Gene') {
+        const regex = new RegExp(`<span class="bg-yellow-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else if (this.cleanType === 'Disease') {
+        const regex = new RegExp(`<span class="bg-pink-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else if (this.cleanType === 'Chemical') {
+        const regex = new RegExp(`<span class="bg-green-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else if (this.cleanType === 'Organism') {
+        const regex = new RegExp(`<span class="bg-blue-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else if (this.cleanType === 'Variant') {
+        const regex = new RegExp(`<span class="bg-purple-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else if (this.cleanType === 'CellLine') {
+        const regex = new RegExp(`<span class="bg-orange-200">(${this.cleanKeyword})</span>`, 'gi')
+        unhighlightedText = unhighlightedText.replace(regex, '$1')
+        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
+        // console.log(match)
+        // return group1
+        // })
+      } else {
+        unhighlightedText = this.abstractText
+      }
+      this.cleanKeyword = ''
+      this.abstractText = unhighlightedText
+      return unhighlightedText
     },
     highlightText () {
       let highlightedText = this.abstractText
@@ -248,13 +311,12 @@ export default {
         } else if (selectedType === 'Organism') {
           highlightedText = highlightedText.replace(regex, '<span class="bg-blue-200">$1</span>')
         } else if (selectedType === 'Variant') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-gray-200">$1</span>')
+          highlightedText = highlightedText.replace(regex, '<span class="bg-purple-200">$1</span>')
         } else if (selectedType === 'CellLine') {
           highlightedText = highlightedText.replace(regex, '<span class="bg-orange-200">$1</span>')
+        } else {
+          highlightedText = this.abstractText
         }
-        // else {
-        //   highlightedText = this.abstractText
-        // }
       }
       this.abstractText = highlightedText
       return highlightedText
@@ -262,6 +324,10 @@ export default {
   },
   computed: {
     highlightedText () {
+      if (this.toggle) {
+        return this.cleanText()
+      }
+      // console.log(this.success)
       return this.highlightText()
     }
   },
