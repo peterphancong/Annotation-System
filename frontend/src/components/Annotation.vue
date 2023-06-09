@@ -15,7 +15,7 @@
         </div>
       </div>
       <div id="dvUploadFile" v-else>
-        <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec" ref="file" multiple>
+        <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec" ref="file" accept=".BioC.json">
       </div>
     </div>
     <div id="dvDocList" class="p-2 m-2 border overflow-y-scroll overflow-auto max-h-96 bg-dark-gray">
@@ -64,9 +64,7 @@ export default
     async uploadBiorec () {
       let formData = new FormData()
       formData.append('userName', this.currentUser.userName)
-      for (let i = 0; i < this.$refs.file.files.length; i++) {
-        formData.append('files', this.$refs.file.files[i])
-      }
+      formData.append('biorecJsonfile', this.$refs.file.files[0])
       console.log(formData)
       try {
         await axios.post('/api/uploadBiorec', formData)

@@ -22,17 +22,16 @@ db.identifiers = require("./identifierModel.js")(sequelize, Sequelize);
 
 /////////////// OR-Mapping place
 //Document has many entities, entity belong to a document
-db.documents.hasMany(db.entities, { as: "EntityList" });
-db.entities.belongsTo(db.documents, {
-  foreignKey: "documentId",
-  as: "Document",
-});
+db.documents.hasMany(db.entities);
+db.entities.belongsTo(db.documents);
 
-db.identifiers.hasMany(db.entities, { as: "EntityList" });
-db.entities.belongsTo(db.identifiers, {
-  foreignKey: "identifierId",
-  as: "Identifier",
-});
+db.users.hasMany(db.documents);
+db.documents.belongsTo(db.users);
 
+db.users.hasMany(db.identifiers);
+db.identifiers.belongsTo(db.users);
+
+db.identifiers.hasMany(db.entities);
+db.entities.belongsTo(db.identifiers);
 
 module.exports = db;
