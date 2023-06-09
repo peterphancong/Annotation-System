@@ -28,43 +28,15 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </form>
+              <div class="ml-2 flex bg-gray-50 rounded-lg border-b-1 border-gray-200">
+                <input v-model="insertNewIdentifier" type="text" class="text-sm border-1 bg-transparent focus:outline-none flex-1 rounded-lg" placeholder="Insert the identifier">
+                <button v-on:mouseup="insert" class="ml-1 text-sm m-0.5 bg-white rounded-lg p-0.5 border-blue-500">Go</button>
+              </div>
             </div>
           </div>
           <div class="pl-2 pr-2" id="idnetifier_selection">
             <div class="text-sm p-1 border shadow-sm overflow-y-scroll text-base rounded-lg overflow-auto">
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3175</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">3630</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">317</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">2</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs74805019</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008358</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">c|SUB|G|CODON1763|A</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">D008133</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs121908864</button>
-              <button v-on:mouseup="SelectIdentifier" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">rs267607117</button>
+              <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
             </div>
           </div>
           <div class="flex justify-between">
@@ -203,7 +175,16 @@ export default {
         text: '',
         identifier: '',
         type: 'None'
-      }
+      },
+      noneOptions: [],
+      geneOptions: ['3175', '927', '3630', '672', '317'],
+      diseaseOptions: ['D061325', 'D009369', 'D003924', 'C567134'],
+      chemicalOptions: ['D005947', 'D008358', 'D014747'],
+      organismOptions: ['9606', '10116', '10090'],
+      variantOptions: ['rs74805019', 'cDEL30G', 'rs111033196'],
+      cellLineOptions: ['CVCL_JW73', 'CVCL_K278'],
+      options: [''],
+      insertNewIdentifier: ''
     }
   },
   methods: {
@@ -237,6 +218,21 @@ export default {
     },
     SelectEntityType (event) {
       this.newItem.type = event.target.value
+      if (this.newItem.type === 'None') {
+        this.options = this.noneOptions
+      } else if (this.newItem.type === 'Gene') {
+        this.options = this.geneOptions
+      } else if (this.newItem.type === 'Disease') {
+        this.options = this.diseaseOptions
+      } else if (this.newItem.type === 'Chemical') {
+        this.options = this.chemicalOptions
+      } else if (this.newItem.type === 'Organism') {
+        this.options = this.organismOptions
+      } else if (this.newItem.type === 'Variant') {
+        this.options = this.variantOptions
+      } else {
+        this.options = this.cellLineOptions
+      }
       // this.selectedEntityType = event.target.value
     },
     deleteEntityRow (index) {
@@ -320,6 +316,24 @@ export default {
       }
       this.abstractText = highlightedText
       return highlightedText
+    },
+    insert (event) {
+      this.newItem.identifier = this.insertNewIdentifier
+      this.searchKeyword = this.newItem.text
+      if (this.newItem.text === '' || this.newItem.identifier === '') {
+      } else if (this.newItem.type !== 'None') {
+        this.items.push({
+          text: this.newItem.text,
+          identifier: this.newItem.identifier,
+          type: this.newItem.type
+        })
+        this.newItem = {
+          text: '',
+          identifier: '',
+          type: this.newItem.type
+        }
+        this.toggle = false
+      }
     }
   },
   computed: {
