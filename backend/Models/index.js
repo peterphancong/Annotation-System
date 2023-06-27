@@ -25,8 +25,9 @@ db.identifiers = require("./identifierModel.js")(sequelize, Sequelize);
 db.documents.hasMany(db.entities);
 db.entities.belongsTo(db.documents);
 
-db.users.hasMany(db.documents);
-db.documents.belongsTo(db.users);
+// User - Document relationship
+db.users.hasMany(db.documents, {foreignKey:'uploadedBy'});
+db.documents.belongsTo(db.users,{foreignKey:'uploadedBy'});
 
 db.users.hasMany(db.identifiers);
 db.identifiers.belongsTo(db.users);

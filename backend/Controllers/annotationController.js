@@ -6,7 +6,18 @@ const Document = db.documents;
 const User = db.users;
 // const Document = require('../models/documentModel.js')(sequelize, DataTypes);
 // const User = require('../models/userModel.js')(sequelize, DataTypes);
-
+const loadList = (userID, pageSize, pageIndex) =>{
+  var documentlist = Document.findAndCountAll({
+    attributes: ["title","pubmedID","status"],
+    where:{
+      uploadedBy: userID,
+    },
+    order: ['createdAt'],
+    limit: pageSize,
+    offset: pageIndex
+  });
+  return documentlist;
+}
 var storage = multer.diskStorage({
     destination: function (req, biorecJsonfile, callback) {
         callback(null, './uploads/');
@@ -22,15 +33,15 @@ const uploadBiorec = async (req, res) => {
   upload.fields([{name: 'userName'}, {name: 'biorecJsonfile'}]) (req, res, async() => {
     try {
       var filename = req.files["biorecJsonfile"][0]["destination"] + req.files["biorecJsonfile"][0]["filename"];
-      console.log(filename)
       const user = await User.findOne({
           where: {
             userName: String(req.body.userName),
           } 
-        });
+      });
+      console.log(String(req.body.userName))
       fs.readFile(filename, 'utf8', async (err, data) => {
         if (err) {
-          console.error(err);
+          console.log("reading file get error")
           return;
         }
         obj = JSON.parse(data); //parse the content in the file into documments
@@ -41,12 +52,17 @@ const uploadBiorec = async (req, res) => {
             documentLink: filename,
             status: 0,
             active: true,
-            userId: user.id
+            uploadedBy: user.id
           };
           createdDocument = Document.create(docData);
         });
       });
-      
+      docList = await loadList(user.id, 10,0);
+      const response = {
+        "message": "Uploaded successfully",
+        "documentlist": docList,
+      }
+      return res.status(200).send(response);
     }
     catch (error) {
         console.log(error);
@@ -54,6 +70,28 @@ const uploadBiorec = async (req, res) => {
   })
 };
 
+const loadDocument = async (req, res) => {
+  try {
+    const { userName, pageSize, pageIndex } = req.body;
+    const user = await User.findOne({
+      where: {
+        userName: userName
+      } 
+    });
+    docList = await loadList(user.id, pageSize, pageIndex);
+    const response = {
+      "message": `page ${pageIndex} loaded sucessfully`,
+      "documentlist": docList
+    }
+    return res.status(203).send(response);
+  }
+  catch (error) {
+    console.log(error);
+    return res.status(503).send('Load paging data failed');
+  }
+  
+}
 module.exports = {
-    uploadBiorec
+    uploadBiorec,
+    loadDocument
 };

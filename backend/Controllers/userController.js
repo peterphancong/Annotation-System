@@ -97,13 +97,11 @@ const verifyToken = async (req, res) =>{
         const {token} = req.body;
         // console.log(token)
         if(token){
-            const decode = jwt.verify(token, dbConfig.secretKey);
             jwt.verify (token, dbConfig.secretKey, function (err, decoded) {
                 if (!err) 
                     return res.status(201).send({"login": true, "message":"Login is sucessful"}); 
                 else
                     return res.status(401).send({"login": false, "message":"Login is unsucessful"}); 
-                
             });
         }else{
             return res.status(401).send({
