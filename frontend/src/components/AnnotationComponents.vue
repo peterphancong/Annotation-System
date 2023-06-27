@@ -13,13 +13,13 @@
         </div>
       </div>
         <div class="bg-white m-2 flex">
-          <div class="p-2" id="paragraph">
+          <div class="w-60% p-2" id="paragraph">
             <h2 class="ml-2 font-bold text-left w-5/6" id="title">Stem Cell-Derived Extracellular Vesicles and Kidney Regeneration <span>(PubMedID: 31614642)</span></h2>
             <div v-on:mouseup="SelectText" class="p-2 border shadow-sm overflow-y-scroll overflow-auto h-full">
               <span v-html="highlightedText"></span>
             </div>
           </div>
-          <div class="p-2">
+          <div class="p-2 w-40%">
             <div>
               <div class="mt-2 flex justify-left h-8">
                 <select v-on:change="SelectEntityType" id="countries_disabled" class="text-sm border-b-1 border-gray-400 text-gray-900 rounded-lg block w-64 p-1">
