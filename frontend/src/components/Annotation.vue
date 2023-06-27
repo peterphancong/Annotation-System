@@ -1,7 +1,7 @@
 <template>
   <div class="text-xs pb-1 bg-white">
     <h1 class="pl-2 text-4xl text-left w-5/6">Annotation List</h1>
-    <div class="m-2 p-2 bg-dark-gray border">
+    <div class="m-2 p-2 bg-dark-gray border" v-if="currentUser.role<2">
       <div class="h-10">
         <button @click="online_search = true"  :class="{'border-blue-500' : online_search}" class="relative border-b-2 p-1 border-transparent">Online Search</button>
         <button @click="online_search = false" :class="{'border-blue-500' : !online_search}" class="relative border-b-2 p-1 border-transparent ml-5">BioC.JSON Files</button>
@@ -15,10 +15,10 @@
         </div>
       </div>
       <div id="dvUploadFile" v-else>
-        <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" @change="uploadBiorec" ref="file" accept=".BioC.json">
+        <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" v-on:change="uploadBiorec" ref="file" accept=".BioC.json">
       </div>
     </div>
-    <div id="dvDocList" class="p-2 m-2 border overflow-y-scroll overflow-auto max-h-96">
+    <div id="dvDocList" class="border overflow-y-scroll overflow-auto h-full">
         <table class="text-left table-auto border-collapse rounded-lg overflow-hidden w-full">
           <thead>
             <tr>
@@ -65,7 +65,8 @@ export default
       keyword: '',
       online_search: true,
       documentCount: 0,
-      documentSet: []
+      documentSet: [],
+      currentUser: null
     }
   },
   methods: {
@@ -75,11 +76,10 @@ export default
     },
     async Getpage (pageIndex, pageSize = 10) {
       let token = localStorage.getItem('user')
-      var data = {userName: VueJwtDecode.decode(token).userName, pageSize: pageSize, pageIndex: pageIndex}
-      axios.post('/api/loadDocument', data)
+      var data = {userName: this.currentUser.userName, pageSize: pageSize, pageIndex: pageIndex}
+      axios.post('/api/loadDocumentList', data)
         .then((response) => {
           this.documentSet = response.data.documentlist.rows
-          // this.maxPage = Math.ceil(response.data.documentlist.count/pageSize)
         })
         .catch((e) => {
           this.error = 'Failed Authorization'
@@ -88,7 +88,7 @@ export default
     async uploadBiorec () {
       let token = localStorage.getItem('user')
       let formData = new FormData()
-      formData.append('userName', VueJwtDecode.decode(token).userName)
+      formData.append('userName', this.currentUser.userName)
       formData.append('biorecJsonfile', this.$refs.file.files[0])
       // console.log(formData)
       try {
@@ -104,12 +104,13 @@ export default
   },
   mounted () {
     let token = localStorage.getItem('user')
+    this.currentUser = VueJwtDecode.decode(token)
     if (!token) {
       router.push('/')
     } else {
-      var data = {userName: VueJwtDecode.decode(token).userName, pageSize: 10, pageIndex: 0}
+      var data = {userName: this.currentUser.userName, pageSize: 10, pageIndex: 0}
       console.log(data)
-      axios.post('/api/loadDocument', data)
+      axios.post('/api/loadDocumentList', data)
         .then((response) => {
           this.documentSet = response.data.documentlist.rows
           this.documentCount = response.data.documentlist.count

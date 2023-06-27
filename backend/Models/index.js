@@ -29,6 +29,10 @@ db.entities.belongsTo(db.documents);
 db.users.hasMany(db.documents, {foreignKey:'uploadedBy'});
 db.documents.belongsTo(db.users,{foreignKey:'uploadedBy'});
 
+// User - User relationship
+db.users.hasMany(db.users, {foreignKey:'createdBy'});
+db.users.belongsTo(db.users,{foreignKey:'createdBy'});
+
 db.users.hasMany(db.identifiers);
 db.identifiers.belongsTo(db.users);
 

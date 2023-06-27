@@ -6,15 +6,21 @@ const User = db.users;
 
 const createAccount = async (req, res) => {
   try {
-    const { userName, email, password, role } = req.body;
+    const { userName, email, password, role, createdBy } = req.body;
+    const createdByUser = await User.findOne({
+      where: {
+        userName: createdBy
+      } 
+    });
     const data = {
       userName,
       email,
       password: await bcrypt.hash(password, 10),
       role,
       active: 1,
+      createdBy: createdByUser.id
     };
-    const user = await User.create(data);
+    await User.create(data);
     return res.status(200).send('Account create successfully');
   }
 	catch (error) {

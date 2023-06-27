@@ -6,7 +6,7 @@ const Document = db.documents;
 const User = db.users;
 // const Document = require('../models/documentModel.js')(sequelize, DataTypes);
 // const User = require('../models/userModel.js')(sequelize, DataTypes);
-const loadList = (userID, pageSize, pageIndex) =>{
+const loadListByPage = (userID, pageSize, pageIndex) =>{
   var documentlist = Document.findAndCountAll({
     attributes: ["title","pubmedID","status"],
     where:{
@@ -57,7 +57,7 @@ const uploadBiorec = async (req, res) => {
           createdDocument = Document.create(docData);
         });
       });
-      docList = await loadList(user.id, 10,0);
+      docList = await loadListByPage(user.id, 10,0);
       const response = {
         "message": "Uploaded successfully",
         "documentlist": docList,
@@ -70,7 +70,7 @@ const uploadBiorec = async (req, res) => {
   })
 };
 
-const loadDocument = async (req, res) => {
+const loadDocumentList = async (req, res) => {
   try {
     const { userName, pageSize, pageIndex } = req.body;
     const user = await User.findOne({
@@ -78,7 +78,15 @@ const loadDocument = async (req, res) => {
         userName: userName
       } 
     });
-    docList = await loadList(user.id, pageSize, pageIndex);
+    var loadedByID
+    if (user.role == 2){
+      loadedByID = user.createdBy
+    }
+    else {
+      loadedByID = user.id
+    }
+    docList = await loadListByPage(loadedByID, pageSize, pageIndex);
+
     const response = {
       "message": `page ${pageIndex} loaded sucessfully`,
       "documentlist": docList
@@ -89,9 +97,8 @@ const loadDocument = async (req, res) => {
     console.log(error);
     return res.status(503).send('Load paging data failed');
   }
-  
 }
 module.exports = {
     uploadBiorec,
-    loadDocument
+    loadDocumentList
 };

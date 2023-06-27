@@ -10,8 +10,8 @@
             <div class="flex content-center mb-5 w-5/6">
               <select v-model="role" name="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="0" selected>Select a role</option>
-                <option value="1">Leader</option>
-                <option value="2">Curator</option>
+                <option v-if="currentUser.role<1" value="1">Leader</option>
+                <option v-if="currentUser.role<2" value="2">Curator</option>
               </select>
             </div>
             <a href="#" class="flex items-center w-1/6 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -44,7 +44,8 @@ export default
         userName: this.userName,
         email: this.email,
         password: this.password,
-        role: this.role
+        role: this.role,
+        createdBy: this.currentUser.userName
       }
       axios.post('/api/createAccount', newuser)
         .then((response) => {
