@@ -85,8 +85,8 @@
     </aside>
     <div class="ml-64">
       <div class = "justify-center bg-dark-gray pt-60" v-if="currentUser && clickedItem == 0">
-        <img src="@/assets/NCBI.png" class="mx-auto"/>
-        <h1 class="text-center pb-20 text-2xl text-left text-orange-400">Wellcome to NCBI Web application for scientific paper annotation.</h1>
+        <h1 class="text-center pb-20 text-2xl text-left text-orange-400">Wellcome <span class ="font-bold"> @{{ currentUser.userName }}</span>
+           to Web application for scientific paper annotation.</h1>
       </div>
       <Dashboard v-if="currentUser && clickedItem == 1" />
       <Annotation v-if="currentUser && clickedItem == 2" />

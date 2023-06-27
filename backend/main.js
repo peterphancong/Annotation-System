@@ -7,7 +7,6 @@ const userRoutes = require ('./Routes/userRoutes')
 const annotationRoutes = require ('./Routes/annotationRoutes')
 //setting up your port
 const PORT = process.env.PORT || 3000
-
 //assigning the variable app to express
 const app = express()
 
