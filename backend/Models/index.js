@@ -33,10 +33,10 @@ db.documents.belongsTo(db.users,{foreignKey:'uploadedBy'});
 db.users.hasMany(db.users, {foreignKey:'createdBy'});
 db.users.belongsTo(db.users,{foreignKey:'createdBy'});
 
-db.users.hasMany(db.identifiers);
-db.identifiers.belongsTo(db.users);
+db.users.hasMany(db.identifiers, {foreignKey:'createdBy'});
+db.identifiers.belongsTo(db.users, {foreignKey:'createdBy'});
 
-db.identifiers.hasMany(db.entities);
-db.entities.belongsTo(db.identifiers);
+db.identifiers.hasMany(db.entities, {foreignKey:'identifiedBy'});
+db.entities.belongsTo(db.identifiers, {foreignKey:'identifiedBy'});
 
 module.exports = db;

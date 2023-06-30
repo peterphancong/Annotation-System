@@ -70,20 +70,6 @@
                         </svg>
                       </td>
                     </tr>
-                    <!-- <tr>
-                      <td class="px-4 py-2 border-b-2 border-gray-200">
-                        <input v-model="newItem.text" type="text" class="border rounded px-2 py-1">
-                      </td>
-                      <td class="px-4 py-2 border-b-2 border-gray-200">
-                        <input v-model="newItem.identifier" type="text" class="border rounded px-2 py-1">
-                      </td>
-                      <td class="px-4 py-2 border-b-2 border-gray-200">
-                        <input v-model="newItem.type" type="text" class="border rounded px-2 py-1">
-                      </td>
-                      <td class="px-4 py-2 border-b-2 border-gray-200">
-                        <button @click="addRow" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
-                      </td>
-                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -164,6 +150,7 @@ export default {
     return {
       currentUser: '',
       abstractText: 'Main text display here - Extracellular vesicles (EVs) are membranous vesicles containing active proteins, lipids, and different types of genetic material such as miRNAs, mRNAs, and DNAs related to the characteristics of the originating cell. They possess a distinctive capacity to communicate over long distances. EVs have been involved in the modulation of several pathophysiological conditions and, more importantly, stem cell-derived EVs appear as a new promising therapeutic option. In fact, several reports provide convincing evidence of the regenerative potential of EVs released by stem cells and, in particular, mesenchymal stromal cells (MSCs) in different kidney injury models. Described mechanisms involve the reprogramming of injured cells, cell proliferation and angiogenesis, and inhibition of cell apoptosis and inflammation. Besides, the therapeutic use of MSC-EVs in clinical trials is under investigation. This review will focus on MSC-EV applications in preclinical models of acute and chronic renal damage including recent data on their use in kidney transplant conditioning. Moreover, ongoing clinical trials are described. Finally, new strategies to broaden and enhance EV therapeutic efficacy by engineering are discussed.',
+      title: '',
       searchKeyword: '',
       cleanKeyword: '',
       cleanType: '',
@@ -371,11 +358,15 @@ export default {
     if (!token) {
       router.push('/')
     } else {
-      var data = {token: token}
-      axios.post('/api/verify', data)
+      var pubmedID = this.$route.query.pubmedID
+      var data = {token: token, pubmedID: pubmedID}
+      axios.post('/api/getAnnotationDetail', data)
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status === 203) {
             this.currentUser = VueJwtDecode.decode(token)
+            this.abstractText = response.data.document.abstract
+            this.title = response.data.document.title
+            console.log(response.data.identifierList)
           } else {
             router.push('/')
           }

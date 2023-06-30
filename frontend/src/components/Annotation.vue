@@ -66,7 +66,7 @@ export default
       online_search: true,
       documentCount: 0,
       documentSet: [],
-      currentUser: null
+      currentUser: ''
     }
   },
   methods: {
@@ -75,7 +75,6 @@ export default
       // In AnnotationComponents, just use var pubmedID = this.$route.query.pubmedID to load the pubmedID
     },
     async Getpage (pageIndex, pageSize = 10) {
-      let token = localStorage.getItem('user')
       var data = {userName: this.currentUser.userName, pageSize: pageSize, pageIndex: pageIndex}
       axios.post('/api/loadDocumentList', data)
         .then((response) => {
@@ -86,11 +85,9 @@ export default
         })
     },
     async uploadBiorec () {
-      let token = localStorage.getItem('user')
       let formData = new FormData()
       formData.append('userName', this.currentUser.userName)
       formData.append('biorecJsonfile', this.$refs.file.files[0])
-      // console.log(formData)
       try {
         await axios.post('/api/uploadBiorec', formData)
           .then((response) => {
@@ -109,7 +106,6 @@ export default
       router.push('/')
     } else {
       var data = {userName: this.currentUser.userName, pageSize: 10, pageIndex: 0}
-      console.log(data)
       axios.post('/api/loadDocumentList', data)
         .then((response) => {
           this.documentSet = response.data.documentlist.rows

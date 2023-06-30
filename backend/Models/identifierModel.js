@@ -5,9 +5,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        entity_type: {
+        identifierType: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        status: {
+            type: DataTypes.INTEGER
         }
     }, {timestamps: false}, )
     return Identifier

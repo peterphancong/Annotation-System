@@ -98,22 +98,27 @@ const valicateUser = async (req, res, next) => {
     console.log(error);
   }
 };
+const verifyFunc = (token) => {
+  checkverify = false
+  jwt.verify (token, dbConfig.secretKey, function (err) {
+    if (!err){ 
+      checkverify = true;
+    }
+    else {
+      checkverify= false;
+    }
+  });
+  return checkverify
+}
 const verifyToken = async (req, res) =>{
     try {
         const {token} = req.body;
-        // console.log(token)
-        if(token){
-            jwt.verify (token, dbConfig.secretKey, function (err, decoded) {
-                if (!err) 
-                    return res.status(201).send({"login": true, "message":"Login is sucessful"}); 
-                else
-                    return res.status(401).send({"login": false, "message":"Login is unsucessful"}); 
-            });
+        var checkToken = verifyFunc(token)
+        console.log(checkToken)
+        if(token && checkToken){
+            return res.status(201).send({"login": true, "message":"Login is sucessful"}); 
         }else{
-            return res.status(401).send({
-                "login": false,
-                "message": 'empty token'
-            });
+            return res.status(401).send({"login": false,"message": 'empty token'});
         }
     }
     catch{
@@ -125,4 +130,5 @@ module.exports = {
     login,
     valicateUser,
     verifyToken,
+    verifyFunc
 };
