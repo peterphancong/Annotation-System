@@ -164,7 +164,7 @@ const addIdentifier = async (req, res) => {
       } 
     });
     if(user) {
-      identifierData = {
+      const identifierData = {
         identifier: identifier,
         identifierType: identifierType,
         status: 1,
