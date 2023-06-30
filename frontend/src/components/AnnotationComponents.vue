@@ -19,7 +19,7 @@
               <span v-html="highlightedText"></span>
             </div>
           </div>
-          <div class="p-2 w-40%">
+          <div class="p-2 w-5/12">
             <div>
               <div class="mt-2 flex justify-left h-8">
                 <select v-on:change="SelectEntityType" id="countries_disabled" class="text-sm border-b-1 border-gray-400 text-gray-900 rounded-lg block w-64 p-1">
@@ -39,11 +39,11 @@
                 </form>
                 <div class="ml-2 flex bg-gray-50 rounded-lg border-b-1 border-gray-200">
                   <input v-model="insertNewIdentifier" type="text" class="text-sm border-1 bg-transparent focus:outline-none flex-1 rounded-lg" placeholder="Insert the identifier">
-                  <button v-on:mouseup="insert" class="ml-1 text-sm m-0.5 bg-white rounded-lg p-0.5 border-blue-500">Go</button>
+                  <button v-on:mouseup="insert" class="ml-1 text-sm m-0.5 bg-white rounded-lg p-0.5 border-blue-500">Add</button>
                 </div>
               </div>
               <div class="mt-2" id="identifier_selection">
-                <div class="text-sm p-1 border shadow-sm overflow-y-scroll text-base rounded-lg overflow-auto">
+                <div class="h-32 text-sm p-1 border shadow-sm overflow-y-scroll text-base rounded-lg overflow-auto">
                   <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-sm m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
                 </div>
               </div>
@@ -166,17 +166,32 @@ export default {
         type: 'None'
       },
       noneOptions: [],
-      geneOptions: ['3175', '927', '3630', '672', '317'],
-      diseaseOptions: ['D061325', 'D009369', 'D003924', 'C567134'],
-      chemicalOptions: ['D005947', 'D008358', 'D014747'],
-      organismOptions: ['9606', '10116', '10090'],
-      variantOptions: ['rs74805019', 'cDEL30G', 'rs111033196'],
-      cellLineOptions: ['CVCL_JW73', 'CVCL_K278'],
+      geneOptions: [],
+      diseaseOptions: [],
+      chemicalOptions: [],
+      organismOptions: [],
+      variantOptions: [],
+      cellLineOptions: [],
       options: [''],
       insertNewIdentifier: ''
     }
   },
   methods: {
+    addIdentifier (identifier, identifierType) {
+      var data = {identifier: identifier, identifierType: identifierType, userName: this.currentUser.userName}
+      axios.post('/api/addIdentifier', data)
+        .then((response) => {
+          if (response.status === 203) {
+            console.log('add identifier sucessfully')
+          } else {
+            this.error = 'add identifier failed'
+            console.log('add identifier failed')
+          }
+        })
+        .catch((e) => {
+          this.error = 'Add identifiers failed'
+        })
+    },
     SelectText (event) {
       this.newItem.text = window.getSelection().toString()
       // this.selectedText = window.getSelection().toString()
@@ -325,17 +340,23 @@ export default {
           type: this.newItem.type
         }
         if (this.newItem.type === 'Gene') {
-          this.geneOptions.push(this.insertNewIdentifier)
+          // this.geneOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'GeneOrGeneProduct')
         } else if (this.newItem.type === 'Disease') {
-          this.diseaseOptions.push(this.insertNewIdentifier)
+          // this.diseaseOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'DiseaseOrPhenotypicFeature')
         } else if (this.newItem.type === 'Chemical') {
-          this.chemicalOptions.push(this.insertNewIdentifier)
+          // this.chemicalOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'ChemicalEntity')
         } else if (this.newItem.type === 'Organism') {
-          this.organismOptions.push(this.insertNewIdentifier)
+          // this.organismOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'OrganismTaxon')
         } else if (this.newItem.type === 'Variant') {
-          this.variantOptions.push(this.insertNewIdentifier)
+          // this.variantOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'SequenceVariant')
         } else if (this.newItem.type === 'CellLine') {
-          this.cellLineOptions.push(this.insertNewIdentifier)
+          // this.cellLineOptions.push(this.insertNewIdentifier)
+          this.addIdentifier(this.insertNewIdentifier, 'CellLine')
         } else {
           console.log('ERROR')
         }
@@ -367,6 +388,34 @@ export default {
             this.abstractText = response.data.document.abstract
             this.title = response.data.document.title
             console.log(response.data.identifierList)
+            // console.log(response.data.identifierList[0].name)
+            // console.log(response.data.identifierList[0].identifiers.length)
+            // console.log(response.data.identifierList[0].identifiers[0].name)
+            for (var j = 0; j < 6; j++) {
+              for (var i = 0; i < response.data.identifierList[j].identifiers.length; i++) {
+                switch (j) {
+                  case 0:
+                    this.cellLineOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    // console.log(response.data.identifierList[j].identifiers[i].name)
+                    break
+                  case 1:
+                    this.chemicalOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    break
+                  case 2:
+                    this.diseaseOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    break
+                  case 3:
+                    this.geneOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    break
+                  case 4:
+                    this.organismOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    break
+                  case 5:
+                    this.variantOptions.push(response.data.identifierList[j].identifiers[i].name)
+                    break
+                }
+              }
+            }
           } else {
             router.push('/')
           }
