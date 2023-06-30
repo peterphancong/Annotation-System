@@ -5,7 +5,7 @@ const db = require("../Models");
 const Document = db.documents;
 const User = db.users;
 const Identifier = db.identifiers;
-
+/*-------------------------- Support functions ------------------------------------------*/
 const loadListByPage = (userID, pageSize, pageIndex) =>{
   var documentlist = Document.findAndCountAll({
     attributes: ["title","pubmedID","status"],
@@ -29,7 +29,6 @@ var storage = multer.diskStorage({
 });
 const fs = require('fs');
 const upload = multer({ storage: storage });
-
 
 /*-------------------------- Main functions support APIs ---------------------------------*/
 const uploadBiorec = async (req, res) => {
@@ -156,8 +155,38 @@ const getAnnotationDetail = async (req, res) => {
   }
   
 }
+const addIdentifier = async (req, res) => {
+  try {
+    const {identifier, identifierType, userName } = req.body;
+    const user = await User.findOne({
+      where: {
+        userName: userName
+      } 
+    });
+    if(user) {
+      identifierData = {
+        identifier: identifier,
+        identifierType: identifierType,
+        status: 1,
+        createdBy: user.id,
+      };
+      newIdentifier = Identifier.create(identifierData);
+      return res.status(203).send("Add identifier sucessfully");
+    }
+    else
+    {
+      return res.status(400).send("No right to add new identifiers");
+    }
+  }
+  catch (error) {
+    console.log(error)
+    return res.status(401).send("Adding identifier failed");
+  }
+}
+
 module.exports = {
     uploadBiorec,
     loadDocumentList,
-    getAnnotationDetail
+    getAnnotationDetail,
+    addIdentifier
 };
