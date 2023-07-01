@@ -1,4 +1,3 @@
-//annotation model
 module.exports = (sequelize, DataTypes) => {
   const Document = sequelize.define( "documents", {
     pubmedID: {

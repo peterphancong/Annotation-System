@@ -124,7 +124,6 @@ const getAnnotationDetail = async (req, res) => {
         }
       }
     };
-    console.log(shape.parse(identifierList, scheme));
     filename = doc.documentLink;
     fs.readFile(filename, 'utf8', async (err, data) => {
       if (err) {
@@ -153,7 +152,6 @@ const getAnnotationDetail = async (req, res) => {
     }
     res.status(400).send(response);
   }
-  
 }
 const addIdentifier = async (req, res) => {
   try {
@@ -170,7 +168,7 @@ const addIdentifier = async (req, res) => {
         status: 1,
         createdBy: user.id,
       };
-      newIdentifier = Identifier.create(identifierData);
+      await Identifier.create(identifierData);
       return res.status(203).send("Add identifier sucessfully");
     }
     else

@@ -12,6 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.INTEGER
         }
-    }, {timestamps: false}, )
+    }, {timestamps: true}, )
     return Identifier
  }

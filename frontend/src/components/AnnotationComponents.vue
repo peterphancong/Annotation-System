@@ -130,13 +130,7 @@
             </div>
           </div>
           </div>
-        <!-- <div class="m-2 p-1 bg-orange-200 h-96 w-full">
-          <p class="text-2xl">toggle: <span class="text-blue-500">{{ toggle }}</span></p>
-          <p class="text-2xl">Current selected text is: <span class="text-blue-500">{{ newItem.text}}</span></p>
-          <p class="text-2xl">Current selected button is: <span class="text-blue-500">{{ newItem.identifier}}</span></p>
-          <p class="text-2xl">Current selected entity type is: <span class="text-blue-500">{{ newItem.type}}</span></p>
-          <p class="text-2xl">Current toggle is (true: delete status): <span class="text-blue-500">{{ toggle}}</span></p>
-        </div> -->
+
     </div>
 </template>
 <script>
@@ -149,7 +143,7 @@ export default {
   data () {
     return {
       currentUser: '',
-      abstractText: 'Main text display here - Extracellular vesicles (EVs) are membranous vesicles containing active proteins, lipids, and different types of genetic material such as miRNAs, mRNAs, and DNAs related to the characteristics of the originating cell. They possess a distinctive capacity to communicate over long distances. EVs have been involved in the modulation of several pathophysiological conditions and, more importantly, stem cell-derived EVs appear as a new promising therapeutic option. In fact, several reports provide convincing evidence of the regenerative potential of EVs released by stem cells and, in particular, mesenchymal stromal cells (MSCs) in different kidney injury models. Described mechanisms involve the reprogramming of injured cells, cell proliferation and angiogenesis, and inhibition of cell apoptosis and inflammation. Besides, the therapeutic use of MSC-EVs in clinical trials is under investigation. This review will focus on MSC-EV applications in preclinical models of acute and chronic renal damage including recent data on their use in kidney transplant conditioning. Moreover, ongoing clinical trials are described. Finally, new strategies to broaden and enhance EV therapeutic efficacy by engineering are discussed.',
+      abstractText: '',
       title: '',
       searchKeyword: '',
       cleanKeyword: '',
@@ -178,6 +172,7 @@ export default {
   },
   methods: {
     addIdentifier (identifier, identifierType) {
+      console.log('Adding identifier...')
       var data = {identifier: identifier, identifierType: identifierType, userName: this.currentUser.userName}
       axios.post('/api/addIdentifier', data)
         .then((response) => {
@@ -194,12 +189,10 @@ export default {
     },
     SelectText (event) {
       this.newItem.text = window.getSelection().toString()
-      // this.selectedText = window.getSelection().toString()
     },
     SelectIdentifier (event) {
       this.newItem.identifier = event.currentTarget.textContent
       this.searchKeyword = this.newItem.text
-      // console.log(this.newItem.type)
       if (this.newItem.type !== 'None') {
         this.items.push({
           text: this.newItem.text,
@@ -327,6 +320,10 @@ export default {
     insert (event) {
       this.newItem.identifier = this.insertNewIdentifier
       this.searchKeyword = this.newItem.text
+      console.log('add identifier')
+      this.addIdentifier('test', 'GeneOrGeneProduct')
+      this.diseaseOptions.push(this.insertNewIdentifier)
+      this.addIdentifier('new identifier', 'DiseaseOrPhenotypicFeature')
       if (this.newItem.text === '' || this.newItem.identifier === '') {
       } else if (this.newItem.type !== 'None') {
         this.items.push({
@@ -339,23 +336,23 @@ export default {
           identifier: '',
           type: this.newItem.type
         }
-        if (this.newItem.type === 'Gene') {
-          // this.geneOptions.push(this.insertNewIdentifier)
+        if (this.newItem.type === 'GeneOrGeneProduct') {
+          this.geneOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'GeneOrGeneProduct')
         } else if (this.newItem.type === 'Disease') {
-          // this.diseaseOptions.push(this.insertNewIdentifier)
+          this.diseaseOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'DiseaseOrPhenotypicFeature')
         } else if (this.newItem.type === 'Chemical') {
-          // this.chemicalOptions.push(this.insertNewIdentifier)
+          this.chemicalOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'ChemicalEntity')
         } else if (this.newItem.type === 'Organism') {
-          // this.organismOptions.push(this.insertNewIdentifier)
+          this.organismOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'OrganismTaxon')
         } else if (this.newItem.type === 'Variant') {
-          // this.variantOptions.push(this.insertNewIdentifier)
+          this.variantOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'SequenceVariant')
         } else if (this.newItem.type === 'CellLine') {
-          // this.cellLineOptions.push(this.insertNewIdentifier)
+          this.cellLineOptions.push(this.insertNewIdentifier)
           this.addIdentifier(this.insertNewIdentifier, 'CellLine')
         } else {
           console.log('ERROR')
@@ -387,7 +384,7 @@ export default {
             this.currentUser = VueJwtDecode.decode(token)
             this.abstractText = response.data.document.abstract
             this.title = response.data.document.title
-            console.log(response.data.identifierList)
+            // console.log(response.data.identifierList)
             // console.log(response.data.identifierList[0].name)
             // console.log(response.data.identifierList[0].identifiers.length)
             // console.log(response.data.identifierList[0].identifiers[0].name)
