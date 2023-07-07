@@ -83,7 +83,7 @@
             </a>
     </div>
     </aside>
-    <div class="ml-64">
+    <div class="ml-64 h-screen">
       <div class = "justify-center bg-dark-gray pt-60" v-if="currentUser && clickedItem == 0">
         <h1 class="text-center pb-20 text-2xl text-left text-orange-400">Wellcome <span class ="font-bold"> @{{ currentUser.userName }}</span>
            to Web application for scientific paper annotation.</h1>

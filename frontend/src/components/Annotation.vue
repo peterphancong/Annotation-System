@@ -1,12 +1,11 @@
 <template>
-  <div class="text-xs pb-1 bg-white">
-    <h1 class="pl-2 text-4xl text-left w-5/6">Annotation List</h1>
+  <div class="text-xs pb-1 bg-white h-screen pb-5" id="annotationList">
     <div class="m-2 p-2 bg-dark-gray border" v-if="currentUser.role<2">
-      <div class="h-10">
+      <div class="p-2">
         <button @click="online_search = true"  :class="{'border-blue-500' : online_search}" class="relative border-b-2 p-1 border-transparent">Online Search</button>
         <button @click="online_search = false" :class="{'border-blue-500' : !online_search}" class="relative border-b-2 p-1 border-transparent ml-5">BioC.JSON Files</button>
       </div>
-      <div id="dvOnlineSearch" v-if="online_search" class="">
+      <div id="dvOnlineSearch" v-if="online_search">
         <div class="flex bg-white rounded-lg border-2 text-xs border border-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 flex-shrink-0 mt-3 mr-2 ml-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -18,8 +17,8 @@
         <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" v-on:change="uploadBiorec" ref="file" accept=".BioC.json">
       </div>
     </div>
-    <div id="dvDocList" class="border overflow-y-scroll overflow-auto h-full">
-        <table class="text-left table-auto border-collapse rounded-lg overflow-hidden w-full">
+    <div id="dvDocList" class="h-4/5 mr-2 overflow-y-scroll overflow-auto overflow-x-hidden">
+        <table class="m-2 border-black text-left table-auto border-collapse rounded-lg w-full">
           <thead>
             <tr>
               <th class="px-4 py-2 border-b-2 border-gray-200">Title</th>
@@ -45,10 +44,12 @@
           </tbody>
         </table>
     </div>
-    <span class="ml-2">
-      Pages
-    </span>
-    <button v-for="(page, index) in documentCount/10" :key="index" @click="Getpage(index)" class="p-0.5" > {{ page }}</button>
+    <div class="ml-20">
+      <span >
+        Pages
+      </span>
+      <button v-for="(page, index) in documentCount/10" :key="index" @click="Getpage(index)" class="p-0.5" > {{ page }}</button>
+    </div>
   </div>
 </template>
 <script>
