@@ -1,14 +1,5 @@
 <template>
     <div class="text-sm" id = "AnnotationComponent">
-      <!-- <div class="flex">
-        <div class="flex m-1 justify-right">
-          <div>
-            <button class="w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Cancel</button>
-            <button class="ml-4 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
-            <button class="ml-4 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
-          </div>
-        </div>
-      </div> -->
       <div class="flex w-full">
         <div id="paragraph" class="w-3/4 pb-3 " >
           <h2 class="ml-1 font-bold text-left w-5/6" id="title">Stem Cell-Derived Extracellular Vesicles and Kidney Regeneration <span>(PubMedID: 31614642)</span></h2>
@@ -38,12 +29,12 @@
             </div>
           </div>
           <div id ="dataList" class ="h-5/6">
-            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto" id="identifier_selection">
+            <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto" id="identifier_selection">
               <div class="h-full text-xs border-black shadow-sm overflow-y-scroll text-base overflow-auto bg-white">
                 <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
               </div>
             </div>
-            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto">
+            <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto">
                 <table ref="entityTable" class="text-left mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
                   <thead>
                     <tr>
@@ -88,46 +79,6 @@
                           </svg>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="border-b-2 border-gray-200">LQTS</td>
-                        <td class="border-b-2 border-gray-200">D008133</td>
-                        <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
-                        <td class="border-b-2 border-gray-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="border-b-2 border-gray-200">Na(v)1.5</td>
-                        <td class="border-b-2 border-gray-200">D008133</td>
-                        <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
-                        <td class="border-b-2 border-gray-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="border-b-2 border-gray-200">LQTS</td>
-                        <td class="border-b-2 border-gray-200">D008133</td>
-                        <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
-                        <td class="border-b-2 border-gray-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="border-b-2 border-gray-200">Na(v)1.9</td>
-                        <td class="border-b-2 border-gray-200">D008133</td>
-                        <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
-                        <td class="border-b-2 border-gray-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </td>
-                      </tr>
                     </tbody>
               </table>
             </div>
@@ -142,7 +93,7 @@ import VueJwtDecode from 'vue-jwt-decode'
 import axios from 'axios'
 
 export default {
-  name: 'Dashboard',
+  name: 'Annotation Board',
   data () {
     return {
       currentUser: '',
