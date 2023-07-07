@@ -16,115 +16,122 @@
             <span v-html="highlightedText"></span>
           </div>
         </div>
-        <div id="function" class="w-1/4 pr-1 pb-3 text-xs h-screen bg-gray-300">
-          <div class ="h-2/6 bg-white border border-gray-300 p-1 m-1">
-              <div class="flex h-1/6">
-                <select v-on:change="SelectEntityType" id="countries_disabled" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-3/6">
-                  <option value="None" class="text-xs" disabled selected>Select ID type</option>
-                  <option value="Gene">GeneOrGeneProduct</option>
-                  <option value="Disease">DiseaseOrPhenotypicFeature</option>
-                  <option value="Chemical">ChemicalEntity</option>
-                  <option value="Organism">OrganismTaxon</option>
-                  <option value="Variant">SequenceVariant</option>
-                  <option value="CellLine">CellLine</option>
-                </select>
-                <input v-model="insertNewIdentifier" type="text" class="w-2/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
-                <button v-on:mouseup="insert" class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6">Add</button>
-              </div>
-              <div class="mt-1 h-5/6" id="identifier_selection">
-                <div class="h-full text-xs border-black shadow-sm overflow-y-scroll text-base overflow-auto bg-white">
-                  <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
-                </div>
-              </div>
-          </div>
-          <div class="h-2/6 bg-white border border-gray-300 p-1 m-1 overflow-auto">
-              <table ref="entityTable" class="text-left mb-1 table-fixed break-all border-collapse  overflow-y-scroll overflow-auto w-full">
-                <thead>
-                  <tr>
-                      <th class="border-b-2 border-gray-200">Entity</th>
-                      <th class="border-b-2 border-gray-200">Identifier</th>
-                      <th class="border-b-2 border-gray-200">Type</th>
-                      <th class="border-b-2 border-gray-200">Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in items" :key="index">
-                      <td class="border-b-2 border-gray-200">{{ item.text }}</td>
-                      <td class="border-b-2 border-gray-200">{{ item.identifier }}</td>
-                      <td class="border-b-2 border-gray-200">{{ item.type }}</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg @click="deleteEntityRow(index)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
-                </tbody>
-              </table>
+        <div id="function" class="w-1/4 pb-3 text-xs h-screen bg-gray-300 h-screen">
+          <div class="mt-1 h-30" id="commands">
+            <div class = "border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
+              <button class="w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Cancel</button>
+              <button class="ml-4 w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
+              <button class="ml-4 w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
             </div>
-          <div class="h-2/6 bg-white border border-gray-300 p-1 m-1 overflow-auto overflow-x-hidden">
-            <table class="text-left mb-1 table-fixed break-all border-collapse overflow-y-scroll overflow-auto w-full">
+            <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
+              <select v-on:change="SelectEntityType" id="countries_disabled" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-3/6">
+                <option value="None" class="text-xs" disabled selected>Select ID type</option>
+                <option value="Gene">GeneOrGeneProduct</option>
+                <option value="Disease">DiseaseOrPhenotypicFeature</option>
+                <option value="Chemical">ChemicalEntity</option>
+                <option value="Organism">OrganismTaxon</option>
+                <option value="Variant">SequenceVariant</option>
+                <option value="CellLine">CellLine</option>
+              </select>
+              <input v-model="insertNewIdentifier" type="text" class="w-2/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
+              <button v-on:mouseup="insert" class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6">Add</button>
+            </div>
+          </div>
+          <div id ="dataList" class ="h-5/6">
+            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto" id="identifier_selection">
+              <div class="h-full text-xs border-black shadow-sm overflow-y-scroll text-base overflow-auto bg-white">
+                <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
+              </div>
+            </div>
+            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto">
+                <table ref="entityTable" class="text-left mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
                   <thead>
                     <tr>
-                      <th class="border-b-2 border-gray-200">ID 1</th>
-                      <th class="border-b-2 border-gray-200">ID 2</th>
-                      <th class="border-b-2 border-gray-200">Type</th>
-                      <th class="border-b-2 border-gray-200">Action</th>
+                        <th class="border-b-2 p-0.5 border-gray-200">Entity</th>
+                        <th class="border-b-2 p-0.5 border-gray-200">Identifier</th>
+                        <th class="border-b-2 p-0.5 border-gray-200">Type</th>
+                        <th class="border-b-2 p-0.5 border-gray-200">Action </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="border-b-2 border-gray-200">Long QT syndrome</td>
-                      <td class="border-b-2 border-gray-200">c|SUB|G|</td>
-                      <td class="border-b-2 border-gray-200">SequenceVariant</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-b-2 border-gray-200">LQTS</td>
-                      <td class="border-b-2 border-gray-200">D008133</td>
-                      <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-b-2 border-gray-200">Na(v)1.5</td>
-                      <td class="border-b-2 border-gray-200">D008133</td>
-                      <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-b-2 border-gray-200">LQTS</td>
-                      <td class="border-b-2 border-gray-200">D008133</td>
-                      <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-b-2 border-gray-200">Na(v)1.5</td>
-                      <td class="border-b-2 border-gray-200">D008133</td>
-                      <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
-                      <td class="border-b-2 border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </td>
-                    </tr>
+                      <tr v-for="(item, index) in items" :key="index">
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.text }}</td>
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.identifier }}</td>
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.type }}</td>
+                        <td class="border-b-2 p-0.5 border-gray-200">
+                          <svg @click="deleteEntityRow(index)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
                   </tbody>
-            </table>
+                </table>
             </div>
+            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto">
+              <table class="text-left table-fixed break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
+                    <thead>
+                      <tr>
+                        <th class="border-b-2 border-gray-200">ID 1</th>
+                        <th class="border-b-2 border-gray-200">ID 2</th>
+                        <th class="border-b-2 border-gray-200">Type</th>
+                        <th class="border-b-2 border-gray-200">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="border-b-2 border-gray-200">Long QT syndrome</td>
+                        <td class="border-b-2 border-gray-200">c|SUB|G|</td>
+                        <td class="border-b-2 border-gray-200">SequenceVariant</td>
+                        <td class="border-b-2 border-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="border-b-2 border-gray-200">LQTS</td>
+                        <td class="border-b-2 border-gray-200">D008133</td>
+                        <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
+                        <td class="border-b-2 border-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="border-b-2 border-gray-200">Na(v)1.5</td>
+                        <td class="border-b-2 border-gray-200">D008133</td>
+                        <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
+                        <td class="border-b-2 border-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="border-b-2 border-gray-200">LQTS</td>
+                        <td class="border-b-2 border-gray-200">D008133</td>
+                        <td class="border-b-2 border-gray-200">DiseaseOrPhenotypicFeature</td>
+                        <td class="border-b-2 border-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="border-b-2 border-gray-200">Na(v)1.9</td>
+                        <td class="border-b-2 border-gray-200">D008133</td>
+                        <td class="border-b-2 border-gray-200">GeneOrGeneProduct</td>
+                        <td class="border-b-2 border-gray-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </td>
+                      </tr>
+                    </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
