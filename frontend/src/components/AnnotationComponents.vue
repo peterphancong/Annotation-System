@@ -16,7 +16,7 @@
             </div>
             <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
               <select v-model = "selectedIDType" @change = "idTypeChange()" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-4/6">
-                <option value="None" class="text-xs"> Select ID type</option>
+                <option value="None" class="text-xs" disabled selected> Select ID type</option>
                 <option value="CellLine" class="text-xs" selected> Cell Line</option>
                 <option value="ChemicalEntity" class="text-xs">Chemical Entity</option>
                 <option value="DiseaseOrPhenotypicFeature" class="text-xs"> Disease / Phenotypic Feature </option>
@@ -24,8 +24,8 @@
                 <option value="OrganismTaxon" class="text-xs"> Organism Taxon</option>
                 <option value="SequenceVariant" class="text-xs"> Sequence Variant</option>
               </select>
-              <input type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
-              <button  class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-10">Add</button>
+              <input v-model="newIdentifier" type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
+              <button @click="addIdentifier()" class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-10">Add</button>
             </div>
           </div>
           <div id ="dataList" class ="h-5/6">
@@ -110,17 +110,18 @@ export default {
         {'identifierType': 'OrganismTaxon', 'color': '#f8961e'},
         {'identifierType': 'SequenceVariant', 'color': '#f3722c'},
         {'identifierType': 'Multiple', 'color': '#ff0000'} ],
-      annotatedEntities: []
+      annotatedEntities: [],
+      newIdentifier: ''
     }
   },
   methods: {
-    addIdentifier (identifier, identifierType) {
-      console.log('Adding identifier...')
-      var data = {identifier: identifier, identifierType: identifierType, userName: this.currentUser.userName}
+    addIdentifier () {
+      var data = {identifier: this.newIdentifier, identifierType: this.selectedIDType, userName: this.currentUser.userName}
       axios.post('/api/addIdentifier', data)
         .then((response) => {
           if (response.status === 203) {
             console.log('add identifier sucessfully')
+            this.identifierList.push(this.newIdentifier)
           } else {
             this.error = 'add identifier failed'
             console.log('add identifier failed')
@@ -159,37 +160,28 @@ export default {
       let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
       var newNode = document.createElement('span')
       newNode.appendChild(document.createTextNode(selectedText))
-      console.log(document.getSelection().baseNode.parentNode.tagName)
-      console.log(document.getSelection().baseNode.parentNode.id)
+      let selected, replacedColor, title
       if(document.getSelection().baseNode.parentNode.tagName === 'DIV'){
-        console.log('Single annotated')
-        let palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
-        Object.assign(
-          newNode,
-          {
-            style: 'background-color: ' + palete.color + '; display: inline;',
-            title: currentSelectedType
-          }
-        )
-        this.abstractText = this.abstractText.split(selectedText).join(newNode.outerHTML)
-        document.querySelector('#abstract').innerHTML = this.abstractText
-        this.title = this.title.split(selectedText).join(newNode.outerHTML)
-        document.querySelector('#title').innerHTML = this.title
+        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType }).color
+        title = currentSelectedType
+        selected = selectedText
       } else if(document.getSelection().baseNode.parentNode.tagName === 'SPAN'){
-        let palete = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' })
-        Object.assign(
+        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
+        title = 'Multiple annotated'
+        let selectedNode = document.getSelection().baseNode.parentNode
+        selected = selectedNode.outerHTML
+      }
+      Object.assign(
           newNode,
           {
-            style: 'background-color: ' + palete.color + '; display: inline; underlined',
-            title: 'Multiple annotated'
+            style: 'background-color: ' + replacedColor + '; display: inline;',
+            title: title
           }
         )
-        let selectedNode = document.getSelection().baseNode.parentNode
-        this.abstractText = this.abstractText.split(selectedNode.outerHTML).join(newNode.outerHTML)
-        document.querySelector('#abstract').innerHTML = this.abstractText
-        this.title = this.title.split(selectedNode.outerHTML).join(newNode.outerHTML)
-        document.querySelector('#title').innerHTML = this.title
-      }
+      this.abstractText = this.abstractText.split(selected).join(newNode.outerHTML)
+      document.querySelector('#abstract').innerHTML = this.abstractText
+      this.title = this.title.split(selected).join(newNode.outerHTML)
+      document.querySelector('#title').innerHTML = this.title
       this.annotatedEntities.push(annotatedItem)
     },
     removeAnnotation (entity, identifier, type) {
@@ -197,16 +189,11 @@ export default {
       this.annotatedEntities.splice(index, 1)
       var remain = this.annotatedEntities.filter(function (a) { return a.Entity === entity })
       if (remain.length === 0) {
-        for (const span of document.querySelectorAll('#abstract > span')) {
+        for (const span of document.querySelectorAll('#paragraph > div > span')) {
           if (span.textContent.includes(entity)) {
             let htmlContent = span.outerHTML
             this.abstractText = this.abstractText.split(htmlContent).join(entity)
             document.querySelector('#abstract').innerHTML = this.abstractText
-          }
-        }
-        for (const span of document.querySelectorAll('#title > span')) {
-          if (span.textContent.includes(entity)) {
-            let htmlContent = span.outerHTML
             this.title = this.title.split(htmlContent).join(entity)
             document.querySelector('#title').innerHTML = this.title
           }
@@ -215,7 +202,7 @@ export default {
         let annotation = remain[0]
         let type = annotation.Type
         let color = this.colorPalete.find(function (p) { return p.identifierType === type }).color
-        for (const span of document.querySelectorAll('#abstract > span')) {
+        for (const span of document.querySelectorAll('#paragraph > div > span')) {
           if (span.textContent.includes(entity)) {
             let currentHTMLContent = span.outerHTML
             Object.assign(
@@ -228,21 +215,6 @@ export default {
             let newHTMLContent = span.outerHTML
             this.abstractText = this.abstractText.split(currentHTMLContent).join(newHTMLContent)
             document.querySelector('#abstract').innerHTML = this.abstractText
-          }
-        }
-        for (const span of document.querySelectorAll('#title > span')) {
-          if (span.textContent.includes(entity)) {
-            let currentHTMLContent = span.outerHTML
-            Object.assign(
-              span,
-              {
-                style: 'background-color: ' + color + '; display: inline;',
-                title: type
-              }
-            )
-            let newHTMLContent = span.outerHTML
-            this.title = this.title.split(currentHTMLContent).join(newHTMLContent)
-            document.querySelector('#title').innerHTML = this.title
           }
         }
       }
