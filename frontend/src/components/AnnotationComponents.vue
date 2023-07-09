@@ -146,13 +146,16 @@ export default {
         })
     },
     annotate (identifier) {
-      if (!(document.querySelector('#paragraph').contains(document.getSelection().baseNode))){
+      var userSelected = document.getSelection()
+      if (!(document.querySelector('#paragraph').contains(userSelected.baseNode))){
         console.log('outside paragraph...')
         return
       }
       let currentSelectedType = this.selectedIDType
-      let selectedText = document.getSelection().toString().trim()
-      let existing = this.annotatedEntities.find(function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType })
+      let selectedText = userSelected.toString().trim()
+      let existing = this.annotatedEntities.find(
+        function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType 
+        })
       if (existing) {
         console.log('existing...')
         return
@@ -161,14 +164,14 @@ export default {
       var newNode = document.createElement('span')
       newNode.appendChild(document.createTextNode(selectedText))
       let selected, replacedColor, title
-      if(document.getSelection().baseNode.parentNode.tagName === 'DIV'){
+      if(userSelected.baseNode.parentNode.tagName === 'DIV'){
         replacedColor = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType }).color
         title = currentSelectedType
         selected = selectedText
-      } else if(document.getSelection().baseNode.parentNode.tagName === 'SPAN'){
+      } else if(userSelected.baseNode.parentNode.tagName === 'SPAN'){
         replacedColor = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
         title = 'Multiple annotated'
-        let selectedNode = document.getSelection().baseNode.parentNode
+        let selectedNode = userSelected.baseNode.parentNode
         selected = selectedNode.outerHTML
       }
       Object.assign(
@@ -215,6 +218,8 @@ export default {
             let newHTMLContent = span.outerHTML
             this.abstractText = this.abstractText.split(currentHTMLContent).join(newHTMLContent)
             document.querySelector('#abstract').innerHTML = this.abstractText
+            this.title = this.title.split(currentHTMLContent).join(newHTMLContent)
+            document.querySelector('#title').innerHTML = this.title
           }
         }
       }
