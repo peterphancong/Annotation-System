@@ -145,11 +145,11 @@ export default {
         })
     },
     annotate (identifier) {
-      var currentSelectedType = this.selectedIDType
-      var selectedText = document.getSelection().toString().trim()
-      var palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
-      var newNode = document.createElement('span')
-      var annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
+      let currentSelectedType = this.selectedIDType
+      let selectedText = document.getSelection().toString().trim()
+      let palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
+      let newNode = document.createElement('span')
+      let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
       let existing = this.annotatedEntities.find(function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType })
       if (existing) {
         console.log('existing...')
@@ -163,8 +163,8 @@ export default {
         }
       )
       newNode.appendChild(document.createTextNode(selectedText))
-      var containerID = document.getSelection().baseNode.parentNode.id
-      var container
+      let containerID = document.getSelection().baseNode.parentNode.id
+      let container
       if (containerID === 'abstract') {
         container = document.querySelector('#abstract')
         this.abstractText = this.abstractText.split(selectedText).join(newNode.outerHTML)
@@ -174,7 +174,7 @@ export default {
         this.title = this.title.split(selectedText).join(newNode.outerHTML)
         container.innerHTML = this.title
       } else if (document.querySelector('#abstract').contains(document.getSelection().baseNode) || document.querySelector('#title').contains(document.getSelection().baseNode)) {
-        var color = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
+        let color = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
         Object.assign(
           document.getSelection().baseNode.parentNode,
           {
@@ -196,28 +196,58 @@ export default {
       this.annotatedEntities.push(annotatedItem)
     },
     removeAnnotation (entity, identifier, type) {
-      let deleteItem = {'Entity': entity, 'Identifier': identifier, 'Type': type}
-      let index = this.annotatedEntities.indexOf(deleteItem)
+      let index = this.annotatedEntities.findIndex(a => a.Entity===entity && a.Identifier===identifier && a.Type===type)
       this.annotatedEntities.splice(index, 1)
-      let remain = this.annotatedEntities.filter(function (a) { return a.Entity === entity })
+      var remain = this.annotatedEntities.filter(function (a) { return a.Entity === entity })
       if (remain.length === 0) {
         for (const span of document.querySelectorAll('#abstract > span')) {
           if (span.textContent.includes(entity)) {
-            let content = span.outerHTML
-            this.abstractText = this.abstractText.split(content).join(entity)
+            let htmlContent = span.outerHTML
+            this.abstractText = this.abstractText.split(htmlContent).join(entity)
             document.querySelector('#abstract').innerHTML = this.abstractText
           }
         }
         for (const span of document.querySelectorAll('#title > span')) {
           if (span.textContent.includes(entity)) {
-            let content = span.outerHTML
-            this.title = this.title.split(content).join(entity)
+            let htmlContent = span.outerHTML
+            this.title = this.title.split(htmlContent).join(entity)
             document.querySelector('#title').innerHTML = this.title
           }
         }
-      }
-      else if (remain.length === 1) {
-        // object set attribute based on color palete
+      } else if (remain.length === 1) {
+        let annotation = remain[0]
+        let type = annotation.Type
+        let color = this.colorPalete.find(function (p) { return p.identifierType === type }).color
+        for (const span of document.querySelectorAll('#abstract > span')) {
+          if (span.textContent.includes(entity)) {
+            let currentHTMLContent = span.outerHTML
+            Object.assign(
+              span,
+              {
+                style: 'background-color: ' + color + '; display: inline;',
+                title: type
+              }
+            )
+            let newHTMLContent = span.outerHTML
+            this.abstractText = this.abstractText.split(currentHTMLContent).join(newHTMLContent)
+            document.querySelector('#abstract').innerHTML = this.abstractText
+          }
+        }
+        for (const span of document.querySelectorAll('#title > span')) {
+          if (span.textContent.includes(entity)) {
+            let currentHTMLContent = span.outerHTML
+            Object.assign(
+              span,
+              {
+                style: 'background-color: ' + color + '; display: inline;',
+                title: type
+              }
+            )
+            let newHTMLContent = span.outerHTML
+            this.title = this.title.split(currentHTMLContent).join(newHTMLContent)
+            document.querySelector('#title').innerHTML = this.title
+          }
+        }
       }
     }
   },
