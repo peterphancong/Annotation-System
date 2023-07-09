@@ -2,7 +2,7 @@
     <div class="text-sm" id = "AnnotationComponent">
       <div class="flex w-full">
         <div id="paragraph" class="w-3/4 pb-3 " >
-          <h2 id="title" class="ml-1 font-bold text-left w-5/6" >{{ title }}</h2>
+          <div id="title" class="ml-1 font-bold text-left w-5/6" >{{ title }}</div>
           <div id="abstract" class="p-1 border shadow-sm overflow-y-scroll overflow-auto h-full">
              {{ abstractText }}
           </div>
@@ -145,53 +145,50 @@ export default {
         })
     },
     annotate (identifier) {
+      if (!(document.querySelector('#paragraph').contains(document.getSelection().baseNode))){
+        console.log('outside paragraph...')
+        return
+      }
       let currentSelectedType = this.selectedIDType
       let selectedText = document.getSelection().toString().trim()
-      let palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
-      let newNode = document.createElement('span')
-      let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
       let existing = this.annotatedEntities.find(function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType })
       if (existing) {
         console.log('existing...')
         return
       }
-      Object.assign(
-        newNode,
-        {
-          style: 'background-color: ' + palete.color + '; display: inline;',
-          title: currentSelectedType
-        }
-      )
+      let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
+      var newNode = document.createElement('span')
       newNode.appendChild(document.createTextNode(selectedText))
-      let containerID = document.getSelection().baseNode.parentNode.id
-      let container
-      if (containerID === 'abstract') {
-        container = document.querySelector('#abstract')
-        this.abstractText = this.abstractText.split(selectedText).join(newNode.outerHTML)
-        container.innerHTML = this.abstractText
-      } else if (containerID === 'title') {
-        container = document.querySelector('#title')
-        this.title = this.title.split(selectedText).join(newNode.outerHTML)
-        container.innerHTML = this.title
-      } else if (document.querySelector('#abstract').contains(document.getSelection().baseNode) || document.querySelector('#title').contains(document.getSelection().baseNode)) {
-        let color = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
+      console.log(document.getSelection().baseNode.parentNode.tagName)
+      console.log(document.getSelection().baseNode.parentNode.id)
+      if(document.getSelection().baseNode.parentNode.tagName === 'DIV'){
+        console.log('Single annotated')
+        let palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
         Object.assign(
-          document.getSelection().baseNode.parentNode,
+          newNode,
           {
-            style: 'background-color: ' + color + '; display: inline; underlined',
+            style: 'background-color: ' + palete.color + '; display: inline;',
+            title: currentSelectedType
+          }
+        )
+        this.abstractText = this.abstractText.split(selectedText).join(newNode.outerHTML)
+        document.querySelector('#abstract').innerHTML = this.abstractText
+        this.title = this.title.split(selectedText).join(newNode.outerHTML)
+        document.querySelector('#title').innerHTML = this.title
+      } else if(document.getSelection().baseNode.parentNode.tagName === 'SPAN'){
+        let palete = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' })
+        Object.assign(
+          newNode,
+          {
+            style: 'background-color: ' + palete.color + '; display: inline; underlined',
             title: 'Multiple annotated'
           }
         )
-        let masterID = document.getSelection().baseNode.parentNode.parentNode.id
-        let innerHTMLcontent = document.getSelection().baseNode.parentNode.parentNode.innerHTML
-        if (masterID === 'abstract') {
-          this.abstractText = innerHTMLcontent
-        } else if (masterID === 'title') {
-          this.title = innerHTMLcontent
-        }
-      } else {
-        console.log('Annotate not apply for this area')
-        return
+        let selectedNode = document.getSelection().baseNode.parentNode
+        this.abstractText = this.abstractText.split(selectedNode.outerHTML).join(newNode.outerHTML)
+        document.querySelector('#abstract').innerHTML = this.abstractText
+        this.title = this.title.split(selectedNode.outerHTML).join(newNode.outerHTML)
+        document.querySelector('#title').innerHTML = this.title
       }
       this.annotatedEntities.push(annotatedItem)
     },
