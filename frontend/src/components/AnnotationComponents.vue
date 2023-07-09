@@ -2,9 +2,9 @@
     <div class="text-sm" id = "AnnotationComponent">
       <div class="flex w-full">
         <div id="paragraph" class="w-3/4 pb-3 " >
-          <h2 class="ml-1 font-bold text-left w-5/6" id="title">Stem Cell-Derived Extracellular Vesicles and Kidney Regeneration <span>(PubMedID: 31614642)</span></h2>
-          <div v-on:mouseup="SelectText" class="p-1 border shadow-sm overflow-y-scroll overflow-auto h-full">
-            <span v-html="highlightedText"></span>
+          <h2 id="title" class="ml-1 font-bold text-left w-5/6" >{{ title }}</h2>
+          <div id="abstract" class="p-1 border shadow-sm overflow-y-scroll overflow-auto h-full">
+             {{ abstractText }}
           </div>
         </div>
         <div id="function" class="w-1/4 pb-3 text-xs h-screen bg-gray-300 h-screen">
@@ -15,23 +15,25 @@
               <button class="ml-4 w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
             </div>
             <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
-              <select v-on:change="SelectEntityType" id="countries_disabled" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-3/6">
-                <option value="None" class="text-xs" disabled selected>Select ID type</option>
-                <option value="Gene">GeneOrGeneProduct</option>
-                <option value="Disease">DiseaseOrPhenotypicFeature</option>
-                <option value="Chemical">ChemicalEntity</option>
-                <option value="Organism">OrganismTaxon</option>
-                <option value="Variant">SequenceVariant</option>
-                <option value="CellLine">CellLine</option>
+              <select v-model = "selectedIDType" @change = "idTypeChange()" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-4/6">
+                <option value="None" class="text-xs"> Select ID type</option>
+                <option value="CellLine" class="text-xs" selected> Cell Line</option>
+                <option value="ChemicalEntity" class="text-xs">Chemical Entity</option>
+                <option value="DiseaseOrPhenotypicFeature" class="text-xs"> Disease / Phenotypic Feature </option>
+                <option value="GeneOrGeneProduct" class="text-xs"> Gene / Gene Product </option>
+                <option value="OrganismTaxon" class="text-xs"> Organism Taxon</option>
+                <option value="SequenceVariant" class="text-xs"> Sequence Variant</option>
               </select>
-              <input v-model="insertNewIdentifier" type="text" class="w-2/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
-              <button v-on:mouseup="insert" class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6">Add</button>
+              <input type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
+              <button  class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-10">Add</button>
             </div>
           </div>
           <div id ="dataList" class ="h-5/6">
             <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto" id="identifier_selection">
               <div class="h-full text-xs border-black shadow-sm overflow-y-scroll text-base overflow-auto bg-white">
-                <button v-on:mouseup="SelectIdentifier" v-for="option in options" :key="option" class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ option }}</button>
+                <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier)"
+                class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{identifier}}
+                </button>
               </div>
             </div>
             <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto">
@@ -45,12 +47,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="(item, index) in items" :key="index">
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.text }}</td>
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.identifier }}</td>
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.type }}</td>
+                      <tr v-for="(item, index) in annotatedEntities" :key="index">
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Entity }}</td>
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Identifier}}</td>
+                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Type}}</td>
                         <td class="border-b-2 p-0.5 border-gray-200">
-                          <svg @click="deleteEntityRow(index)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
+                          <svg @click="removeAnnotation(item.Entity, item.Identifier, item.Type)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </td>
@@ -93,35 +95,22 @@ import VueJwtDecode from 'vue-jwt-decode'
 import axios from 'axios'
 
 export default {
-  name: 'Annotation Board',
+  name: 'AnnotationBoard',
   data () {
     return {
       currentUser: '',
       abstractText: '',
+      identifierList: [],
       title: '',
-      searchKeyword: '',
-      cleanKeyword: '',
-      cleanType: '',
-      toggle: false,
-      // success: 'Success!',
-      items: [
-        // { text: 'Long QT syndrome', identifier: 'D008133', type: 'SequenceVariant' },
-        // { text: 'LQTS', identifier: 'D008133', type: 'DiseaseOrPhenotypicFeature' }
-      ],
-      newItem: {
-        text: '',
-        identifier: '',
-        type: 'None'
-      },
-      noneOptions: [],
-      geneOptions: [],
-      diseaseOptions: [],
-      chemicalOptions: [],
-      organismOptions: [],
-      variantOptions: [],
-      cellLineOptions: [],
-      options: [''],
-      insertNewIdentifier: ''
+      selectedIDType: 'None',
+      colorPalete: [{'identifierType': 'CellLine', 'color': '#577590'},
+        {'identifierType': 'ChemicalEntity', 'color': '#43aa8b'},
+        {'identifierType': 'DiseaseOrPhenotypicFeature', 'color': '#90be6d'},
+        {'identifierType': 'GeneOrGeneProduct', 'color': '#f9c74f'},
+        {'identifierType': 'OrganismTaxon', 'color': '#f8961e'},
+        {'identifierType': 'SequenceVariant', 'color': '#f3722c'},
+        {'identifierType': 'Multiple', 'color': '#ff0000'} ],
+      annotatedEntities: []
     }
   },
   methods: {
@@ -141,186 +130,95 @@ export default {
           this.error = 'Add identifiers failed'
         })
     },
-    SelectText (event) {
-      this.newItem.text = window.getSelection().toString()
-    },
-    SelectIdentifier (event) {
-      this.newItem.identifier = event.currentTarget.textContent
-      this.searchKeyword = this.newItem.text
-      if (this.newItem.type !== 'None') {
-        this.items.push({
-          text: this.newItem.text,
-          identifier: this.newItem.identifier,
-          type: this.newItem.type
+    idTypeChange () {
+      var req = {identifierType: this.selectedIDType, userName: this.currentUser.userName}
+      axios.post('/api/getIdentifierByType', req)
+        .then((response) => {
+          if (response.status === 203) {
+            this.identifierList = response.data.identifierList
+          } else {
+            router.push('/')
+          }
         })
-        this.newItem = {
-          text: '',
-          identifier: '',
-          type: this.newItem.type
-        }
-        this.toggle = false
-      // var btnText = event.currentTarget
-      // this.selectedIdentifier = btnText.textContent
-      // this.$refs.entityTable.insertAdjacentHTML(
-      //   'beforeend',
-      //   '<tr><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedText + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedIdentifier + '</td><td class="px-4 py-2 border-b-2 border-gray-200">' + this.selectedEntityType + '</td><td class="px-4 py-2 border-b-2 border-gray-200"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></td></tr>'
-      // )
-      }
-    },
-    SelectEntityType (event) {
-      this.newItem.type = event.target.value
-      if (this.newItem.type === 'None') {
-        this.options = this.noneOptions
-      } else if (this.newItem.type === 'Gene') {
-        this.options = this.geneOptions
-      } else if (this.newItem.type === 'Disease') {
-        this.options = this.diseaseOptions
-      } else if (this.newItem.type === 'Chemical') {
-        this.options = this.chemicalOptions
-      } else if (this.newItem.type === 'Organism') {
-        this.options = this.organismOptions
-      } else if (this.newItem.type === 'Variant') {
-        this.options = this.variantOptions
-      } else {
-        this.options = this.cellLineOptions
-      }
-      // this.selectedEntityType = event.target.value
-    },
-    deleteEntityRow (index) {
-      this.cleanKeyword = this.items[index].text
-      this.cleanType = this.items[index].type
-      // console.log(this.cleanType)
-      this.items.splice(index, 1)
-      this.toggle = true
-    },
-    cleanText () {
-      let unhighlightedText = this.abstractText
-      if (this.cleanType === 'Gene') {
-        // eslint-disable-next-line no-useless-escape
-        const regex = new RegExp(`<span class="bg-yellow-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else if (this.cleanType === 'Disease') {
-        const regex = new RegExp(`<span class="bg-pink-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else if (this.cleanType === 'Chemical') {
-        const regex = new RegExp(`<span class="bg-green-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else if (this.cleanType === 'Organism') {
-        const regex = new RegExp(`<span class="bg-blue-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else if (this.cleanType === 'Variant') {
-        const regex = new RegExp(`<span class="bg-purple-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else if (this.cleanType === 'CellLine') {
-        const regex = new RegExp(`<span class="bg-orange-200">(${this.cleanKeyword})</span>`, 'gi')
-        unhighlightedText = unhighlightedText.replace(regex, '$1')
-        // unhighlightedText = unhighlightedText.replace(regex, (match, group1) => {
-        // console.log(match)
-        // return group1
-        // })
-      } else {
-        unhighlightedText = this.abstractText
-      }
-      this.cleanKeyword = ''
-      this.abstractText = unhighlightedText
-      return unhighlightedText
-    },
-    highlightText () {
-      let highlightedText = this.abstractText
-      if (this.items.length > 0) {
-        let selectedType = this.items[this.items.length - 1].type
-        // const regex = new RegExp(`(${this.searchKeyword})`, 'gi')
-        const regex = new RegExp(`(?<=[(/ ]|^)(${this.searchKeyword})(?=[)/?!\\. ]|$)`, 'gi')
-        if (selectedType === 'Gene') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-yellow-200">$1</span>')
-          // highlightedText = highlightedText.replace(regex, '<span class="bg-yellow-200">$1</span>')
-        } else if (selectedType === 'Disease') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-pink-200">$1</span>')
-        } else if (selectedType === 'Chemical') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-green-200">$1</span>')
-        } else if (selectedType === 'Organism') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-blue-200">$1</span>')
-        } else if (selectedType === 'Variant') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-purple-200">$1</span>')
-        } else if (selectedType === 'CellLine') {
-          highlightedText = highlightedText.replace(regex, '<span class="bg-orange-200">$1</span>')
-        } else {
-          highlightedText = this.abstractText
-        }
-      }
-      this.abstractText = highlightedText
-      return highlightedText
-    },
-    insert (event) {
-      this.newItem.identifier = this.insertNewIdentifier
-      this.searchKeyword = this.newItem.text
-      this.diseaseOptions.push(this.insertNewIdentifier)
-      this.addIdentifier('new identifier', 'DiseaseOrPhenotypicFeature')
-      if (this.newItem.text === '' || this.newItem.identifier === '') {
-      } else if (this.newItem.type !== 'None') {
-        this.items.push({
-          text: this.newItem.text,
-          identifier: this.newItem.identifier,
-          type: this.newItem.type
+        .catch((e) => {
+          this.error = 'Login Error'
         })
-        this.newItem = {
-          text: '',
-          identifier: '',
-          type: this.newItem.type
-        }
-        if (this.newItem.type === 'GeneOrGeneProduct') {
-          this.geneOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'GeneOrGeneProduct')
-        } else if (this.newItem.type === 'Disease') {
-          this.diseaseOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'DiseaseOrPhenotypicFeature')
-        } else if (this.newItem.type === 'Chemical') {
-          this.chemicalOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'ChemicalEntity')
-        } else if (this.newItem.type === 'Organism') {
-          this.organismOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'OrganismTaxon')
-        } else if (this.newItem.type === 'Variant') {
-          this.variantOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'SequenceVariant')
-        } else if (this.newItem.type === 'CellLine') {
-          this.cellLineOptions.push(this.insertNewIdentifier)
-          this.addIdentifier(this.insertNewIdentifier, 'CellLine')
-        } else {
-          console.log('ERROR')
-        }
-        this.toggle = false
-        this.insertNewIdentifier = ''
+    },
+    annotate (identifier) {
+      var currentSelectedType = this.selectedIDType
+      var selectedText = document.getSelection().toString().trim()
+      var palete = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType })
+      var newNode = document.createElement('span')
+      var annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
+      let existing = this.annotatedEntities.find(function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType })
+      if (existing) {
+        console.log('existing...')
+        return
       }
-    }
-  },
-  computed: {
-    highlightedText () {
-      if (this.toggle) {
-        return this.cleanText()
+      Object.assign(
+        newNode,
+        {
+          style: 'background-color: ' + palete.color + '; display: inline;',
+          title: currentSelectedType
+        }
+      )
+      newNode.appendChild(document.createTextNode(selectedText))
+      var containerID = document.getSelection().baseNode.parentNode.id
+      var container
+      if (containerID === 'abstract') {
+        container = document.querySelector('#abstract')
+        this.abstractText = this.abstractText.split(selectedText).join(newNode.outerHTML)
+        container.innerHTML = this.abstractText
+      } else if (containerID === 'title') {
+        container = document.querySelector('#title')
+        this.title = this.title.split(selectedText).join(newNode.outerHTML)
+        container.innerHTML = this.title
+      } else if (document.querySelector('#abstract').contains(document.getSelection().baseNode) || document.querySelector('#title').contains(document.getSelection().baseNode)) {
+        var color = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
+        Object.assign(
+          document.getSelection().baseNode.parentNode,
+          {
+            style: 'background-color: ' + color + '; display: inline; underlined',
+            title: 'Multiple annotated'
+          }
+        )
+        let masterID = document.getSelection().baseNode.parentNode.parentNode.id
+        let innerHTMLcontent = document.getSelection().baseNode.parentNode.parentNode.innerHTML
+        if (masterID === 'abstract') {
+          this.abstractText = innerHTMLcontent
+        } else if (masterID === 'title') {
+          this.title = innerHTMLcontent
+        }
+      } else {
+        console.log('Annotate not apply for this area')
+        return
       }
-      // console.log(this.success)
-      return this.highlightText()
+      this.annotatedEntities.push(annotatedItem)
+    },
+    removeAnnotation (entity, identifier, type) {
+      let deleteItem = {'Entity': entity, 'Identifier': identifier, 'Type': type}
+      let index = this.annotatedEntities.indexOf(deleteItem)
+      this.annotatedEntities.splice(index, 1)
+      let remain = this.annotatedEntities.filter(function (a) { return a.Entity === entity })
+      if (remain.length === 0) {
+        for (const span of document.querySelectorAll('#abstract > span')) {
+          if (span.textContent.includes(entity)) {
+            let content = span.outerHTML
+            this.abstractText = this.abstractText.split(content).join(entity)
+            document.querySelector('#abstract').innerHTML = this.abstractText
+          }
+        }
+        for (const span of document.querySelectorAll('#title > span')) {
+          if (span.textContent.includes(entity)) {
+            let content = span.outerHTML
+            this.title = this.title.split(content).join(entity)
+            document.querySelector('#title').innerHTML = this.title
+          }
+        }
+      }
+      else if (remain.length === 1) {
+        // object set attribute based on color palete
+      }
     }
   },
   mounted () {
@@ -330,41 +228,12 @@ export default {
     } else {
       var pubmedID = this.$route.query.pubmedID
       var data = {token: token, pubmedID: pubmedID}
-      axios.post('/api/getAnnotationDetail', data)
+      axios.post('/api/getDocumentByPubmedID', data)
         .then((response) => {
           if (response.status === 203) {
             this.currentUser = VueJwtDecode.decode(token)
             this.abstractText = response.data.document.abstract
             this.title = response.data.document.title
-            // console.log(response.data.identifierList)
-            // console.log(response.data.identifierList[0].name)
-            // console.log(response.data.identifierList[0].identifiers.length)
-            // console.log(response.data.identifierList[0].identifiers[0].name)
-            for (var j = 0; j < 6; j++) {
-              for (var i = 0; i < response.data.identifierList[j].identifiers.length; i++) {
-                switch (j) {
-                  case 0:
-                    this.cellLineOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    // console.log(response.data.identifierList[j].identifiers[i].name)
-                    break
-                  case 1:
-                    this.chemicalOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    break
-                  case 2:
-                    this.diseaseOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    break
-                  case 3:
-                    this.geneOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    break
-                  case 4:
-                    this.organismOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    break
-                  case 5:
-                    this.variantOptions.push(response.data.identifierList[j].identifiers[i].name)
-                    break
-                }
-              }
-            }
           } else {
             router.push('/')
           }

@@ -1,5 +1,5 @@
 const multer  = require('multer')
-var shape = require('shape-json');
+// var shape = require('shape-json');
 var userController = require("./userController");
 const db = require("../Models");
 const Document = db.documents;
@@ -40,7 +40,6 @@ const uploadBiorec = async (req, res) => {
             userName: String(req.body.userName),
           } 
       });
-      // console.log(String(req.body.userName))
       fs.readFile(filename, 'utf8', async (err, data) => {
         if (err) {
           console.log("reading file get error")
@@ -87,7 +86,6 @@ const loadDocumentList = async (req, res) => {
       loadedByID = user.id
     }
     docList = await loadListByPage(loadedByID, pageSize, pageIndex);
-
     const response = {
       "message": `page ${pageIndex} loaded sucessfully`,
       "documentlist": docList
@@ -99,8 +97,8 @@ const loadDocumentList = async (req, res) => {
     return res.status(503).send('Load paging data failed');
   }
 }
-const getAnnotationDetail = async (req, res) => {
-  const { token, pubmedID } = req.body;
+const getDocumentByPubmedID = async (req, res) => {
+  const {token, pubmedID } = req.body;
   var checkToken = userController.verifyFunc(token)
   if(checkToken) {
     var doc = await Document.findOne({
@@ -109,21 +107,6 @@ const getAnnotationDetail = async (req, res) => {
         pubmedID: pubmedID.toString(),
       }
     });
-    var identifierList = await Identifier.findAll({
-      attributes: ["identifierType", "identifier"],
-      where:{
-        status: 1,
-      },
-      order: ["identifierType"]
-    });
-    var scheme = {
-      "$group(identifierType)": {
-        "name": "identifierType",
-        "$group[identifiers](identifier)": {
-          "name": "identifier",
-        }
-      }
-    };
     filename = doc.documentLink;
     fs.readFile(filename, 'utf8', async (err, data) => {
       if (err) {
@@ -139,8 +122,7 @@ const getAnnotationDetail = async (req, res) => {
       }; 
       const response = {
         "message": "Get document successfully",
-        "document": docData,
-        "identifierList": shape.parse(identifierList, scheme)
+        "document": docData
       }
       res.status(203).send(response);
     });
@@ -181,10 +163,39 @@ const addIdentifier = async (req, res) => {
     return res.status(401).send("Adding identifier failed");
   }
 }
+const getIdentifierByType = async (req, res) => {
+  const {identifierType, userName } = req.body;
+  const user = await User.findOne({
+    where: {
+      userName: userName
+    } 
+  });
+  if(user) {
+    var identifierList = await Identifier.findAll({
+      attributes: ["identifier"],
+      where:{
+        status: 1,
+        identifierType: identifierType
+      },
+      raw: true,
+      order: ["identifier"]
+    });
+    const response = {
+      "message": "Get identifiers successfully",
+      "identifierList": identifierList.map(function(iden){ return iden.identifier })
+    }
+    res.status(203).send(response);
+  }
+  else
+  {
+    return res.status(400).send("No right to add new identifiers");
+  }
+}
 
 module.exports = {
     uploadBiorec,
     loadDocumentList,
-    getAnnotationDetail,
-    addIdentifier
+    getDocumentByPubmedID,
+    addIdentifier,
+    getIdentifierByType
 };

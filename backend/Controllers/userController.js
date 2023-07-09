@@ -114,7 +114,6 @@ const verifyToken = async (req, res) =>{
     try {
         const {token} = req.body;
         var checkToken = verifyFunc(token)
-        console.log(checkToken)
         if(token && checkToken){
             return res.status(201).send({"login": true, "message":"Login is sucessful"}); 
         }else{
