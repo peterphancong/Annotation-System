@@ -128,15 +128,5 @@ dist
 frontend/src/components/new 1.txt
 frontend/src/components/new 1.txt
 frontend/src/components/new 1.txt
-backend/uploads/sys_1685947946740_Test.BioC.JSON
-backend/uploads/sys_1685948262352_Test.BioC.JSON
-backend/uploads/sys_1686275824240_Test.BioC.JSON
-backend/uploads/sys_1686491610781_Test.BioC.JSON
-backend/uploads/curatorL_1687938345135_Test.BioC.JSON
-backend/uploads/sys_1687938492484_Test.BioC.JSON
-backend/uploads/sys_1687938602819_Test.BioC.JSON
-backend/uploads/sys_1687938652346_Test.BioC.JSON
-backend/uploads/sys_1688009010050_Test.BioC.JSON
-backend/uploads/sys_1688009575911_Test.BioC.JSON
-backend/uploads/sys_1688010190337_Test.BioC.JSON
-backend/uploads/sys_1688018041629_Test.BioC.JSON
+backend/uploads/
+ICD-10-API.py

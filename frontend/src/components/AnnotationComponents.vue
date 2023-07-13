@@ -17,6 +17,7 @@
             <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
               <select v-model = "selectedIDType" @change = "idTypeChange()" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-4/6">
                 <option value="None" class="text-xs" disabled selected> Select ID type</option>
+                <option value="ICD-11" class="text-xs" selected> Search ICD-11</option>
                 <option value="CellLine" class="text-xs" selected> Cell Line</option>
                 <option value="ChemicalEntity" class="text-xs">Chemical Entity</option>
                 <option value="DiseaseOrPhenotypicFeature" class="text-xs"> Disease / Phenotypic Feature </option>
@@ -109,7 +110,8 @@ export default {
         {'identifierType': 'GeneOrGeneProduct', 'color': '#f9c74f'},
         {'identifierType': 'OrganismTaxon', 'color': '#f8961e'},
         {'identifierType': 'SequenceVariant', 'color': '#f3722c'},
-        {'identifierType': 'Multiple', 'color': '#ff0000'} ],
+        {'identifierType': 'Multiple', 'color': '#ff0000'},
+        {'identifierType': 'ICD-11', 'color': '#808080'} ],
       annotatedEntities: [],
       newIdentifier: ''
     }
@@ -121,7 +123,8 @@ export default {
         .then((response) => {
           if (response.status === 203) {
             console.log('add identifier sucessfully')
-            this.identifierList.push(this.newIdentifier)
+            this.identifierList.push(response.data.returnIden)
+            // this.identifierList.push(this.newIdentifier)
           } else {
             this.error = 'add identifier failed'
             console.log('add identifier failed')
@@ -147,14 +150,15 @@ export default {
     },
     annotate (identifier) {
       var userSelected = document.getSelection()
-      if (!(document.querySelector('#paragraph').contains(userSelected.baseNode))){
+      if (!(document.querySelector('#paragraph').contains(userSelected.baseNode))) {
         console.log('outside paragraph...')
         return
       }
       let currentSelectedType = this.selectedIDType
       let selectedText = userSelected.toString().trim()
       let existing = this.annotatedEntities.find(
-        function (a) { return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType 
+        function (a) {
+          return a.Entity === selectedText && a.Identifier === identifier && a.Type === currentSelectedType
         })
       if (existing) {
         console.log('existing...')
@@ -164,23 +168,23 @@ export default {
       var newNode = document.createElement('span')
       newNode.appendChild(document.createTextNode(selectedText))
       let selected, replacedColor, title
-      if(userSelected.baseNode.parentNode.tagName === 'DIV'){
+      if (userSelected.baseNode.parentNode.tagName === 'DIV') {
         replacedColor = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType }).color
         title = currentSelectedType
         selected = selectedText
-      } else if(userSelected.baseNode.parentNode.tagName === 'SPAN'){
+      } else if (userSelected.baseNode.parentNode.tagName === 'SPAN') {
         replacedColor = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
         title = 'Multiple annotated'
         let selectedNode = userSelected.baseNode.parentNode
         selected = selectedNode.outerHTML
       }
       Object.assign(
-          newNode,
-          {
-            style: 'background-color: ' + replacedColor + '; display: inline;',
-            title: title
-          }
-        )
+        newNode,
+        {
+          style: 'background-color: ' + replacedColor + '; display: inline;',
+          title: title
+        }
+      )
       this.abstractText = this.abstractText.split(selected).join(newNode.outerHTML)
       document.querySelector('#abstract').innerHTML = this.abstractText
       this.title = this.title.split(selected).join(newNode.outerHTML)
@@ -188,7 +192,7 @@ export default {
       this.annotatedEntities.push(annotatedItem)
     },
     removeAnnotation (entity, identifier, type) {
-      let index = this.annotatedEntities.findIndex(a => a.Entity===entity && a.Identifier===identifier && a.Type===type)
+      let index = this.annotatedEntities.findIndex(a => a.Entity === entity && a.Identifier === identifier && a.Type === type)
       this.annotatedEntities.splice(index, 1)
       var remain = this.annotatedEntities.filter(function (a) { return a.Entity === entity })
       if (remain.length === 0) {

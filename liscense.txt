@@ -1,0 +1,6 @@
+ClientId: 97e4bba0-11b9-4a6b-a79a-201877a4010d_ddc8e35b-30cc-4b32-91ff-c0d8fa5a0730
+ClientSecret: mf/MkNcvfxITY4/26v5YY/Fao3KEAq5Ba9RG9jFIKMY=
+
+WHO-FIC Foundation: https://icd.who.int/dev11/f/en#/http%3a%2f%2fid.who.int%2ficd%2fentity%2f1448356431
+ICD-API: https://id.who.int/swagger/index.html
+ICD-10: https://icd.who.int/browse10/2019/en#/Z11.0

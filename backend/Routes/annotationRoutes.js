@@ -8,4 +8,5 @@ router.post('/loadDocumentList', loadDocumentList)
 router.post('/getDocumentByPubmedID', getDocumentByPubmedID)
 router.post('/addIdentifier', addIdentifier)
 router.post('/getIdentifierByType', getIdentifierByType)
+
 module.exports = router
