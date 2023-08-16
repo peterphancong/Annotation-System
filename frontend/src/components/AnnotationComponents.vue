@@ -1,5 +1,5 @@
 <template>
-    <div class="text-sm" id = "AnnotationComponent">
+    <div class="text-sm" id="AnnotationComponent">
       <div class="flex w-full">
         <div id="paragraph" class="w-3/4 pb-3 " >
           <div id="title" class="ml-1 font-bold text-left w-5/6" >{{ title }}</div>
@@ -7,17 +7,17 @@
              {{ abstractText }}
           </div>
         </div>
-        <div id="function" class="w-1/4 pb-3 text-xs h-screen bg-gray-300 h-screen">
+        <div id="function" class="w-1/4 pb-3 text-xs h-screen bg-gray-300">
           <div class="mt-1 h-30" id="commands">
-            <div class = "border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
-              <button class="w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Cancel</button>
-              <button class="ml-4 w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
-              <button class="ml-4 w-20 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
+            <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-between h-1/2">
+              <button @click="entity_relation_toggle = true" :class="{'border-blue-500' : entity_relation_toggle}" class="w-1/2 relative border-b-2 p-1 border-transparent">Entity</button>
+              <button @click="entity_relation_toggle = false" :class="{'border-blue-500' : !entity_relation_toggle}" class="w-1/2 relative border-b-2 p-1 border-transparent">Relation</button>
             </div>
-            <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-center h-1/2">
-              <select v-model = "selectedIDType" @change = "idTypeChange()" class="py-0 px-1 rounded-lg text-xs border-b-1 border-gray-400 text-gray-900 w-4/6">
+          </div>
+          <div id="dataList" class="h-5/6 p-2" v-if="entity_relation_toggle">
+            <div class="border border-gray-300 p-1 flex justify-center h-10">
+              <select v-model="selectedIDType" @change="idTypeChange()" class="w-full py-0 px-1 h-8 rounded-lg text-xs border-gray-400 text-gray-900">
                 <option value="None" class="text-xs" disabled selected> Select ID type</option>
-                <option value="ICD-11" class="text-xs" selected> Search ICD-11</option>
                 <option value="CellLine" class="text-xs" selected> Cell Line</option>
                 <option value="ChemicalEntity" class="text-xs">Chemical Entity</option>
                 <option value="DiseaseOrPhenotypicFeature" class="text-xs"> Disease / Phenotypic Feature </option>
@@ -25,20 +25,50 @@
                 <option value="OrganismTaxon" class="text-xs"> Organism Taxon</option>
                 <option value="SequenceVariant" class="text-xs"> Sequence Variant</option>
               </select>
-              <input v-model="newIdentifier" type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="New ID">
-              <button @click="addIdentifier()" class="ml-1 text-xs bg-gray-200 rounded-lg border-blue-500 w-10">Add</button>
             </div>
-          </div>
-          <div id ="dataList" class ="h-5/6">
-            <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto" id="identifier_selection">
-              <div class="h-full text-xs border-black shadow-sm overflow-y-scroll text-base overflow-auto bg-white">
+            <div class="border border-gray-300 overflow-auto flex justify-center h-8 mt-2">
+              <input v-model="newIdentifier" type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="Search ID from ICD11">
+              <button @click="addIdentifier()" class="ml-2 mr-2 text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6">Search</button>
+            </div>
+            <div class="mt-2 h-1/6 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto" id="identifier_selection">
+              <table ref="entityTable" class="text-center mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
+                <thead>
+                  <tr>
+                      <th class="border-b-2 p-0.5 border-gray-200 w-5/6">Searched Identifier List</th>
+                      <th class="border-b-2 p-0.5 border-gray-200 w-1/6">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr><!-- v-for="(item, index) in searchedEntities" :key="index"-->
+                      <td class="border-b-2 p-0.5 border-gray-200">http://id.who.int/icd/entity/1448356431</td>
+                      <td class="border-b-2 p-0.5 border-gray-200">
+                        <div class="flex justify-center">
+                          <button class="w-full m-1 h-6 bg-green-300 rounded-lg text-gray-900 border-b-2 border-gray-500">Add</button>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-2 h-1/4 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="identifier_selection">
+              <table class="text-center mb-1 table-fixed border-collapse w-full bg-dark-gray">
+                <thead>
+                  <tr>
+                    <th class="border-b-2 p-0.5 border-gray-200">Identifier Board</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td></td>
+                </tbody>
+              </table>
+              <div class="text-xs border-black shadow-sm text-base bg-white">
                 <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier)"
                 class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{identifier}}
                 </button>
               </div>
             </div>
-            <div class="h-1/3 bg-white border border-gray-300 p-1 m-1 overflow-auto">
-                <table ref="entityTable" class="text-left mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
+            <div class="h-1/2 mt-2 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto">
+                <table ref="entityTable" class="text-center mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
                   <thead>
                     <tr>
                         <th class="border-b-2 p-0.5 border-gray-200">Entity</th>
@@ -53,38 +83,40 @@
                         <td class="border-b-2 p-0.5 border-gray-200">{{ item.Identifier}}</td>
                         <td class="border-b-2 p-0.5 border-gray-200">{{ item.Type}}</td>
                         <td class="border-b-2 p-0.5 border-gray-200">
-                          <svg @click="removeAnnotation(item.Entity, item.Identifier, item.Type)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500 cursor-pointer">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
+                          <div class="flex justify-center">
+                            <svg @click="removeAnnotation(item.Entity, item.Identifier, item.Type)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-500 cursor-pointer">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
                         </td>
                       </tr>
                   </tbody>
                 </table>
             </div>
-            <div class="h-1/3 bg-white border border-gray-300 p-1 mx-1 overflow-auto">
-              <table class="text-left table-fixed break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
-                    <thead>
-                      <tr>
-                        <th class="border-b-2 border-gray-200">ID 1</th>
-                        <th class="border-b-2 border-gray-200">ID 2</th>
-                        <th class="border-b-2 border-gray-200">Type</th>
-                        <th class="border-b-2 border-gray-200">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="border-b-2 border-gray-200">Long QT syndrome</td>
-                        <td class="border-b-2 border-gray-200">c|SUB|G|</td>
-                        <td class="border-b-2 border-gray-200">SequenceVariant</td>
-                        <td class="border-b-2 border-gray-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </td>
-                      </tr>
-                    </tbody>
-              </table>
-            </div>
+          </div>
+          <div v-else class="h-5/6 p-2 bg-white border border-gray-300 mx-1 overflow-auto">
+            <table class="text-left table-fixed break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
+                  <thead>
+                    <tr>
+                      <th class="border-b-2 border-gray-200">ID 1</th>
+                      <th class="border-b-2 border-gray-200">ID 2</th>
+                      <th class="border-b-2 border-gray-200">Type</th>
+                      <th class="border-b-2 border-gray-200">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border-b-2 border-gray-200">Long QT syndrome</td>
+                      <td class="border-b-2 border-gray-200">c|SUB|G|</td>
+                      <td class="border-b-2 border-gray-200">SequenceVariant</td>
+                      <td class="border-b-2 border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 w-5 h-5 text-red-500">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </td>
+                    </tr>
+                  </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -113,7 +145,9 @@ export default {
         {'identifierType': 'Multiple', 'color': '#ff0000'},
         {'identifierType': 'ICD-11', 'color': '#808080'} ],
       annotatedEntities: [],
-      newIdentifier: ''
+      newIdentifier: '',
+      entity_relation_toggle: true,
+      searchedEntities: []
     }
   },
   methods: {
