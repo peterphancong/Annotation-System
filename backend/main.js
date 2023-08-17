@@ -14,7 +14,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 // app.use(cookieParser())
-//synchronizing the database and forcing it to false so we dont lose data
+// synchronizing the database and forcing it to false so we dont lose data
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log("db has been re sync")
 // })
@@ -22,4 +22,4 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api', userRoutes)
 app.use('/api', annotationRoutes)
 //listening to server connection
-app.listen(PORT, () => console.log('Server is connected on {PORT}'))
+app.listen(PORT, () => console.log(`Server is connected on ${PORT}`))

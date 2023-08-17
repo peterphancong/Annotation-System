@@ -1,7 +1,7 @@
 <template>
   <div v-if = "displayMenu" class="font-deca text-sm">
     <div class="bg-[url('@/assets/logo.png')]"></div>
-    <aside id="default-sidebar" class="bg-white fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 border" aria-label="Sidebar">
+    <aside id="default-sidebar" class="bg-white fixed top-0 left-0 z-40 w-64 transition-transform -translate-x-full sm:translate-x-0 border" aria-label="Sidebar">
     <div>
       <div class="mt-2 rounded-lg">
         <h2 class="text-blue-900 text-center text-lg">NCKU IIR LAB</h2>
@@ -79,8 +79,8 @@
          </li>
       </ul>
       <a href="#" class="flex items-center py-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full">
-               <button class="flex-1 bg-blue-200 whitespace-nowrap rounded-lg h-8 w-2/3" @click="logout()" type="button">Sign out</button>
-            </a>
+        <button class="flex-1 bg-blue-200 whitespace-nowrap rounded-lg h-8 w-2/3" @click="logout()" type="button">Sign out</button>
+      </a>
     </div>
     </aside>
     <div class="ml-64 h-screen">

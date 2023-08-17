@@ -22,7 +22,7 @@ export default
   data () {
     return {
       error: '',
-      email: 'curatorL@iir.csie',
+      email: 'sys@iir.csie',
       password: '123'
     }
   },

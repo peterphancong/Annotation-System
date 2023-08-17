@@ -8,6 +8,7 @@ const Identifier = db.identifiers;
 const https = require("https");
 const client_id = '97e4bba0-11b9-4a6b-a79a-201877a4010d_ddc8e35b-30cc-4b32-91ff-c0d8fa5a0730'
 const client_secret = 'mf/MkNcvfxITY4/26v5YY/Fao3KEAq5Ba9RG9jFIKMY='
+const ICDSearchLimit = 5
 const scope = "icdapi_access";
 const grant_type = "client_credentials";
 let token;
@@ -77,16 +78,12 @@ function getToken() {
   });
 };
 function get(id) {
-
-  // http header fields to set
   const headers = {
       "Authorization": `Bearer ${token}`, 
       "Accept": "application/json", 
       "Accept-Language": "en",
       "API-Version": "v2"
   };
-
-  // http options
   const options = {
       hostname: "id.who.int",
       port: 443,
@@ -94,42 +91,31 @@ function get(id) {
       method: "GET",
       headers
   };
-
   // make request
   return new Promise((resolve, reject) => {
       let req = https.request(options, res => {
           let data = "";
-
           res.on("data", chunck => {
               data += chunck;
           });
-
           res.on("end", () => {
               resolve(JSON.parse(data.toString()));
           });
       });
-
       req.on("error", error => {
           console.error("ERR", error);
           reject(error);
       });
-        
       req.end();
   });
 }
 async function search(term) {
-
-  // query
   let res = await get(encodeURI(`search?q=${term}`));
   let results = res.destinationEntities;
-  let first = results[0];
-  let id = first.id.match(/\d+/)[0];
-
-  // get first result
-  return await get(id);
+  return results
 }
 
-/*-------------------------- Main functions support APIs ---------------------------------*/
+/*-------------------------- Main functions behind APIs ---------------------------------*/
 const uploadBiorec = async (req, res) => {
   upload.fields([{name: 'userName'}, {name: 'biorecJsonfile'}]) (req, res, async() => {
     try {
@@ -243,18 +229,13 @@ const addIdentifier = async (req, res) => {
       } 
     });
     if(user) {
-      token = await getToken();
-      // let res = await get("");
-      let returnIden = await search(identifier);
-      console.log(returnIden['@id'])
       const identifierData = {
-        identifier: returnIden['@id'],
+        identifier: identifier,
         identifierType: identifierType,
         status: 1,
         createdBy: user.id,
       };
       await Identifier.create(identifierData);
-
       const response = {
         "message": "Get identifiers successfully",
         "returnIden": returnIden['@id']
@@ -299,11 +280,33 @@ const getIdentifierByType = async (req, res) => {
     return res.status(400).send("No right to add new identifiers");
   }
 }
-
+const searchICD_11 = async (req, res) => {
+  try {
+    const {searchText } = req.body;
+    token = await getToken();
+    let searchResults = await search(searchText)
+    let topSelected = searchResults.slice(0,ICDSearchLimit)
+    let responseResult = topSelected.map(({id,title}) => ({ id, title }))
+    const response = {
+      "message": `Top ${ICDSearchLimit} results found`,
+      "returnIden": responseResult
+    }
+    return res.status(203).send(response);
+  }
+  catch (error){
+    const response = {
+      "message": `search fail due to outside request`,
+      "returnIden": null
+    }
+    return res.status(203).send(response);
+  }
+  
+}
 module.exports = {
     uploadBiorec,
     loadDocumentList,
     getDocumentByPubmedID,
     addIdentifier,
-    getIdentifierByType
+    getIdentifierByType,
+    searchICD_11
 };

@@ -1,23 +1,28 @@
 <template>
-    <div class="text-sm" id="AnnotationComponent">
-      <div class="flex w-full">
-        <div id="paragraph" class="w-3/4 pb-3 " >
-          <div id="title" class="ml-1 font-bold text-left w-5/6" >{{ title }}</div>
-          <div id="abstract" class="p-1 border shadow-sm overflow-y-scroll overflow-auto h-full">
+    <div class="text-sm h-full overflow-x-hidden" id="AnnotationComponent">
+      <div class="flex w-full h-full overflow-x-hidden">
+        <div id="paragraph" class="w-3/4 flex flex-col" >
+          <div id="title" class="flex-none ml-1 font-bold text-left w-5/6" >{{ title }}</div>
+          <div id="abstract" class="flex-1 p-1 border shadow-sm overflow-y-scroll overflow-auto">
              {{ abstractText }}
           </div>
         </div>
-        <div id="function" class="w-1/4 pb-3 text-xs h-screen bg-gray-300">
-          <div class="mt-1 h-30" id="commands">
-            <div class="border border-gray-300 p-1 mx-1 overflow-auto flex justify-between h-1/2">
-              <button @click="entity_relation_toggle = true" :class="{'border-blue-500' : entity_relation_toggle}" class="w-1/2 relative border-b-2 p-1 border-transparent">Entity</button>
-              <button @click="entity_relation_toggle = false" :class="{'border-blue-500' : !entity_relation_toggle}" class="w-1/2 relative border-b-2 p-1 border-transparent">Relation</button>
+        <div id="function" class="overflow-x-hidden w-1/4 text-xs bg-gray-300 flex flex-col h-full pl-1">
+          <div class="flex-none mt-1 h-30" id="commands">
+            <div class="flex justify-end">
+              <button class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Cancel</button>
+              <button class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
+              <button class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
             </div>
+              <div class="overflow-auto flex justify-between h-1/2 mt-1">
+                <button @click="entity_relation_toggle = true" :class="{'bg-white border-white border-2 rounded-t-lg' : entity_relation_toggle}" class="w-1/2 relative border-1 p-0.5">Entity</button>
+                <button @click="entity_relation_toggle = false" :class="{'bg-white border-white border-2 rounded-t-lg' : !entity_relation_toggle}" class="w-1/2 relative border-1 p-0.5">Relation</button>
+              </div>
           </div>
-          <div id="dataList" class="h-5/6 p-2" v-if="entity_relation_toggle">
-            <div class="border border-gray-300 p-1 flex justify-center h-10">
-              <select v-model="selectedIDType" @change="idTypeChange()" class="w-full py-0 px-1 h-8 rounded-lg text-xs border-gray-400 text-gray-900">
-                <option value="None" class="text-xs" disabled selected> Select ID type</option>
+          <div v-show="entity_relation_toggle" id="EntityTab" class="bg-white flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+            <div class="flex-none py-2 px-1 justify-center h-10">
+              <select v-model="selectedIDType" @change="idTypeChange()" class="w-full py-0 h-8 rounded-lg text-xs border-gray-400 text-gray-900">
+                <option value="None" class="text-xs " disabled selected> Select ID type</option>
                 <option value="CellLine" class="text-xs" selected> Cell Line</option>
                 <option value="ChemicalEntity" class="text-xs">Chemical Entity</option>
                 <option value="DiseaseOrPhenotypicFeature" class="text-xs"> Disease / Phenotypic Feature </option>
@@ -26,75 +31,52 @@
                 <option value="SequenceVariant" class="text-xs"> Sequence Variant</option>
               </select>
             </div>
-            <div class="border border-gray-300 overflow-auto flex justify-center h-8 mt-2">
-              <input v-model="newIdentifier" type="text" class="px-1 w-1/6 ml-1 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="Search ID from ICD11">
-              <button @click="addIdentifier()" class="ml-2 mr-2 text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6">Search</button>
+            <div class="flex-none justify-right h-10 p-1">
+              <input v-model="identifierQuery" type="text" class="h-8 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="Search ID from ICD11">
+              <button @click="searchIdentifier()" class="text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6 h-8">Search</button>
             </div>
-            <div class="mt-2 h-1/6 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto" id="identifier_selection">
-              <table ref="entityTable" class="text-center mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
+            <div class="flex-none h-25 overflow-y-auto overflow-x-hidden" id="identifier_selection">
+              <div v-for ="(searchItem,index ) in searchedEntities" :key="index" class="flex justify-center w-full ml-2 pr-4 mt-0.5 border-b-2 border-gray-100 align-middle" id="searchedItem">
+                <div class="w-3/4 "><a :href = "searchItem.id" class="text-blue-600 dark:text-blue-500 hover:underline">{{searchItem.title}}</a></div>
+                <button class="w-1/4  mb-0.5 h-4 text-xs bg-green-200 rounded-lg border-blue-500">Add</button>
+              </div>
+            </div>
+            <div class="flex-none mt-2 h-40 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="availableIdentifiers">
+              <div id = "identifierList" class="text-xs border-black shadow-sm text-base bg-white" >
+                <!-- <span class="text-xs underline">Select identifiers:</span> -->
+                <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier)"
+                class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{ identifier }}
+                </button>
+              </div>
+            </div>
+            <div class="flex-1 mt-2 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-y-auto overflow-x-hidden">
+              <table ref="entityTable" class="text-center mb-1 table-fixed break-all border-collapse w-full bg-dark-gray">
                 <thead>
                   <tr>
-                      <th class="border-b-2 p-0.5 border-gray-200 w-5/6">Searched Identifier List</th>
-                      <th class="border-b-2 p-0.5 border-gray-200 w-1/6">Action</th>
+                      <th class="border-b-2 p-0.5 border-gray-200">Entity</th>
+                      <th class="border-b-2 p-0.5 border-gray-200">Identifier</th>
+                      <th class="border-b-2 p-0.5 border-gray-200">Type</th>
+                      <th class="border-b-2 p-0.5 border-gray-200">Action </th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr><!-- v-for="(item, index) in searchedEntities" :key="index"-->
-                      <td class="border-b-2 p-0.5 border-gray-200">http://id.who.int/icd/entity/1448356431</td>
+                    <tr v-for="(item, index) in annotatedEntities" :key="index">
+                      <td class="border-b-2 p-0.5 border-gray-200">{{ item.Entity }}</td>
+                      <td class="border-b-2 p-0.5 border-gray-200">{{ item.Identifier}}</td>
+                      <td class="border-b-2 p-0.5 border-gray-200">{{ item.Type}}</td>
                       <td class="border-b-2 p-0.5 border-gray-200">
                         <div class="flex justify-center">
-                          <button class="w-full m-1 h-6 bg-green-300 rounded-lg text-gray-900 border-b-2 border-gray-500">Add</button>
+                          <svg @click="removeAnnotation(item.Entity, item.Identifier, item.Type)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-500 cursor-pointer">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                         </div>
                       </td>
                     </tr>
                 </tbody>
               </table>
             </div>
-            <div class="mt-2 h-1/4 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="identifier_selection">
-              <table class="text-center mb-1 table-fixed border-collapse w-full bg-dark-gray">
-                <thead>
-                  <tr>
-                    <th class="border-b-2 p-0.5 border-gray-200">Identifier Board</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <td></td>
-                </tbody>
-              </table>
-              <div class="text-xs border-black shadow-sm text-base bg-white">
-                <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier)"
-                class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500">{{identifier}}
-                </button>
-              </div>
-            </div>
-            <div class="h-1/2 mt-2 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto">
-                <table ref="entityTable" class="text-center mb-1 table-fixed  break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
-                  <thead>
-                    <tr>
-                        <th class="border-b-2 p-0.5 border-gray-200">Entity</th>
-                        <th class="border-b-2 p-0.5 border-gray-200">Identifier</th>
-                        <th class="border-b-2 p-0.5 border-gray-200">Type</th>
-                        <th class="border-b-2 p-0.5 border-gray-200">Action </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <tr v-for="(item, index) in annotatedEntities" :key="index">
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Entity }}</td>
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Identifier}}</td>
-                        <td class="border-b-2 p-0.5 border-gray-200">{{ item.Type}}</td>
-                        <td class="border-b-2 p-0.5 border-gray-200">
-                          <div class="flex justify-center">
-                            <svg @click="removeAnnotation(item.Entity, item.Identifier, item.Type)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-500 cursor-pointer">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                          </div>
-                        </td>
-                      </tr>
-                  </tbody>
-                </table>
-            </div>
           </div>
-          <div v-else class="h-5/6 p-2 bg-white border border-gray-300 mx-1 overflow-auto">
+          <div v-show="!entity_relation_toggle" id="RelationTab" class="bg-white flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
             <table class="text-left table-fixed break-all border-collapse  overflow-y-scroll overflow-auto w-full bg-dark-gray">
                   <thead>
                     <tr>
@@ -145,22 +127,20 @@ export default {
         {'identifierType': 'Multiple', 'color': '#ff0000'},
         {'identifierType': 'ICD-11', 'color': '#808080'} ],
       annotatedEntities: [],
-      newIdentifier: '',
+      identifierQuery: '',
       entity_relation_toggle: true,
       searchedEntities: []
     }
   },
   methods: {
-    addIdentifier () {
-      var data = {identifier: this.newIdentifier, identifierType: this.selectedIDType, userName: this.currentUser.userName}
+    addIdentifier (newIdentifier) {
+      var data = {identifier: newIdentifier, identifierType: this.selectedIDType, userName: this.currentUser.userName}
       axios.post('/api/addIdentifier', data)
         .then((response) => {
           if (response.status === 203) {
             console.log('add identifier sucessfully')
             this.identifierList.push(response.data.returnIden)
-            // this.identifierList.push(this.newIdentifier)
           } else {
-            this.error = 'add identifier failed'
             console.log('add identifier failed')
           }
         })
@@ -261,6 +241,30 @@ export default {
           }
         }
       }
+    },
+    searchIdentifier () {
+      var req = {searchText: this.identifierQuery}
+      axios.post('/api/searchICD_11', req)
+        .then((response) => {
+          if (response.status === 203) {
+            console.log('search identifier found')
+            this.searchedEntities = []
+            var div = document.createElement('div')
+            this.searchedEntities = response.data.returnIden.map(function (i) {
+              div.innerHTML = i.title
+              i.title = div.textContent || div.innerText || ''
+              var code = i.id.split('/').pop()
+              i.title = i.title + ' ('+code+')'
+              return i
+            })
+            console.log(this.searchedEntities)
+          } else {
+            console.log('add identifier failed')
+          }
+        })
+        .catch((e) => {
+          this.error = 'Add identifiers failed'
+        })
     }
   },
   mounted () {
