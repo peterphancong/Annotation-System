@@ -109,7 +109,7 @@ function get(id) {
       req.end();
   });
 }
-async function search(term) {
+async function searchIdentifier(term) {
   let res = await get(encodeURI(`search?q=${term}`));
   let results = res.destinationEntities;
   return results
@@ -228,7 +228,12 @@ const addIdentifier = async (req, res) => {
         userName: userName
       } 
     });
-    if(user) {
+    const existedIden = await Identifier.findOne({
+      where: {
+        identifier: identifier
+      } 
+    });
+    if(user && !existedIden) {
       const identifierData = {
         identifier: identifier,
         identifierType: identifierType,
@@ -238,13 +243,13 @@ const addIdentifier = async (req, res) => {
       await Identifier.create(identifierData);
       const response = {
         "message": "Get identifiers successfully",
-        "returnIden": returnIden['@id']
+        "returnIden": identifier
       }
       return res.status(203).send(response);
     }
     else
     {
-      return res.status(400).send("No right to add new identifiers");
+      return res.status(400).send("No right to add new identifiers or it is existing");
     }
   }
   catch (error) {
@@ -283,8 +288,11 @@ const getIdentifierByType = async (req, res) => {
 const searchICD_11 = async (req, res) => {
   try {
     const {searchText } = req.body;
-    token = await getToken();
-    let searchResults = await search(searchText)
+    if (searchText == ''){
+      return
+    }
+        token = await getToken();
+    let searchResults = await searchIdentifier(searchText)
     let topSelected = searchResults.slice(0,ICDSearchLimit)
     let responseResult = topSelected.map(({id,title}) => ({ id, title }))
     const response = {

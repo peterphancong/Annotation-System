@@ -33,12 +33,12 @@
             </div>
             <div class="flex-none justify-right h-10 p-1">
               <input v-model="identifierQuery" type="text" class="h-8 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="Search ID from ICD11">
-              <button @click="searchIdentifier()" class="text-xs bg-gray-200 rounded-lg border-blue-500 w-1/6 h-8">Search</button>
+              <button @click="searchIdentifier()" class="text-xs bg-gray-200 hover:bg-blue-400 py-1 px-3 rounded-full">Search</button>
             </div>
             <div class="flex-none h-25 overflow-y-auto overflow-x-hidden" id="identifier_selection">
               <div v-for ="(searchItem,index ) in searchedEntities" :key="index" class="flex justify-center w-full ml-2 pr-4 mt-0.5 border-b-2 border-gray-100 align-middle" id="searchedItem">
-                <div class="w-3/4 "><a :href = "searchItem.id" class="text-blue-600 dark:text-blue-500 hover:underline">{{searchItem.title}}</a></div>
-                <button class="w-1/4  mb-0.5 h-4 text-xs bg-green-200 rounded-lg border-blue-500">Add</button>
+                <div class="w-3/4 "><a :href = "searchItem.id" class="text-blue-600 dark:text-blue-500 hover:underline">{{searchItem.title + ' ('+ searchItem.code + ')'}}</a></div>
+                <button @click="addIdentifier(searchItem.code)" class="w-1/4 mb-0.5 h-6 bg-green-100 hover:bg-blue-400 py-1 px-3 rounded-full">Add</button>
               </div>
             </div>
             <div class="flex-none mt-2 h-40 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="availableIdentifiers">
@@ -134,12 +134,16 @@ export default {
   },
   methods: {
     addIdentifier (newIdentifier) {
+      if (this.selectedIDType === 'None') {
+        alert('Select ID-type before adding')
+        return
+      }
       var data = {identifier: newIdentifier, identifierType: this.selectedIDType, userName: this.currentUser.userName}
       axios.post('/api/addIdentifier', data)
         .then((response) => {
           if (response.status === 203) {
             console.log('add identifier sucessfully')
-            this.identifierList.push(response.data.returnIden)
+            this.identifierList.unshift(response.data.returnIden)
           } else {
             console.log('add identifier failed')
           }
@@ -253,8 +257,8 @@ export default {
             this.searchedEntities = response.data.returnIden.map(function (i) {
               div.innerHTML = i.title
               i.title = div.textContent || div.innerText || ''
-              var code = i.id.split('/').pop()
-              i.title = i.title + ' ('+code+')'
+              i.code = i.id.split('/').pop()
+              // i.title = i.title + ' ('+code+')'
               return i
             })
             console.log(this.searchedEntities)

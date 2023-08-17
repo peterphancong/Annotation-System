@@ -35,7 +35,7 @@
                   <span v-if="item.status===0">Not Start</span>
                   <span v-if="item.status===1">Working</span>
                   <span v-if="item.status===2">Submitted</span>
-                  <span v-if="item.status===2">Finalized</span>
+                  <span v-if="item.status===3">Finalized</span>
               </td>
               <td class="px-4 py-2 border-b-2 border-gray-200">
                 <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="OpenAnnotation(item.pubmedID)">Annotate</button>
