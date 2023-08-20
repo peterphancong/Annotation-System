@@ -1,0 +1,1 @@
+SELECT setval('identifiers_id_seq', (SELECT max(id) FROM identifiers i));
