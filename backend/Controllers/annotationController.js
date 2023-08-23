@@ -5,6 +5,8 @@ const db = require("../Models");
 const Document = db.documents;
 const User = db.users;
 const Identifier = db.identifiers;
+const Entity = db.entities;
+const Relation = db.relations
 const https = require("https");
 const client_id = '97e4bba0-11b9-4a6b-a79a-201877a4010d_ddc8e35b-30cc-4b32-91ff-c0d8fa5a0730'
 const client_secret = 'mf/MkNcvfxITY4/26v5YY/Fao3KEAq5Ba9RG9jFIKMY='
@@ -164,7 +166,7 @@ const loadDocumentList = async (req, res) => {
       } 
     });
     var loadedByID
-    if (user.role == 2){
+    if (user.role === 2){
       loadedByID = user.createdBy
     }
     else {
@@ -221,8 +223,10 @@ const getDocumentByPubmedID = async (req, res) => {
   }
 }
 const addIdentifier = async (req, res) => {
+  
   try {
     const {identifier, identifierType, userName } = req.body;
+    // console.log(identifier)
     const user = await User.findOne({
       where: {
         userName: userName
@@ -230,16 +234,21 @@ const addIdentifier = async (req, res) => {
     });
     const existedIden = await Identifier.findOne({
       where: {
-        identifier: identifier
+        identifier: identifier.code,
+        identifierType: identifierType
       } 
     });
+    
     if(user && !existedIden) {
       const identifierData = {
-        identifier: identifier,
+        identifier: identifier.code,
+        title: identifier.title,
+        source: identifier.id,
         identifierType: identifierType,
         status: 1,
         createdBy: user.id,
       };
+      
       await Identifier.create(identifierData);
       const response = {
         "message": "Get identifiers successfully",
@@ -249,6 +258,7 @@ const addIdentifier = async (req, res) => {
     }
     else
     {
+      console.log("No right to add new identifiers or it is existing")
       return res.status(400).send("No right to add new identifiers or it is existing");
     }
   }
@@ -266,7 +276,7 @@ const getIdentifierByType = async (req, res) => {
   });
   if(user) {
     var identifierList = await Identifier.findAll({
-      attributes: ["identifier"],
+      attributes: ["identifier", "title", "source"],
       where:{
         status: 1,
         identifierType: identifierType
@@ -274,9 +284,10 @@ const getIdentifierByType = async (req, res) => {
       raw: true,
       order: ["identifier"]
     });
+    returnedData = identifierList.map(function(iden){ return {'code':iden.identifier, 'title': iden.title, 'id': iden.source} })
     const response = {
       "message": "Get identifiers successfully",
-      "identifierList": identifierList.map(function(iden){ return iden.identifier })
+      "identifierList": returnedData
     }
     res.status(203).send(response);
   }
@@ -310,11 +321,64 @@ const searchICD_11 = async (req, res) => {
   }
   
 }
+const saveAnnotation = async (req, res) => {
+  try {
+    const {annotatedEntities, annotatedRelations, userName, pubmedID} = req.body;
+    const user = await User.findOne({
+      where: {
+        userName: userName
+      } 
+    });
+    const doc = await Document.findOne({
+      where: {
+        pubmedID: pubmedID
+      } 
+    });
+    annotatedEntities.forEach (async element => {
+      const identifier = Identifier.findOne({
+        where: {
+          identifier: element.Identifier,
+          identifierType: element.Type,
+          status: 1
+        }
+      })
+      const entity = {
+        text: element.Entity,
+        identifiedBy: identifier.id,
+        annotatedBy: user.id,
+        documentID: doc.id,
+        active: 1
+      }
+      await Entity.create(entity)
+    })
+    annotatedRelations.forEach(async element => {
+      const relation = {
+        ID1: element.ID1,
+        ID2: element.ID2,
+        Type: element.Type,
+        annotatedBy: user.id,
+        documentID: doc.id,
+      };
+      createdEntity = Relation.create(relation);
+    });
+    const response = {
+      "message": "Save successfully",
+    }
+    return res.status(203).send(response);
+  }
+  catch {
+    const response = {
+      "message": "Fail saving....",
+    }
+    return res.status(403).send(response);
+  }
+}
 module.exports = {
     uploadBiorec,
     loadDocumentList,
     getDocumentByPubmedID,
     addIdentifier,
     getIdentifierByType,
-    searchICD_11
+    searchICD_11,
+    saveAnnotation
 };
