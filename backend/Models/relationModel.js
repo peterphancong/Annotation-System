@@ -6,16 +6,28 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
     },
-    ID1: {
+    ID1_Identifier: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    ID2: {
+    ID1_Type: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    Type: {
+    ID2_Identifier: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    ID2_Type: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    RelType: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    status: {
+        type: DataTypes.INTEGER,
         allowNull: false
     }
    }, {timestamps: true}, )

@@ -1,7 +1,7 @@
 <template>
   <div v-if = "displayMenu" class="font-deca text-sm">
     <div class="bg-[url('@/assets/logo.png')]"></div>
-    <aside id="default-sidebar" class="bg-white fixed top-0 left-0 z-40 w-64 transition-transform -translate-x-full sm:translate-x-0 border" aria-label="Sidebar">
+    <aside id="default-sidebar" class="h-full bg-white fixed top-0 left-0 z-40 w-64 transition-transform -translate-x-full sm:translate-x-0 border" aria-label="Sidebar">
     <div>
       <div class="mt-2 rounded-lg">
         <h2 class="text-blue-900 text-center text-lg">NCKU IIR LAB</h2>

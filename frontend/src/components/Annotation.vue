@@ -17,11 +17,11 @@
         <input class="block w-full bg-white text-xs border border-gray-300 rounded-lg cursor-pointer" id="fileUpload" type="file" v-on:change="uploadBiorec" ref="file" accept=".BioC.json">
       </div>
     </div>
-    <div id="dvDocList" class="h-4/5 mr-2 overflow-y-scroll overflow-auto overflow-x-hidden">
-        <table class="m-2 border-black text-left table-auto border-collapse rounded-lg w-full">
+    <div id="dvDocList" class="h-4/5 m-2 bg-white rounded-lg border border-gray-300 overflow-y-auto overflow-x-hidden">
+        <table class="text-center table-fixed break-all border-collapse w-full bg-dark-gray">
           <thead>
             <tr>
-              <th class="px-4 py-2 border-b-2 border-gray-200">Title</th>
+              <th class="border-b-2 p-0.5 border-gray-200">Title</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">PMID</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">Status</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">Action</th>

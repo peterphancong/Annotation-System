@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
            unique: true,
            allowNull: false
        },
-       active: {
-           type: DataTypes.BOOLEAN,
+       status: {
+           type: DataTypes.INTEGER,
            allowNull: false
        }
    }, {timestamps: true}, )

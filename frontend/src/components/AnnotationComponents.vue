@@ -43,9 +43,8 @@
             </div>
             <div class="flex-none mt-2 h-40 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="availableIdentifiers">
               <div id = "identifierList">
-                <!-- <span class="text-xs underline">Select identifiers:</span> -->
                 <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier.code)" @contextmenu.prevent="openTab(identifier.id)"
-                class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500" :data-tooltip="identifier.title + ', right click to view details'">{{ identifier.code }}
+                class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500" :title="identifier.title + ', right click to view details'">{{ identifier.code }}
                 </button>
               </div>
             </div>
@@ -135,7 +134,7 @@
                       <tr>
                         <th class="border-b-2 p-0.5 border-gray-200">ID Type</th>
                         <th class="border-b-2 p-0.5 border-gray-200">ID Type</th>
-                        <th class="border-b-2 p-0.5 border-gray-200">Type</th>
+                        <th class="border-b-2 p-0.5 border-gray-200">Relation Type</th>
                         <th class="border-b-2 p-0.5 border-gray-200">Count</th>
                       </tr>
                     </thead>
@@ -226,7 +225,7 @@ export default {
       router.push({path: '/main'})
     },
     Save () {
-      if (this.annotatedEntities.length === 0 || this.annotatedRelations.length === 0) {
+      if (this.annotatedEntities.length === 0 && this.annotatedRelations.length === 0) {
         alert('Nothing to save')
         return
       }
@@ -238,7 +237,6 @@ export default {
       }
       axios.post('/api/saveAnnotation', data)
         .then((response) => {
-          alert(response.message)
           router.push({path: '/main'})
         })
         .catch((e) => {
@@ -338,6 +336,31 @@ export default {
           this.error = 'Login Error'
         })
     },
+    highlight (entity, identifierType, parentBaseNode) {
+      var newNode = document.createElement('span')
+      newNode.appendChild(document.createTextNode(entity))
+      let selected, replacedColor, title
+      if (parentBaseNode.tagName === 'DIV') {
+        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === identifierType }).color
+        title = identifierType
+        selected = entity
+      } else if (parentBaseNode.tagName === 'SPAN') {
+        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
+        title = 'Multiple annotated'
+        selected = parentBaseNode.outerHTML
+      }
+      Object.assign(
+        newNode,
+        {
+          style: 'background-color: ' + replacedColor + '; display: inline;',
+          title: title
+        }
+      )
+      this.abstractText = this.abstractText.split(selected).join(newNode.outerHTML)
+      document.querySelector('#abstract').innerHTML = this.abstractText
+      this.title = this.title.split(selected).join(newNode.outerHTML)
+      document.querySelector('#title').innerHTML = this.title
+    },
     annotate (identifier) {
       var userSelected = document.getSelection()
       if (!(document.querySelector('#paragraph').contains(userSelected.baseNode))) {
@@ -356,30 +379,7 @@ export default {
         return
       }
       let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
-      var newNode = document.createElement('span')
-      newNode.appendChild(document.createTextNode(selectedText))
-      let selected, replacedColor, title
-      if (userSelected.baseNode.parentNode.tagName === 'DIV') {
-        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === currentSelectedType }).color
-        title = currentSelectedType
-        selected = selectedText
-      } else if (userSelected.baseNode.parentNode.tagName === 'SPAN') {
-        replacedColor = this.colorPalete.find(function (p) { return p.identifierType === 'Multiple' }).color
-        title = 'Multiple annotated'
-        let selectedNode = userSelected.baseNode.parentNode
-        selected = selectedNode.outerHTML
-      }
-      Object.assign(
-        newNode,
-        {
-          style: 'background-color: ' + replacedColor + '; display: inline;',
-          title: title
-        }
-      )
-      this.abstractText = this.abstractText.split(selected).join(newNode.outerHTML)
-      document.querySelector('#abstract').innerHTML = this.abstractText
-      this.title = this.title.split(selected).join(newNode.outerHTML)
-      document.querySelector('#title').innerHTML = this.title
+      this.highlight(selectedText, currentSelectedType, userSelected.baseNode.parentNode)
       this.annotatedEntities.unshift(annotatedItem)
     },
     removeAnnotation (entity, identifier, type) {

@@ -1,5 +1,4 @@
 const multer  = require('multer')
-// var shape = require('shape-json');
 var userController = require("./userController");
 const db = require("../Models");
 const Document = db.documents;
@@ -117,7 +116,7 @@ async function searchIdentifier(term) {
   return results
 }
 
-/*-------------------------- Main functions behind APIs ---------------------------------*/
+/*-------------------------- APIs code behind  ---------------------------------*/
 const uploadBiorec = async (req, res) => {
   upload.fields([{name: 'userName'}, {name: 'biorecJsonfile'}]) (req, res, async() => {
     try {
@@ -195,6 +194,7 @@ const getDocumentByPubmedID = async (req, res) => {
       }
     });
     filename = doc.documentLink;
+    var docData
     fs.readFile(filename, 'utf8', async (err, data) => {
       if (err) {
         console.log("reading file get error")
@@ -334,30 +334,58 @@ const saveAnnotation = async (req, res) => {
         pubmedID: pubmedID
       } 
     });
+    await Entity.destroy({
+      where: {
+        annotatedBy: user.id,
+        documentID: doc.id
+      }
+    })
     annotatedEntities.forEach (async element => {
-      const identifier = Identifier.findOne({
+      const iden = await Identifier.findOne({
         where: {
           identifier: element.Identifier,
           identifierType: element.Type,
           status: 1
         }
       })
+      // let _active = 0
+      // let existingEntity = await Entity.findOne({
+      //   where: {
+      //     text: element.Entity,
+      //     identifiedBy: iden.id,
+      //     documentID: doc.id
+      //   }
+      // })
+      // if (existingEntity) {
+      //   _active = 0
+      // } else {
+      //   _active = 1
+      // }
       const entity = {
         text: element.Entity,
-        identifiedBy: identifier.id,
+        identifiedBy: iden.id,
         annotatedBy: user.id,
         documentID: doc.id,
-        active: 1
+        status: 0 // status =1: Initial, status=2: Submitted, status:3 Finalized
       }
       await Entity.create(entity)
     })
+    await Relation.destroy({
+      where: {
+        annotatedBy: user.id,
+        documentID: doc.id
+      }
+    })
     annotatedRelations.forEach(async element => {
       const relation = {
-        ID1: element.ID1,
-        ID2: element.ID2,
-        Type: element.Type,
+        ID1_Identifier: element.ID1_Identifier,
+        ID1_Type: element.ID1_Type,
+        ID2_Identifier: element.ID2_Identifier,
+        ID2_Type: element.ID2_Type,
+        RelType: element.RelType,
         annotatedBy: user.id,
         documentID: doc.id,
+        status: 0 // status =1: Initial, status=2: Submitted, status:3 Finalized
       };
       createdEntity = Relation.create(relation);
     });
@@ -373,6 +401,62 @@ const saveAnnotation = async (req, res) => {
     return res.status(403).send(response);
   }
 }
+const loadEntitiesRelation = async (req, res) => {
+  try {
+    const {userName, pubmedID} = req.body;
+    const user = await User.findOne({
+      where: {
+        userName: userName
+      } 
+    });
+    const doc = await Document.findOne({
+      where: {
+        pubmedID: pubmedID
+      } 
+    });
+    var entityList = await Entity.findAll({
+      attributes: ["text", "title", "source"],
+      where:{
+        status: 0,
+        annotatedBy: user.id,
+        documentID: doc.id
+      },
+      include: {
+        model: Identifier,
+        where: {
+          identifiedBy: {$col: 'Identifier.id'}
+        }
+      },
+      raw: true,
+      order: ["identifier"]
+    });
+    console.log ('---------------Entity List ------------------')
+    console.log(entityList)
+    var relationList = await Relation.findAll({
+      attributes: ['ID1_Identifier', 'ID1_Type', 'ID2_Identifier', 'ID2_Type', 'RelType'],
+      where: {
+        status: 0,
+        annotatedBy: user.id,
+        documentID: doc.id
+      }
+    })
+    console.log ('---------------Relation List ------------------')
+    console.log (relationList)
+    const response = {
+      "message": "Entity List, Relation List are retrieved successfully",
+      "EntityList": entityList,
+      "RelationList": relationList
+    }
+    return res.status(203).send(response);
+  }
+  catch {
+    const response = {
+      "message": "Load lists failed",
+    }
+    return res.status(403).send(response);
+  } 
+  
+}
 module.exports = {
     uploadBiorec,
     loadDocumentList,
@@ -380,5 +464,6 @@ module.exports = {
     addIdentifier,
     getIdentifierByType,
     searchICD_11,
-    saveAnnotation
+    saveAnnotation,
+    loadEntitiesRelation
 };

@@ -33,6 +33,7 @@ db.documents.belongsTo(db.users,{foreignKey:'uploadedBy'});
 // User - User relationship
 db.users.hasMany(db.users, {foreignKey:'createdBy'});
 db.users.belongsTo(db.users,{foreignKey:'createdBy'});
+
 // User - Identifier relationship
 db.users.hasMany(db.identifiers, {foreignKey:'createdBy'});
 db.identifiers.belongsTo(db.users, {foreignKey:'createdBy'});
