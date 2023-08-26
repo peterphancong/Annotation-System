@@ -3,7 +3,7 @@
       <div class="flex w-full h-full overflow-x-hidden">
         <div id="paragraph" class="w-3/4 flex flex-col" >
           <div id="title" class="flex-none ml-1 font-bold text-left w-5/6" >{{ title }}</div>
-          <div id="abstract" class="flex-1 p-1 border shadow-sm overflow-y-scroll overflow-auto">
+          <div id="abstract" class="flex-1 p-1 border shadow-sm overflow-y-scroll overflow-auto text-justify break-words">
              {{ abstractText }}
           </div>
         </div>
@@ -11,8 +11,8 @@
           <div class="flex-none mt-1 h-30" id="commands">
             <div class="flex justify-end">
               <button @click = "Cancel()" class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Cancel</button>
-              <button @click = "Save()" class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
-              <button @click = "Submit()" class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
+              <button v-if="editMode < 2" @click = "Save()" class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Save</button>
+              <button v-if="editMode < 2" @click = "Submit()" class="mr-2 ml-2 w-36 h-8 bg-blue-300 text-gray-900 rounded-lg border-b-2 border-gray-500" type="button">Submit</button>
             </div>
               <div class="overflow-auto flex justify-between h-1/2 mt-1">
                 <button @click="entity_relation_toggle = true" :class="{'bg-white border-white border-2 rounded-t-lg' : entity_relation_toggle}" class="w-1/2 relative border-1 p-0.5">Entity</button>
@@ -33,7 +33,7 @@
             <div class="flex-none justify-right h-10 p-1">
               <input v-model="identifierQuery" type="text" class="h-8 text-xs border-1 focus:outline-none flex-1 rounded-lg" placeholder="Search ID from ICD11">
               <button @click="searchIdentifier()" class="text-xs bg-gray-200 hover:bg-blue-400 py-1 px-3 rounded-full">Search</button>
-              <a href="#" @click="searchedEntities = [], identifierQuery=''" class = "text-blue-600 dark:text-blue-500 hover:underline">Clear Search</a>
+              <a href="#" @click="searchedEntities = [], identifierQuery=''" class="text-blue-600 dark:text-blue-500 hover:underline">Clear Search</a>
             </div>
             <div class="flex-none h-25 overflow-y-auto overflow-x-hidden" id="identifier_selection">
               <div v-for ="(searchItem,index ) in searchedEntities" :key="index" class="flex justify-center w-full ml-2 pr-4 mt-0.5 border-b-2 border-gray-100 align-middle" id="searchedItem">
@@ -43,13 +43,13 @@
             </div>
             <div class="flex-none mt-2 h-40 m-1 p-2 bg-white rounded-lg border border-gray-300 overflow-auto " id="availableIdentifiers">
               <div id = "identifierList">
-                <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier.code)" @contextmenu.prevent="openTab(identifier.id)"
+                <button v-for="(identifier, index) in identifierList" :key="index" @click="annotate(identifier)" @contextmenu.prevent="openTab(identifier.id)"
                 class="text-xs m-0.5 bg-gray-200 rounded-lg p-0.5 border-gray-500 hover:bg-gray-500" :title="identifier.title + ', right click to view details'">{{ identifier.code }}
                 </button>
               </div>
             </div>
             <div class="flex-1 mt-2 m-1 bg-white rounded-lg border border-gray-300 overflow-y-auto overflow-x-hidden">
-              <table ref="entityTable" class="text-center table-fixed break-all border-collapse w-full bg-dark-gray">
+              <table ref="entityTable" class="text-center table-fixed break-words border-collapse w-full bg-dark-gray">
                 <thead>
                   <tr>
                       <th class="border-b-2 p-0.5 border-gray-200">Entity</th>
@@ -61,7 +61,9 @@
                 <tbody>
                     <tr v-for="(item, index) in annotatedEntities" :key="index">
                       <td class="border-b-2 p-0.5 border-gray-200">{{ item.Entity }}</td>
-                      <td class="border-b-2 p-0.5 border-gray-200">{{ item.Identifier}}</td>
+                      <td class="border-b-2 p-0.5 border-gray-200">
+                        <button @click="openTab(item.Link)" class="text-blue-600 dark:text-blue-500 hover:underline">{{ item.Identifier }}</button>
+                      </td>
                       <td class="border-b-2 p-0.5 border-gray-200">{{ item.Type}}</td>
                       <td class="border-b-2 p-0.5 border-gray-200">
                         <div class="flex justify-center">
@@ -99,11 +101,11 @@
               <button @click="addRelation()" class="w-40 mt-2 h-8 bg-green-100 hover:bg-blue-400 py-1 px-3 rounded-full">Add</button>
             </div>
             <div class="flex-1 min m-1 bg-white rounded-lg border border-gray-300 overflow-y-auto overflow-x-hidden">
-              <table class="text-center table-fixed break-all border-collapse w-full bg-dark-gray">
+              <table class="text-center table-fixed break-words border-collapse w-full bg-dark-gray">
                     <thead>
                       <tr>
-                        <th class="border-b-2 p-0.5 border-gray-200">ID 1</th>
-                        <th class="border-b-2 p-0.5 border-gray-200">ID 2</th>
+                        <th class="border-b-2 p-0.5 border-gray-200 w-1/3">ID 1</th>
+                        <th class="border-b-2 p-0.5 border-gray-200 w-1/3">ID 2</th>
                         <th class="border-b-2 p-0.5 border-gray-200">Type</th>
                         <th class="border-b-2 p-0.5 border-gray-200">Action</th>
                       </tr>
@@ -187,7 +189,6 @@ export default {
           uniqueIdenType.unshift({'ID1_Type': annotatedRel.ID1_Type, 'ID2_Type': annotatedRel.ID2_Type, 'RelType': annotatedRel.RelType, 'Count': 1})
         }
       })
-      console.log(uniqueIdenType)
       return uniqueIdenType
     }
   },
@@ -214,7 +215,8 @@ export default {
         ID1: 'None',
         ID2: 'None',
         Type: 'None'
-      }
+      },
+      editMode: 0
     }
   },
   methods: {
@@ -286,7 +288,6 @@ export default {
           if (response.status === 203) {
             console.log('add identifier sucessfully')
             this.identifierList.unshift(response.data.returnIden)
-            console.log(response.data.returnIden)
           } else {
             console.log('add identifier failed')
           }
@@ -336,7 +337,7 @@ export default {
           this.error = 'Login Error'
         })
     },
-    highlight (entity, identifierType, parentBaseNode) {
+    highlight (entity, identifierType, parentBaseNode, text) {
       var newNode = document.createElement('span')
       newNode.appendChild(document.createTextNode(entity))
       let selected, replacedColor, title
@@ -356,10 +357,8 @@ export default {
           title: title
         }
       )
-      this.abstractText = this.abstractText.split(selected).join(newNode.outerHTML)
-      document.querySelector('#abstract').innerHTML = this.abstractText
-      this.title = this.title.split(selected).join(newNode.outerHTML)
-      document.querySelector('#title').innerHTML = this.title
+      text = text.split(selected).join(newNode.outerHTML)
+      return text
     },
     annotate (identifier) {
       var userSelected = document.getSelection()
@@ -378,8 +377,11 @@ export default {
       if (existing) {
         return
       }
-      let annotatedItem = {'Entity': selectedText, 'Identifier': identifier, 'Type': currentSelectedType}
-      this.highlight(selectedText, currentSelectedType, userSelected.baseNode.parentNode)
+      let annotatedItem = {'Entity': selectedText, 'Identifier': identifier.code, 'Type': currentSelectedType, 'Link': identifier.id}
+      this.abstractText = this.highlight(selectedText, currentSelectedType, userSelected.baseNode.parentNode, this.abstractText)
+      this.title = this.highlight(selectedText, currentSelectedType, userSelected.baseNode.parentNode, this.title)
+      document.querySelector('#abstract').innerHTML = this.abstractText
+      document.querySelector('#title').innerHTML = this.title
       this.annotatedEntities.unshift(annotatedItem)
     },
     removeAnnotation (entity, identifier, type) {
@@ -433,6 +435,15 @@ export default {
             this.currentUser = VueJwtDecode.decode(token)
             this.abstractText = response.data.document.abstract
             this.title = response.data.document.title
+            this.annotatedEntities = response.data.entityList
+            this.annotatedRelations = response.data.relationList
+            this.editMode = response.data.editMode
+            for (const item of this.annotatedEntities) {
+              this.abstractText = this.highlight(item.Entity, item.Type, document.querySelector('#abstract'), this.abstractText)
+              this.title = this.highlight(item.Entity, item.Type, document.querySelector('#title'), this.title)
+            }
+            document.querySelector('#abstract').innerHTML = this.abstractText
+            document.querySelector('#title').innerHTML = this.title
           } else {
             router.push('/')
           }

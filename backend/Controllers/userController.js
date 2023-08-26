@@ -3,6 +3,7 @@ const db = require("../Models");
 const jwt = require("jsonwebtoken");
 const dbConfig = require("../config/db.config.js");
 const User = db.users;
+// import jwt_decode from "jwt-decode";
 
 const createAccount = async (req, res) => {
   try {
@@ -100,15 +101,19 @@ const valicateUser = async (req, res, next) => {
 };
 const verifyFunc = (token) => {
   checkverify = false
-  jwt.verify (token, dbConfig.secretKey, function (err) {
-    if (!err){ 
-      checkverify = true;
-    }
-    else {
-      checkverify= false;
-    }
-  });
-  return checkverify
+  // var user = jwt.verify (token, dbConfig.secretKey, function (err) {
+  //   if (!err){ 
+  //     return user
+  //     checkverify = true;
+  //   }
+  //   else {
+  //     checkverify= false;
+  //   }
+  // });
+  // return checkverify
+  var user = jwt.verify (token, dbConfig.secretKey)
+  return user
+  
 }
 const verifyToken = async (req, res) =>{
     try {

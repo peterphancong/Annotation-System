@@ -18,10 +18,10 @@
       </div>
     </div>
     <div id="dvDocList" class="h-4/5 m-2 bg-white rounded-lg border border-gray-300 overflow-y-auto overflow-x-hidden">
-        <table class="text-center table-fixed break-all border-collapse w-full bg-dark-gray">
+        <table class="text-center table-fixed break-words border-collapse w-full bg-dark-gray">
           <thead>
             <tr>
-              <th class="border-b-2 p-0.5 border-gray-200">Title</th>
+              <th class="px-4 py-2 border-b-2 border-gray-200 w-2/3">Title</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">PMID</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">Status</th>
               <th class="px-4 py-2 border-b-2 border-gray-200">Action</th>
@@ -29,13 +29,13 @@
           </thead>
           <tbody>
             <tr v-for = "item in documentSet" :key="item.id" class="border-b dark:border-neutral-500">
-              <td class="px-4 py-2 border-b-2 border-gray-200">  {{item.title}}</td>
+              <td class="px-4 py-2 border-b-2 border-gray-200 text-left">  {{item.title}}</td>
               <td class="px-4 py-2 border-b-2 border-gray-200">{{item.pubmedID}}</td>
               <td class="px-4 py-2 border-b-2 border-gray-200">
                   <span v-if="item.status===0">Not Start</span>
-                  <span v-if="item.status===1">Working</span>
-                  <span v-if="item.status===2">Submitted</span>
-                  <span v-if="item.status===3">Finalized</span>
+                  <span v-if="item.status===1" class="text-green-500">Working</span>
+                  <span v-if="item.status===2" class="text-sky-500">Submitted</span>
+                  <span v-if="item.status===3" class="text-fuchsia-500">Finalized</span>
               </td>
               <td class="px-4 py-2 border-b-2 border-gray-200">
                 <button class="bg-blue-300 hover:bg-blue-400 py-1 px-3 rounded-full" @click="OpenAnnotation(item.pubmedID)">Annotate</button>
@@ -106,7 +106,7 @@ export default
     if (!token) {
       router.push('/')
     } else {
-      var data = {userName: this.currentUser.userName, pageSize: 10, pageIndex: 0}
+      var data = {userName: this.currentUser.userName, pageSize: 20, pageIndex: 0}
       axios.post('/api/loadDocumentList', data)
         .then((response) => {
           this.documentSet = response.data.documentlist.rows
