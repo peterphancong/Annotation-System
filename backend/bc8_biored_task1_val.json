@@ -1,0 +1,4804 @@
+{
+  "source": "PubMed",
+  "date": "2023-05-18",
+  "key": "collection.key",
+  "infons": {},
+  "documents": [
+    {
+      "id": "BC8_BioRED_Task1_Doc500",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "Glutathione-Hemin/Hematin Adduct Formation to Disintegrate Cytotoxic Oxidant Hemin/Hematin in Human K562 Cells and Red Blood Cells' Hemolysates: Impact of Glutathione on the Hemolytic Disorders and Homeostasis.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "Human",
+              "locations": [
+                {
+                  "offset": 94,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_0004"
+              },
+              "text": "K562",
+              "locations": [
+                {
+                  "offset": 100,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "Glutathione",
+              "locations": [
+                {
+                  "offset": 155,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006461"
+              },
+              "text": "Hemolytic Disorders",
+              "locations": [
+                {
+                  "offset": 174,
+                  "length": 19
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 211,
+          "text": "Hemin, an oxidized form of heme, acts as potent oxidant to regulate glutathione (GSH) content in pro-erythroid K562 nucleated cells, via activation of the KEAP1/NRF2 defensive signaling pathway. Moreover, GSH, as an essential metabolite, is involved in the regulation of cell-redox homeostasis and proposed to scavenge cytotoxic free heme, which is released from hemoglobin of damaged red blood cells (RBCs) during different hemolytic disorders. In the present study, we aimed to uncover the molecular mechanism by which GSH inhibits hemin-induced cytotoxicity (HIC) by affecting hemin's structural integrity in K562 cells and in RBC hemolysates. GSH, along with other thiols (cysteine, thioglycolic acid, and mercaptoethanol) altered the spectrum of hemin, while each of them co-added with hemin in cultures of K562 cells prevented HIC and growth arrest and markedly reduced the intracellular level of hemin. In addition, GSH endogenous levels served as a barrier to HIC in K562 cells, as shown by the depletion in GSH. LC-MS/MS analysis of the in vitro reaction between hemin and GSH revealed at least five different isomers of GSH-hemin adducts, as well as hydroxy derivatives as reaction products, which are characterized by unique mass spectra (MS). The latter allowed the detection of adducts in human RBC hemolysates. Based on these findings, we proposed a molecular mechanism via which GSH prevents HIC and structurally disintegrates heme. An analogous reaction was observed in RBC hemolysates via direct inter-reaction between hematin (ferric and hydroxide heme) released from hemoglobin and GSH. Overall, GSH-hematin adducts could be considered as novel entities of the human metabolome of RBCs in hemolytic disorders.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "4",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006418"
+              },
+              "text": "heme",
+              "locations": [
+                {
+                  "offset": 238,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "glutathione",
+              "locations": [
+                {
+                  "offset": 279,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 292,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_0004"
+              },
+              "text": "K562",
+              "locations": [
+                {
+                  "offset": 322,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "9817"
+              },
+              "text": "KEAP1",
+              "locations": [
+                {
+                  "offset": 366,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "4780"
+              },
+              "text": "NRF2",
+              "locations": [
+                {
+                  "offset": 372,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 416,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006418"
+              },
+              "text": "heme",
+              "locations": [
+                {
+                  "offset": 545,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006461"
+              },
+              "text": "hemolytic disorders",
+              "locations": [
+                {
+                  "offset": 636,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 732,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 745,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D064420"
+              },
+              "text": "cytotoxicity",
+              "locations": [
+                {
+                  "offset": 759,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D064420"
+              },
+              "text": "HIC",
+              "locations": [
+                {
+                  "offset": 773,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 791,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_0004"
+              },
+              "text": "K562",
+              "locations": [
+                {
+                  "offset": 823,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 858,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D013438"
+              },
+              "text": "thiols",
+              "locations": [
+                {
+                  "offset": 880,
+                  "length": 6
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D003545"
+              },
+              "text": "cysteine",
+              "locations": [
+                {
+                  "offset": 888,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "C017487"
+              },
+              "text": "thioglycolic acid",
+              "locations": [
+                {
+                  "offset": 898,
+                  "length": 17
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D008623"
+              },
+              "text": "mercaptoethanol",
+              "locations": [
+                {
+                  "offset": 921,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 962,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 1002,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_0004"
+              },
+              "text": "K562",
+              "locations": [
+                {
+                  "offset": 1023,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D064420"
+              },
+              "text": "HIC",
+              "locations": [
+                {
+                  "offset": 1044,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 1114,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1134,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D064420"
+              },
+              "text": "HIC",
+              "locations": [
+                {
+                  "offset": 1179,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_0004"
+              },
+              "text": "K562",
+              "locations": [
+                {
+                  "offset": 1186,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1227,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 1283,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "34",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1293,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "35",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1341,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "36",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hemin",
+              "locations": [
+                {
+                  "offset": 1345,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "human",
+              "locations": [
+                {
+                  "offset": 1513,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "38",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1605,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "39",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D064420"
+              },
+              "text": "HIC",
+              "locations": [
+                {
+                  "offset": 1618,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006418"
+              },
+              "text": "heme",
+              "locations": [
+                {
+                  "offset": 1653,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "41",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006418"
+              },
+              "text": "heme",
+              "locations": [
+                {
+                  "offset": 1777,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "42",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1812,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "43",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D005978"
+              },
+              "text": "GSH",
+              "locations": [
+                {
+                  "offset": 1826,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "44",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D006427"
+              },
+              "text": "hematin",
+              "locations": [
+                {
+                  "offset": 1830,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "45",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "human",
+              "locations": [
+                {
+                  "offset": 1891,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "46",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006461"
+              },
+              "text": "hemolytic disorders",
+              "locations": [
+                {
+                  "offset": 1919,
+                  "length": 19
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc501",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "The amplification of CNS damage in Alzheimer's disease due to SARS-CoV2 infection.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009422"
+              },
+              "text": "CNS damage",
+              "locations": [
+                {
+                  "offset": 21,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 35,
+                  "length": 19
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 83,
+          "text": "Pre-existing Alzheimer's disease is a risk factor for severe/fatal COVID-19 and infection by SARS-CoV2 virus has been associated with an increased incidence of un-masked Alzheimer's disease. The molecular basis whereby SARS-CoV2 may amplify Alzheimer's disease is not well understood. This study analyzed the molecular changes in autopsy brain tissues from people with pre-existing dementia who died of COVID-19 (n = 5) which was compared to equivalent tissues of people who died of COVID-19 with no history of dementia (n = 8), Alzheimer's disease pre-COVID-19 (n = 10) and aged matched controls (n = 10) in a blinded fashion. Immunohistochemistry analyses for hyperphosphorylated tau protein, alpha-synuclein, and beta-amyloid-42 confirmed the diagnoses of Alzheimer's disease (n = 4), and Lewy body dementia (n = 1) in the COVID-19 group. The brain tissues from patients who died of COVID-19 with no history of dementia showed a diffuse microangiopathy marked by endocytosis of spike subunit S1 and S2 in primarily CD31+ endothelia with strong co-localization with ACE2, Caspase-3, IL6, TNFalpha, and Complement component 6 that was not associated with SARS-CoV2 RNA. Microglial activation marked by increased TMEM119 and MCP1 protein expression closely paralleled the endocytosed spike protein. The COVID-19 tissues from people with no pre-existing dementia showed, compared to controls, 5-10x fold increases in expression of neuronal NOS and NMDAR2 as well as a marked decrease in the expression of proteins whose loss is associated with worsening Alzheimer's disease: MFSD2a, SHIP1, BCL6, BCL10, and BACH1. In COVID-19 tissues from people with dementia the widespread spike-induced microencephalitis with the concomitant microglial activation co-existed in the same areas where neurons had hyperphosphorylated tau protein suggesting that the already dysfunctional neurons were additionally stressed by the SARS-CoV2 induced microangiopathy. ACE2+ human brain endothelial cells treated with high dose (but not vaccine equivalent low dose) spike S1 protein demonstrated each of the molecular changes noted in the in vivo COVID-19 and COVID-19/Alzheimer's disease brain tissues. It is concluded that fatal COVID-19 induces a diffuse microencephalitis and microglial activation in the brain due to endocytosis of circulating viral spike protein that amplifies pre-existing dementia in at least two ways: 1) modulates the expression of proteins that may worsen Alzheimer's disease and 2) stresses the already dysfunctional neurons by causing an acute proinflammatory/hypercoagulable/hypoxic microenvironment in areas with abundant hyperphosphorylated tau protein and/or betaA-42.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "2",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 96,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 150,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D007239"
+              },
+              "text": "infection",
+              "locations": [
+                {
+                  "offset": 163,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 253,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "2697049"
+              },
+              "text": "SARS-CoV2",
+              "locations": [
+                {
+                  "offset": 302,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 324,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 465,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 486,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 566,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 594,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 612,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 636,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "4137"
+              },
+              "text": "tau",
+              "locations": [
+                {
+                  "offset": 765,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6622"
+              },
+              "text": "alpha-synuclein",
+              "locations": [
+                {
+                  "offset": 778,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 842,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D020961"
+              },
+              "text": "Lewy body dementia",
+              "locations": [
+                {
+                  "offset": 875,
+                  "length": 18
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 909,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 948,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 969,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 997,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000783"
+              },
+              "text": "microangiopathy",
+              "locations": [
+                {
+                  "offset": 1023,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5175"
+              },
+              "text": "CD31",
+              "locations": [
+                {
+                  "offset": 1101,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "59272"
+              },
+              "text": "ACE2",
+              "locations": [
+                {
+                  "offset": 1151,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "836"
+              },
+              "text": "Caspase-3",
+              "locations": [
+                {
+                  "offset": 1157,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "3569"
+              },
+              "text": "IL6",
+              "locations": [
+                {
+                  "offset": 1168,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7124"
+              },
+              "text": "TNFalpha",
+              "locations": [
+                {
+                  "offset": 1173,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "729"
+              },
+              "text": "Complement component 6",
+              "locations": [
+                {
+                  "offset": 1187,
+                  "length": 22
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "2697049"
+              },
+              "text": "SARS-CoV2",
+              "locations": [
+                {
+                  "offset": 1239,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "338773"
+              },
+              "text": "TMEM119",
+              "locations": [
+                {
+                  "offset": 1296,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6347"
+              },
+              "text": "MCP1",
+              "locations": [
+                {
+                  "offset": 1308,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 1386,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 1436,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "34",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "4842"
+              },
+              "text": "neuronal NOS",
+              "locations": [
+                {
+                  "offset": 1513,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "35",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 1636,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "36",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "84879"
+              },
+              "text": "MFSD2a",
+              "locations": [
+                {
+                  "offset": 1657,
+                  "length": 6
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "3635"
+              },
+              "text": "SHIP1",
+              "locations": [
+                {
+                  "offset": 1665,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "38",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "604"
+              },
+              "text": "BCL6",
+              "locations": [
+                {
+                  "offset": 1672,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "39",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "8915"
+              },
+              "text": "BCL10",
+              "locations": [
+                {
+                  "offset": 1678,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "571"
+              },
+              "text": "BACH1",
+              "locations": [
+                {
+                  "offset": 1689,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "41",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 1699,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "42",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 1733,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "43",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "4137"
+              },
+              "text": "tau",
+              "locations": [
+                {
+                  "offset": 1899,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "44",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "2697049"
+              },
+              "text": "SARS-CoV2",
+              "locations": [
+                {
+                  "offset": 1995,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "45",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000783"
+              },
+              "text": "microangiopathy",
+              "locations": [
+                {
+                  "offset": 2013,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "46",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "59272"
+              },
+              "text": "ACE2",
+              "locations": [
+                {
+                  "offset": 2030,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "47",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "human",
+              "locations": [
+                {
+                  "offset": 2036,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "48",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 2208,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "49",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 2221,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "50",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 2230,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "51",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "C000657245"
+              },
+              "text": "COVID-19",
+              "locations": [
+                {
+                  "offset": 2292,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "52",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D003704"
+              },
+              "text": "dementia",
+              "locations": [
+                {
+                  "offset": 2458,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "53",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000544"
+              },
+              "text": "Alzheimer's disease",
+              "locations": [
+                {
+                  "offset": 2545,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "54",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000860"
+              },
+              "text": "hypoxic",
+              "locations": [
+                {
+                  "offset": 2667,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "55",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "4137"
+              },
+              "text": "tau",
+              "locations": [
+                {
+                  "offset": 2735,
+                  "length": 3
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc502",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "Case report: Rhabdomyolysis and kidney injury in a statin-treated hypothyroid patient-kill two birds with one stone.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D012206"
+              },
+              "text": "Rhabdomyolysis",
+              "locations": [
+                {
+                  "offset": 13,
+                  "length": 14
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D058186"
+              },
+              "text": "kidney injury",
+              "locations": [
+                {
+                  "offset": 32,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D007037"
+              },
+              "text": "hypothyroid",
+              "locations": [
+                {
+                  "offset": 66,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patient",
+              "locations": [
+                {
+                  "offset": 78,
+                  "length": 7
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 117,
+          "text": "Statin treatment for hypercholesterolemia may cause reversible rhabdomyolysis and acute kidney injury in susceptible patients. However, persistent rhabdomyolysis and acute kidney injury following discontinuation of statins require careful evaluation of the underlying causes to avoid missing a curable disease. We describe a 50-year-old woman with hypercholesterolemia [total cholesterol 345 mg/dl, low-density lipoprotein cholesterol (LDL-C) 266 mg/dL] on atorvastatin therapy (40 mg daily) for 1 month that presented with myalgia and muscle weakness. Relevant laboratory studies revealed persistent higher hypercholesterolemia with total cholesterol (312 mg/dL), high creatine kinase (CK) (5,178 U/L), and high creatinine levels (1.5 mg/dL) without dysmorphic red blood cells and proteinuria. Despite the cessation of statin therapy, serum CK level increased to 9,594 U/L, and creatinine remained at 1.5 mg/dL. A thorough work-up to assess potential underlying causes indicated low T3 and free T4 and high thyroid-stimulating hormone (TSH) levels, consistent with hypothyroidism. With aggressive thyroxine replacement for 1 month, all of the clinical features, along with elevated serum CK and creatinine levels, were completely resolved. This case highlights the fact that hypothyroidism must be kept in mind as a potential cause of concomitant myopathy and kidney injury, especially in patients with statin-resistant hypercholesterolemia.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "4",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006937"
+              },
+              "text": "hypercholesterolemia",
+              "locations": [
+                {
+                  "offset": 138,
+                  "length": 20
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D012206"
+              },
+              "text": "rhabdomyolysis",
+              "locations": [
+                {
+                  "offset": 180,
+                  "length": 14
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D058186"
+              },
+              "text": "acute kidney injury",
+              "locations": [
+                {
+                  "offset": 199,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 234,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D012206"
+              },
+              "text": "rhabdomyolysis",
+              "locations": [
+                {
+                  "offset": 264,
+                  "length": 14
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D058186"
+              },
+              "text": "acute kidney injury",
+              "locations": [
+                {
+                  "offset": 283,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "woman",
+              "locations": [
+                {
+                  "offset": 454,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006937"
+              },
+              "text": "hypercholesterolemia",
+              "locations": [
+                {
+                  "offset": 465,
+                  "length": 20
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002784"
+              },
+              "text": "cholesterol",
+              "locations": [
+                {
+                  "offset": 493,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D000069059"
+              },
+              "text": "atorvastatin",
+              "locations": [
+                {
+                  "offset": 574,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D063806"
+              },
+              "text": "myalgia",
+              "locations": [
+                {
+                  "offset": 641,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D018908"
+              },
+              "text": "muscle weakness",
+              "locations": [
+                {
+                  "offset": 653,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006937"
+              },
+              "text": "hypercholesterolemia",
+              "locations": [
+                {
+                  "offset": 725,
+                  "length": 20
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002784"
+              },
+              "text": "cholesterol",
+              "locations": [
+                {
+                  "offset": 757,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "51727"
+              },
+              "text": "creatine kinase",
+              "locations": [
+                {
+                  "offset": 787,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "51727"
+              },
+              "text": "CK",
+              "locations": [
+                {
+                  "offset": 804,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D003404"
+              },
+              "text": "creatinine",
+              "locations": [
+                {
+                  "offset": 830,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D011507"
+              },
+              "text": "proteinuria",
+              "locations": [
+                {
+                  "offset": 899,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "51727"
+              },
+              "text": "CK",
+              "locations": [
+                {
+                  "offset": 959,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D003404"
+              },
+              "text": "creatinine",
+              "locations": [
+                {
+                  "offset": 996,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D014284"
+              },
+              "text": "T3",
+              "locations": [
+                {
+                  "offset": 1101,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D007037"
+              },
+              "text": "hypothyroidism",
+              "locations": [
+                {
+                  "offset": 1183,
+                  "length": 14
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D013974"
+              },
+              "text": "thyroxine",
+              "locations": [
+                {
+                  "offset": 1215,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "51727"
+              },
+              "text": "CK",
+              "locations": [
+                {
+                  "offset": 1306,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D003404"
+              },
+              "text": "creatinine",
+              "locations": [
+                {
+                  "offset": 1313,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D007037"
+              },
+              "text": "hypothyroidism",
+              "locations": [
+                {
+                  "offset": 1393,
+                  "length": 14
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009135"
+              },
+              "text": "myopathy",
+              "locations": [
+                {
+                  "offset": 1465,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D058186"
+              },
+              "text": "kidney injury",
+              "locations": [
+                {
+                  "offset": 1478,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 1507,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006937"
+              },
+              "text": "hypercholesterolemia",
+              "locations": [
+                {
+                  "offset": 1538,
+                  "length": 20
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc503",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "Response of Cd, Zn Translocation and Distribution to Organic Acids Heterogeneity in Brassica juncea L.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 12,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 16,
+                  "length": 2
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 103,
+          "text": "In order to investigate the translocation, distribution, and organic acid heterogeneity characteristics in Brassica juncea L., a pot experiment with the exogenous application of Cd and Zn was conducted to analyze the effects of Cd, Zn, and organic acid contents and heterogeneity on the translocation and distribution of Cd and Zn. The results showed that the Cd and Zn contents of B. juncea were mainly accumulated in the roots. The Cd content in the symplast sap was 127.66-146.50% higher than that in the apoplast sap, while the opposite was true for Zn. The distribution of Cd in xylem sap occupied 64.60% under 20 mg kg-1 Cd treatment, and Zn in xylem sap occupied 60.14% under 100 mg kg-1 Zn treatment. The Cd was predominantly distributed in the vacuole, but the Zn was predominantly distributed in the cell walls. In addition, oxalic and malic acids were present in high concentrations in B. juncea. In the vacuole, correlation analysis showed that the contents of Cd were negatively correlated with the contents of oxalic acid and succinic acid, and the contents of Zn were positively correlated with the contents of malic acid and acetic acid. The contents of Cd and Zn were negatively related to the contents of oxalic acid and citric acid in xylem sap. Therefore, Cd in B. juncea was mainly absorbed through the symplast pathway, and Zn was mainly absorbed through the apoplast pathway, and then Cd and Zn were distributed in the vacuole and cell walls. The Cd and Zn in B. juncea are transferred upward through the xylem and promoted by oxalic acid, malic acid, and citric acid.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "2",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 281,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 288,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 331,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 335,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 424,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 431,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 463,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 470,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "874446"
+              },
+              "text": "B. juncea",
+              "locations": [
+                {
+                  "offset": 485,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 537,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 657,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 681,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 730,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 748,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 798,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 816,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 873,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "874446"
+              },
+              "text": "B. juncea",
+              "locations": [
+                {
+                  "offset": 1000,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 1076,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019815"
+              },
+              "text": "oxalic acid",
+              "locations": [
+                {
+                  "offset": 1127,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019802"
+              },
+              "text": "succinic acid",
+              "locations": [
+                {
+                  "offset": 1143,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 1178,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "C030298"
+              },
+              "text": "malic acid",
+              "locations": [
+                {
+                  "offset": 1229,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019342"
+              },
+              "text": "acetic acid",
+              "locations": [
+                {
+                  "offset": 1244,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 1273,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 1280,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019815"
+              },
+              "text": "oxalic acid",
+              "locations": [
+                {
+                  "offset": 1326,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019343"
+              },
+              "text": "citric acid",
+              "locations": [
+                {
+                  "offset": 1342,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 1379,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "874446"
+              },
+              "text": "B. juncea",
+              "locations": [
+                {
+                  "offset": 1385,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 1449,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 1511,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "34",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 1518,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "35",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002104"
+              },
+              "text": "Cd",
+              "locations": [
+                {
+                  "offset": 1573,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "36",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D015032"
+              },
+              "text": "Zn",
+              "locations": [
+                {
+                  "offset": 1580,
+                  "length": 2
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "874446"
+              },
+              "text": "B. juncea",
+              "locations": [
+                {
+                  "offset": 1586,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "38",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019815"
+              },
+              "text": "oxalic acid",
+              "locations": [
+                {
+                  "offset": 1653,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "39",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "C030298"
+              },
+              "text": "malic acid",
+              "locations": [
+                {
+                  "offset": 1666,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D019343"
+              },
+              "text": "citric acid",
+              "locations": [
+                {
+                  "offset": 1682,
+                  "length": 11
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc504",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "Down-regulation of A20 promotes immune escape of lung adenocarcinomas.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 19,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000077192"
+              },
+              "text": "lung adenocarcinomas",
+              "locations": [
+                {
+                  "offset": 49,
+                  "length": 20
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 71,
+          "text": "Inflammation is a well-known driver of lung tumorigenesis. One strategy by which tumor cells escape tight homeostatic control is by decreasing the expression of the potent anti-inflammatory protein tumor necrosis factor alpha-induced protein 3 (TNFAIP3), also known as A20. We observed that tumor cell intrinsic loss of A20 markedly enhanced lung tumorigenesis and was associated with reduced CD8+ T cell-mediated immune surveillance in patients with lung cancer and in mouse models. In mice, we observed that this effect was completely dependent on increased cellular sensitivity to interferon-gamma (IFN-gamma) signaling by aberrant activation of TANK-binding kinase 1 (TBK1) and increased downstream expression and activation of signal transducer and activator of transcription 1 (STAT1). Interrupting this autocrine feed forward loop by knocking out IFN-alpha/beta receptor completely restored infiltration of cytotoxic T cells and rescued loss of A20 depending tumorigenesis. Downstream of STAT1, programmed death ligand 1 (PD-L1) was highly expressed in A20 knockout lung tumors. Accordingly, immune checkpoint blockade (ICB) treatment was highly efficient in mice harboring A20-deficient lung tumors. Furthermore, an A20 loss-of-function gene expression signature positively correlated with survival of melanoma patients treated with anti-programmed cell death protein 1. Together, we have identified A20 as a master immune checkpoint regulating the TBK1-STAT1-PD-L1 axis that may be exploited to improve ICB therapy in patients with lung adenocarcinoma.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "2",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D007249"
+              },
+              "text": "Inflammation",
+              "locations": [
+                {
+                  "offset": 71,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D063646"
+              },
+              "text": "lung tumorigenesis",
+              "locations": [
+                {
+                  "offset": 110,
+                  "length": 18
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 152,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "tumor necrosis factor alpha-induced protein 3",
+              "locations": [
+                {
+                  "offset": 269,
+                  "length": 45
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "TNFAIP3",
+              "locations": [
+                {
+                  "offset": 316,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 340,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 362,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 391,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D063646"
+              },
+              "text": "lung tumorigenesis",
+              "locations": [
+                {
+                  "offset": 413,
+                  "length": 18
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "925"
+              },
+              "text": "CD8",
+              "locations": [
+                {
+                  "offset": 464,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 508,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D008175"
+              },
+              "text": "lung cancer",
+              "locations": [
+                {
+                  "offset": 522,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "10090"
+              },
+              "text": "mouse",
+              "locations": [
+                {
+                  "offset": 541,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "10095"
+              },
+              "text": "mice",
+              "locations": [
+                {
+                  "offset": 558,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "15978"
+              },
+              "text": "interferon-gamma",
+              "locations": [
+                {
+                  "offset": 655,
+                  "length": 16
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "15978"
+              },
+              "text": "IFN-gamma",
+              "locations": [
+                {
+                  "offset": 673,
+                  "length": 9
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "56480"
+              },
+              "text": "TANK-binding kinase 1",
+              "locations": [
+                {
+                  "offset": 720,
+                  "length": 21
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "56480"
+              },
+              "text": "TBK1",
+              "locations": [
+                {
+                  "offset": 743,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "20846"
+              },
+              "text": "signal transducer and activator of transcription 1",
+              "locations": [
+                {
+                  "offset": 803,
+                  "length": 50
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "20846"
+              },
+              "text": "STAT1",
+              "locations": [
+                {
+                  "offset": 855,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "21929"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 1023,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D063646"
+              },
+              "text": "tumorigenesis",
+              "locations": [
+                {
+                  "offset": 1037,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "20846"
+              },
+              "text": "STAT1",
+              "locations": [
+                {
+                  "offset": 1066,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "60533"
+              },
+              "text": "programmed death ligand 1",
+              "locations": [
+                {
+                  "offset": 1073,
+                  "length": 25
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "60533"
+              },
+              "text": "PD-L1",
+              "locations": [
+                {
+                  "offset": 1100,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "21929"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 1131,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D008175"
+              },
+              "text": "lung tumors",
+              "locations": [
+                {
+                  "offset": 1144,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "10095"
+              },
+              "text": "mice",
+              "locations": [
+                {
+                  "offset": 1237,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "21929"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 1252,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D008175"
+              },
+              "text": "lung tumors",
+              "locations": [
+                {
+                  "offset": 1266,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 1295,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D008545"
+              },
+              "text": "melanoma",
+              "locations": [
+                {
+                  "offset": 1381,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "34",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 1390,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "35",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5133"
+              },
+              "text": "programmed cell death protein 1",
+              "locations": [
+                {
+                  "offset": 1417,
+                  "length": 31
+                }
+              ]
+            },
+            {
+              "id": "36",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "7128"
+              },
+              "text": "A20",
+              "locations": [
+                {
+                  "offset": 1479,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "56480"
+              },
+              "text": "TBK1",
+              "locations": [
+                {
+                  "offset": 1528,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "38",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6772"
+              },
+              "text": "STAT1",
+              "locations": [
+                {
+                  "offset": 1533,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "39",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "29126"
+              },
+              "text": "PD-L1",
+              "locations": [
+                {
+                  "offset": 1539,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 1598,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "41",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D000077192"
+              },
+              "text": "lung adenocarcinoma",
+              "locations": [
+                {
+                  "offset": 1612,
+                  "length": 19
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc505",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "MicroRNA-433 inhibits oral squamous cell carcinoma cells by targeting FAK.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "MicroRNA-433",
+              "locations": [
+                {
+                  "offset": 0,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "oral squamous cell carcinoma",
+              "locations": [
+                {
+                  "offset": 22,
+                  "length": 28
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 70,
+                  "length": 3
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 75,
+          "text": "We investigated the involvement of microRNA-433 (miR-433) in the proliferation, migration, and invasiveness of oral squamous cell carcinoma (OSCC). Totally 108 OSCC tissues and adjacent normal tissues from patients with OSCC were collected. Also, transplanted tumor formation experiment in nude mice was conducted to verify the effect of miR-433 and FAK on subcutaneous transplanted tumor. The CD44+ stem cell from SCC-9 were collected and assigned into the blank, miR-433 mimics, mimics control, miR-433 inhibitors, inhibitors control, siFAK and miR-433 inhibitors + siFAK groups. The qRT-PCR and western blotting were used to detect miR-433, FAK, ERK, MEK, pERK and pMEK after transfection. Flow cytometry, MTT assay, scratch test and Transwell assay were performed to determine the cell proportion, growth, migration and invasion of SCC-9 cells. In cell line SCC-9, expression of CD133, Oct-4, and BIM-1 was greater in CD44+ cells than CD44- cells, indicating that CD44+ cells had characteristics of tumor stem cells. Expression of FAK, ERK, MEK, p-ERK and p-MEK was decreased in tumor tissues from the CD44-, miR-433, and siFAK groups. Expression of MiR-433 mRNA was elevated, while levels of FAK, ERK, MEK, p-ERK, and p-MEK mRNA were all decreased in the miR-433 mimics group. In the miR-433 mimics and siFAK groups, cell proliferation, migration, and invasion were all decreased, while the opposite trends were seen in the miR-433 inhibitor group. These results indicate that miR-433 downregulates FAK through the ERK/MAPK signaling pathway to inhibit the proliferation, migration, and invasiveness of SCC-9 OSCC cells.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "3",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "microRNA-433",
+              "locations": [
+                {
+                  "offset": 110,
+                  "length": 12
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 124,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "oral squamous cell carcinoma",
+              "locations": [
+                {
+                  "offset": 186,
+                  "length": 28
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "OSCC",
+              "locations": [
+                {
+                  "offset": 216,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "OSCC",
+              "locations": [
+                {
+                  "offset": 235,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 281,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "OSCC",
+              "locations": [
+                {
+                  "offset": 295,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 335,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "10095"
+              },
+              "text": "mice",
+              "locations": [
+                {
+                  "offset": 370,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 413,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 425,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 458,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "960"
+              },
+              "text": "CD44",
+              "locations": [
+                {
+                  "offset": 469,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_1685"
+              },
+              "text": "SCC-9",
+              "locations": [
+                {
+                  "offset": 490,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 540,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 572,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 622,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 710,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 719,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 724,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5609"
+              },
+              "text": "MEK",
+              "locations": [
+                {
+                  "offset": 729,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "9451"
+              },
+              "text": "pERK",
+              "locations": [
+                {
+                  "offset": 734,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "C070243"
+              },
+              "text": "MTT",
+              "locations": [
+                {
+                  "offset": 784,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_1685"
+              },
+              "text": "SCC-9",
+              "locations": [
+                {
+                  "offset": 911,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_1685"
+              },
+              "text": "SCC-9",
+              "locations": [
+                {
+                  "offset": 937,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "8842"
+              },
+              "text": "CD133",
+              "locations": [
+                {
+                  "offset": 958,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5460"
+              },
+              "text": "Oct-4",
+              "locations": [
+                {
+                  "offset": 965,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "960"
+              },
+              "text": "CD44",
+              "locations": [
+                {
+                  "offset": 997,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "960"
+              },
+              "text": "CD44",
+              "locations": [
+                {
+                  "offset": 1014,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "32",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "960"
+              },
+              "text": "CD44",
+              "locations": [
+                {
+                  "offset": 1043,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "33",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 1078,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "34",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 1110,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "35",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 1115,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "36",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5609"
+              },
+              "text": "MEK",
+              "locations": [
+                {
+                  "offset": 1120,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "37",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 1127,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "38",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5609"
+              },
+              "text": "MEK",
+              "locations": [
+                {
+                  "offset": 1137,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "39",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 1158,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "960"
+              },
+              "text": "CD44",
+              "locations": [
+                {
+                  "offset": 1181,
+                  "length": 4
+                }
+              ]
+            },
+            {
+              "id": "41",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 1188,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "42",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "MiR-433",
+              "locations": [
+                {
+                  "offset": 1229,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "43",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 1272,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "44",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 1277,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "45",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5609"
+              },
+              "text": "MEK",
+              "locations": [
+                {
+                  "offset": 1282,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "46",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 1289,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "47",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5609"
+              },
+              "text": "MEK",
+              "locations": [
+                {
+                  "offset": 1300,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "48",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 1335,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "49",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 1364,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "50",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 1504,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "51",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "574034"
+              },
+              "text": "miR-433",
+              "locations": [
+                {
+                  "offset": 1557,
+                  "length": 7
+                }
+              ]
+            },
+            {
+              "id": "52",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5747"
+              },
+              "text": "FAK",
+              "locations": [
+                {
+                  "offset": 1579,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "53",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "5594"
+              },
+              "text": "ERK",
+              "locations": [
+                {
+                  "offset": 1595,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "54",
+              "infons": {
+                "type": "CellLine",
+                "identifier": "CVCL_1685"
+              },
+              "text": "SCC-9",
+              "locations": [
+                {
+                  "offset": 1683,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "55",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D002294"
+              },
+              "text": "OSCC",
+              "locations": [
+                {
+                  "offset": 1689,
+                  "length": 4
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc506",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "ASB13 inhibits breast cancer metastasis through promoting SNAI2 degradation and relieving its transcriptional repression of YAP.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 0,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D001943"
+              },
+              "text": "breast cancer metastasis",
+              "locations": [
+                {
+                  "offset": 15,
+                  "length": 24
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 58,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 124,
+                  "length": 3
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 129,
+          "text": "Transcription factor SNAI2 plays key roles during development and has also been known to promote metastasis by inducing invasive phenotype and tumor-initiating activity of cancer cells. However, the post-translational regulation of SNAI2 is less well studied. We performed a dual-luciferase-based, genome-wide E3 ligase siRNA library screen and identified ASB13 as an E3 ubiquitin ligase that targets SNAI2 for ubiquitination and degradation. ASB13 knockout in breast cancer cells promoted cell migration and decreased F-actin polymerization, while overexpression of ASB13 suppressed lung metastasis. Furthermore, ASB13 knockout decreased YAP expression, and such regulation is dependent on an increased protein level of SNAI2, which in turn represses YAP transcription. YAP suppresses tumor progression in breast cancer, as YAP knockout increases tumorsphere formation, anchorage-independent colony formation, cell migration in vitro, and lung metastasis in vivo. Clinical data analysis reveals that ASB13 expression is positively correlated with improved overall survival in breast cancer patients. These findings establish ASB13 as a suppressor of breast cancer metastasis by promoting degradation of SNAI2 and relieving its transcriptional repression of YAP.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "4",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 150,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009362"
+              },
+              "text": "metastasis",
+              "locations": [
+                {
+                  "offset": 226,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 272,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "cancer",
+              "locations": [
+                {
+                  "offset": 301,
+                  "length": 6
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 361,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 485,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "158506"
+              },
+              "text": "E3 ubiquitin ligase",
+              "locations": [
+                {
+                  "offset": 497,
+                  "length": 19
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 530,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 572,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D001943"
+              },
+              "text": "breast cancer",
+              "locations": [
+                {
+                  "offset": 590,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 696,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009362"
+              },
+              "text": "lung metastasis",
+              "locations": [
+                {
+                  "offset": 713,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 743,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 768,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "18",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 850,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "19",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 881,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "20",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 900,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "21",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009369"
+              },
+              "text": "tumor",
+              "locations": [
+                {
+                  "offset": 915,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "22",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D001943"
+              },
+              "text": "breast cancer",
+              "locations": [
+                {
+                  "offset": 936,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "23",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 954,
+                  "length": 3
+                }
+              ]
+            },
+            {
+              "id": "24",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D009362"
+              },
+              "text": "lung metastasis",
+              "locations": [
+                {
+                  "offset": 1069,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "25",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 1130,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "26",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D001943"
+              },
+              "text": "breast cancer",
+              "locations": [
+                {
+                  "offset": 1206,
+                  "length": 13
+                }
+              ]
+            },
+            {
+              "id": "27",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 1220,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "28",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "79754"
+              },
+              "text": "ASB13",
+              "locations": [
+                {
+                  "offset": 1255,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "29",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D001943"
+              },
+              "text": "breast cancer metastasis",
+              "locations": [
+                {
+                  "offset": 1280,
+                  "length": 24
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "6591"
+              },
+              "text": "SNAI2",
+              "locations": [
+                {
+                  "offset": 1333,
+                  "length": 5
+                }
+              ]
+            },
+            {
+              "id": "31",
+              "infons": {
+                "type": "GeneOrGeneProduct",
+                "identifier": "10413"
+              },
+              "text": "YAP",
+              "locations": [
+                {
+                  "offset": 1387,
+                  "length": 3
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "BC8_BioRED_Task1_Doc507",
+      "infons": {},
+      "passages": [
+        {
+          "infons": {
+            "type": "title"
+          },
+          "offset": 0,
+          "text": "Sufentanil vs. Dexmedetomidine as Neuraxial Adjuvants in Cesarean Section: A Mono-Centric Retrospective Comparative Study.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "0",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D017409"
+              },
+              "text": "Sufentanil",
+              "locations": [
+                {
+                  "offset": 0,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D020927"
+              },
+              "text": "Dexmedetomidine",
+              "locations": [
+                {
+                  "offset": 15,
+                  "length": 15
+                }
+              ]
+            }
+          ],
+          "relations": []
+        },
+        {
+          "infons": {
+            "type": "abstract"
+          },
+          "offset": 123,
+          "text": "Spinal anesthesia is the best choice for caesarean delivery. This technique is characterized by a complete and predictable nerve block with a fast onset and few complications. Several intrathecal adjuvants are used in order to improve the quality and duration of anesthesia and reduce its side effects. Sixty-two patients who underwent caesarean delivery under spinal anesthesia were included in this medical records review. In this retrospective study, after adopting exclusion criteria, we assessed 24 patients who received Hyperbaric Bupivacaine 0.5% 10 mg and dexmedetomidine 10 mug (G1), and 28 patients who received an institutional standard treatment with Hyperbaric Bupivacaine 0.5% 10 mg and sufentanil 5 mug (G2). We evaluated the difference in terms of motor and sensory block, postoperative pain, and adverse effects during the first 24 h following delivery and neonatal outcome. Our study found that the sufentanil group had a significantly lower requirement for analgesia than the dexmedetomidine group. Postoperative pain, assessed with the VAS scale, was stronger in G1 than in G2 (4 +- 2 vs. 2 +- 1, p-value < 0.01). Differences between the two groups regarding the intraoperative degree of motor and sensory block, motor recovery time, and neonatal Apgar scores were not noticed. Pruritus and shivering were observed only in G2. Itching and shivering did not occur in the dexmedetomidine group. Postoperative analgesia was superior in the sufentanil group, but the incidence of side effects was higher. Adjuvant dexmedetomidine prevented postoperative shivering.",
+          "sentences": [],
+          "annotations": [
+            {
+              "id": "2",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D006327"
+              },
+              "text": "nerve block",
+              "locations": [
+                {
+                  "offset": 246,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 436,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 627,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "5",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002045"
+              },
+              "text": "Bupivacaine",
+              "locations": [
+                {
+                  "offset": 660,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "6",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D020927"
+              },
+              "text": "dexmedetomidine",
+              "locations": [
+                {
+                  "offset": 687,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "7",
+              "infons": {
+                "type": "OrganismTaxon",
+                "identifier": "9606"
+              },
+              "text": "patients",
+              "locations": [
+                {
+                  "offset": 723,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "8",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D002045"
+              },
+              "text": "Bupivacaine",
+              "locations": [
+                {
+                  "offset": 797,
+                  "length": 11
+                }
+              ]
+            },
+            {
+              "id": "9",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D017409"
+              },
+              "text": "sufentanil",
+              "locations": [
+                {
+                  "offset": 824,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "10",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D010149"
+              },
+              "text": "postoperative pain",
+              "locations": [
+                {
+                  "offset": 912,
+                  "length": 18
+                }
+              ]
+            },
+            {
+              "id": "11",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D017409"
+              },
+              "text": "sufentanil",
+              "locations": [
+                {
+                  "offset": 1040,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D020927"
+              },
+              "text": "dexmedetomidine",
+              "locations": [
+                {
+                  "offset": 1118,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "13",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D010149"
+              },
+              "text": "Postoperative pain",
+              "locations": [
+                {
+                  "offset": 1141,
+                  "length": 18
+                }
+              ]
+            },
+            {
+              "id": "14",
+              "infons": {
+                "type": "DiseaseOrPhenotypicFeature",
+                "identifier": "D011537"
+              },
+              "text": "Pruritus",
+              "locations": [
+                {
+                  "offset": 1421,
+                  "length": 8
+                }
+              ]
+            },
+            {
+              "id": "15",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D020927"
+              },
+              "text": "dexmedetomidine",
+              "locations": [
+                {
+                  "offset": 1513,
+                  "length": 15
+                }
+              ]
+            },
+            {
+              "id": "16",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D017409"
+              },
+              "text": "sufentanil",
+              "locations": [
+                {
+                  "offset": 1580,
+                  "length": 10
+                }
+              ]
+            },
+            {
+              "id": "17",
+              "infons": {
+                "type": "ChemicalEntity",
+                "identifier": "D020927"
+              },
+              "text": "dexmedetomidine",
+              "locations": [
+                {
+                  "offset": 1653,
+                  "length": 15
+                }
+              ]
+            }
+          ],
+          "relations": []
+        }
+      ],
+      "relations": []
+    }
+  ]
+}

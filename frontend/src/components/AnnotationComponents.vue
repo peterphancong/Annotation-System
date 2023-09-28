@@ -1,5 +1,5 @@
 <template>
-    <div class="text-sm h-full overflow-x-hidden" id="AnnotationComponent">
+    <div class="text-sm h-full overflow-x-hidden bg-white" id="AnnotationComponent">
       <div class="flex w-full h-full overflow-x-hidden">
         <div id="paragraph" class="w-3/4 flex flex-col" >
           <div id="title" class="flex-none ml-1 font-bold text-left w-5/6" >{{ title }}</div>
@@ -246,6 +246,7 @@ export default {
         })
     },
     Submit () {
+      
     },
     addRelation () {
       let annotatedRel = {
